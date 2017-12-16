@@ -1,0 +1,24 @@
+- name: kubeadm reset
+  command: kubeadm reset
+
+- name: kubeadm init
+  command: kubeadm init
+
+- file:
+    path: ~/.kube
+    state: absent
+
+- file:
+    path: ~/.kube
+    state: directory
+
+- name: copy admin.conf
+  command: cp -i /etc/kubernetes/admin.conf ~/.kube/config
+
+- name: Register git version that is installed on system
+  shell: kubectl version | base64 | tr -d '\n'
+  register: k8_version
+
+- command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
+
+- command: kubectl label node vps242130.ovh.net server_type=big  

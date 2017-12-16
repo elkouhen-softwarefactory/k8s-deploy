@@ -1,0 +1,29 @@
+- copy: src=templates/traefik.toml dest=/tmp/traefik.toml
+
+- copy: src=templates/traefik-ds-ssl.yaml dest=/tmp/traefik-ds.yaml
+
+#- command: openssl genrsa -des3 -passout pass:x -out /tmp/tls.pass.key 2048
+
+#- command: openssl rsa -passin pass:x -in /tmp/tls.pass.key -out /tmp/tls.key
+
+#- command: rm /tmp/tls.pass.key
+
+#- command: openssl req -new -key /tmp/tls.key -out /tmp/tls.csr -subj "/C=FR/ST=-/L=-/O=wildwidewest/OU=-/CN=*.k8-dev.wildwidewest.xyz"
+
+#- command: openssl x509 -req -days 365 -in /tmp/tls.csr -signkey /tmp/tls.key -out /tmp/tls.crt
+
+- command: kubectl apply -f https://raw.githubusercontent.com/containous/traefik/master/examples/k8s/traefik-rbac.yaml
+
+- copy: src=files/tls.crt dest=/tmp/tls.crt
+
+- copy: src=files/tls.key dest=/tmp/tls.key
+
+#- command: kubectl delete secret traefik-cert -n kube-system
+
+- command: kubectl create secret generic traefik-cert --from-file=/tmp/tls.crt --from-file=/tmp/tls.key -n kube-system
+
+#- command: kubectl delete configmap traefik-conf -n kube-system
+
+- command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
+
+- command: kubectl apply -f /tmp/traefik-ds.yaml

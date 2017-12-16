@@ -1,0 +1,45 @@
+- name: setup kubernetes repo
+  copy:
+    src: files/kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: updatesysctl variable net.bridge.bridge-nf-call-ip6tables
+  sysctl:
+    name: net.bridge.bridge-nf-call-ip6tables
+    value: 1
+
+- name: updatesysctl variable net.bridge.bridge-nf-call-iptables
+  sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: 1
+
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    enabled: no
+    state: stopped
+
+- name: disable selinux
+  selinux:
+    state: disabled
+
+- name: Install kubelet
+  yum:
+    name: kubelet
+    state: latest
+
+- name: Install kubeadm
+  yum:
+    name: kubeadm
+    state: latest
+
+- name: Install kubectl
+  yum:
+    name: kubeadm
+    state: latest
+
+- name: Start kubelet
+  systemd:
+    name: kubelet
+    state: started
+    enabled: yes

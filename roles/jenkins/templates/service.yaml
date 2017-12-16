@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins
+spec:
+  selector:
+    app: jenkins
+  ports:
+    - name: jenkins
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: jnlp
+      protocol: TCP
+      port: 50000
+      targetPort: 50000

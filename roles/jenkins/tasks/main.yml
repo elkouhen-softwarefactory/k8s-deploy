@@ -1,0 +1,21 @@
+- template: src=templates/pv.yaml dest=/tmp/pv.yaml
+
+- template: src=templates/pvc.yaml dest=/tmp/pvc.yaml
+
+- template: src=templates/deployment.yaml dest=/tmp/deployment.yaml
+
+- template: src=templates/service.yaml dest=/tmp/service.yaml
+
+- template: src=templates/ingress.yaml dest=/tmp/ingress.yaml
+
+- command: kubectl create namespace usine 
+
+- command: kubectl apply -f /tmp/pv.yaml -n usine
+
+- command: kubectl apply -f /tmp/pvc.yaml -n usine
+
+- command: kubectl apply -f /tmp/deployment.yaml -n usine
+
+- command: kubectl apply -f /tmp/service.yaml -n usine
+
+- command: kubectl apply -f /tmp/ingress.yaml -n usine

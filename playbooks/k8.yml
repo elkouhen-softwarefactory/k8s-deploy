@@ -1,0 +1,25 @@
+---
+
+- hosts: docker_nodes
+  roles:
+    - { role: docker_node }
+
+- hosts: kubernetes_nodes
+  roles:
+    - { role: kubernetes_node }
+
+- hosts: kubernetes_master_nodes
+  roles:
+    - { role: kubernetes_master_node }
+
+- hosts: nfs_nodes
+  roles:
+    - { role: nfs_node }
+
+- hosts: jenkins
+  roles:
+    - { role: jenkins }
+
+- hosts: traefik
+  roles:
+    - { role: traefik }
