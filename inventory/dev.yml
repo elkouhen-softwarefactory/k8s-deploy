@@ -1,0 +1,31 @@
+[nfs_nodes]
+vps242130.ovh.net ansible_user=root
+vps242131.ovh.net ansible_user=root
+vps267690.ovh.net ansible_user=root
+
+[docker_nodes]
+vps242130.ovh.net ansible_user=root
+vps242131.ovh.net ansible_user=root
+vps267690.ovh.net ansible_user=root
+
+[kubernetes_nodes]
+vps242130.ovh.net ansible_user=root
+vps242131.ovh.net ansible_user=root
+vps267690.ovh.net ansible_user=root
+
+[kubernetes_master_nodes]
+vps242131.ovh.net ansible_user=root
+
+[kubernetes_slave_nodes]
+vps242130.ovh.net ansible_user=root
+vps267690.ovh.net ansible_user=root
+
+[traefik]
+vps242131.ovh.net ansible_user=root
+
+[jenkins]
+vps242131.ovh.net ansible_user=root
+
+[all:vars]
+domaine=k8-dev.wildwidewest.xyz
+master=vps242131.ovh.net

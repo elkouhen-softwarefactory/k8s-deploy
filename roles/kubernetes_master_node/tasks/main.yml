@@ -3,22 +3,28 @@
 
 - name: kubeadm init
   command: kubeadm init
+  register: kubeadm_init_message
 
-- file:
+- set_fact:
+     join_master: "{{kubeadm_init_message.stdout_lines[-1]}}"
+
+- name: delete .kube folder
+  file:
     path: ~/.kube
     state: absent
 
-- file:
+- name: create .kube folder
+  file:
     path: ~/.kube
     state: directory
 
 - name: copy admin.conf
   command: cp -i /etc/kubernetes/admin.conf ~/.kube/config
 
-- name: Register git version that is installed on system
+- name: Get K8s version
   shell: kubectl version | base64 | tr -d '\n'
   register: k8_version
 
 - command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
 
-- command: kubectl label node vps242130.ovh.net server_type=big  
+# - command: kubectl label node vps242130.ovh.net server_type=big

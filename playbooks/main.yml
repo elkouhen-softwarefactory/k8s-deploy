@@ -12,9 +12,17 @@
   roles:
     - { role: kubernetes_master_node }
 
+- hosts: kubernetes_slave_nodes
+  roles:
+    - { role: kubernetes_slave_node }
+
 - hosts: nfs_nodes
   roles:
     - { role: nfs_node }
+
+- hosts: usine
+  roles:
+    - { role: usine }
 
 - hosts: jenkins
   roles:

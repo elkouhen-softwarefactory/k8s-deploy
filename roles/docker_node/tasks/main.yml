@@ -1,4 +1,5 @@
-- file:
+- name: Create folder /etc/docker
+  file:
     path: /etc/docker
     state: directory
     mode: 0755
