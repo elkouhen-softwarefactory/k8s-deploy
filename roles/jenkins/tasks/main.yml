@@ -13,9 +13,6 @@
 - name: Copy Ingress
   template: src=templates/ingress.yaml dest=/tmp/ingress.yaml
 
-- name: Create namespace usine
-  command: kubectl create namespace usine
-
 - name: Deploy PV
   command: kubectl apply -f /tmp/pv.yaml -n usine
 

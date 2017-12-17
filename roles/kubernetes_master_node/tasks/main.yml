@@ -27,4 +27,3 @@
 
 - command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
 
-# - command: kubectl label node vps242130.ovh.net server_type=big

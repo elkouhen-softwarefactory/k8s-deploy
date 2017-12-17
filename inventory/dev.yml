@@ -23,9 +23,13 @@ vps267690.ovh.net ansible_user=root
 [traefik]
 vps242131.ovh.net ansible_user=root
 
+[usine]
+vps242131.ovh.net ansible_user=root
+
 [jenkins]
 vps242131.ovh.net ansible_user=root
 
 [all:vars]
 domaine=k8-dev.wildwidewest.xyz
 master=vps242131.ovh.net
+jenkins_folder=jenkins-dev
