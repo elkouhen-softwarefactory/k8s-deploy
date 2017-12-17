@@ -19,7 +19,7 @@ vps242131.ovh.net ansible_user=root
 [kubernetes_slave_nodes]
 vps242130.ovh.net ansible_user=root
 vps267690.ovh.net ansible_user=root
-
+-
 [traefik]
 vps242131.ovh.net ansible_user=root
 
@@ -31,5 +31,6 @@ vps242131.ovh.net ansible_user=root
 
 [all:vars]
 domaine=k8-dev.wildwidewest.xyz
+big_node=vps242130.ovh.net
 master=vps242131.ovh.net
 jenkins_folder=jenkins-dev

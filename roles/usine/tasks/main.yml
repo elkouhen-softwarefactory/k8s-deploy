@@ -1,4 +1,4 @@
-- command: kubectl label node vps242130.ovh.net server_type=big
+- command: "kubectl label node {{big_node}} server_type=big"
 
 - name:
   command: kubectl create namespace usine

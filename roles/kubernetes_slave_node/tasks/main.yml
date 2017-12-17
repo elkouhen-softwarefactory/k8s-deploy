@@ -2,4 +2,4 @@
   command: kubeadm reset
 
 - name: Join cluster
-  command: "{{ hostvars['vps242131.ovh.net']['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes_master_nodes'][0]]['join_master'] }}"
