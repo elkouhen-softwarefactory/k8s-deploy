@@ -5,31 +5,42 @@
 
 - lineinfile:
     path: /etc/fstab
-    regexp: '^149.202.62.219:/var/nfs/keycloak'
+    regexp: '^149.202.62.219:/var/nfs/keycloak/'
     line: '149.202.62.219:/var/nfs/keycloak /nfs/keycloak/ nfs rw 0 0'
 
 - lineinfile:
     path: /etc/fstab
-    regexp: '^149.202.62.219:/var/nfs/jenkins'
-    line: '149.202.62.219:/var/nfs/jenkins /nfs/jenkins/ nfs rw 0 0'
+    regexp: '^149.202.62.219:/var/nfs/keycloak-dev/'
+    line: '149.202.62.219:/var/nfs/keycloak-dev /nfs/keycloak-dev/ nfs rw 0 0'
+
 
 - lineinfile:
     path: /etc/fstab
-    regexp: '^149.202.62.219:/var/nfs/jenkins-dev'
+    regexp: '^149.202.62.219:/var/nfs/jenkins/'
+    line: '149.202.62.219:/var/nfs/jenkins/ /nfs/jenkins/ nfs rw 0 0'
+
+- lineinfile:
+    path: /etc/fstab
+    regexp: '^149.202.62.219:/var/nfs/jenkins-dev/'
     line: '149.202.62.219:/var/nfs/jenkins-dev /nfs/jenkins-dev/ nfs rw 0 0'
 
 - lineinfile:
     path: /etc/fstab
-    regexp: '^149.202.62.219:/var/nfs/nexus'
-    line: '149.202.62.219:/var/nfs/nexus /nfs/nexus/ nfs rw 0 0'
+    regexp: '^149.202.62.219:/var/nfs/nexus/'
+    line: '149.202.62.219:/var/nfs/nexus/ /nfs/nexus/ nfs rw 0 0'
 
 - lineinfile:
     path: /etc/fstab
-    regexp: '^149.202.62.219:/var/nfs/nexus-dev'
-    line: '149.202.62.219:/var/nfs/nexus-dev /nfs/nexus-dev/ nfs rw 0 0'
+    regexp: '^149.202.62.219:/var/nfs/nexus-dev/'
+    line: '149.202.62.219:/var/nfs/nexus-dev/ /nfs/nexus-dev/ nfs rw 0 0'
 
 - file:
     path: /nfs/keycloak
+    state: directory
+    mode: 0755
+
+- file:
+    path: /nfs/keycloak-dev
     state: directory
     mode: 0755
 

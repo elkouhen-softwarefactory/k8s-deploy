@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nexus
+spec:
+  selector:
+    app: nexus
+  ports:
+    - name: nexus
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+    - name: registry
+      protocol: TCP
+      port: 8082
+      targetPort: 8082

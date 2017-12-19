@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: nexus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - name: nexus
+        image: frekele/nexus
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        - containerPort: 8082
+        volumeMounts:
+        - mountPath: /nexus-data
+          name: nexus-home
+      volumes:
+      - name: nexus-home
+        persistentVolumeClaim:
+          claimName: nexus-pvc
+      nodeSelector:
+        server_type: big
