@@ -28,6 +28,10 @@
   roles:
     - { role: jenkins }
 
+- hosts: nexus
+  roles:
+    - { role: nexus }
+
 - hosts: traefik
   roles:
     - { role: traefik }

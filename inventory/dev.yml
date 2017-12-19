@@ -34,3 +34,4 @@ domaine=k8-dev.wildwidewest.xyz
 big_node=vps242130.ovh.net
 master=vps242131.ovh.net
 jenkins_folder=jenkins-dev
+nexus_folder=nexus-dev
