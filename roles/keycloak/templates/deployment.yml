@@ -46,8 +46,5 @@ spec:
       - name: keycloak-home
         persistentVolumeClaim:
           claimName: keycloak-pvc
-      - name: user-secret
-        secret:
-          secretName: db-user-pass
       nodeSelector:
         server_type: big

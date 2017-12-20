@@ -32,6 +32,9 @@ vps242131.ovh.net ansible_user=root
 [nexus]
 vps242131.ovh.net ansible_user=root
 
+[keycloak]
+vps242131.ovh.net ansible_user=root
+
 [all:vars]
 domaine=k8-dev.wildwidewest.xyz
 big_node=vps242130.ovh.net

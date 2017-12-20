@@ -1,0 +1,5 @@
+[acme]
+vps242131.ovh.net ansible_user=root
+
+[all:vars]
+domaine=k8-dev.wildwidewest.xyz

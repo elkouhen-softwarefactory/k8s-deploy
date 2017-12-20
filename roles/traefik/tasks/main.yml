@@ -23,12 +23,12 @@
 - name: Configure RBAC
   command: kubectl apply -f https://raw.githubusercontent.com/containous/traefik/master/examples/k8s/traefik-rbac.yaml
 
-#- command: kubectl delete secret traefik-cert -n kube-system
+- command: kubectl delete secret traefik-cert -n kube-system
 
 - name: Create secret traefik-cert
   command: kubectl create secret generic traefik-cert --from-file=/tmp/tls.crt --from-file=/tmp/tls.key -n kube-system
 
-#- command: kubectl delete configmap traefik-conf -n kube-system
+- command: kubectl delete configmap traefik-conf -n kube-system
 
 - name: Create configmap traefik-conf
   command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
