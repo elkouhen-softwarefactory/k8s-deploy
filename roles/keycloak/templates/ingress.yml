@@ -9,7 +9,7 @@ spec:
   tls:
     - secretName: traefik-cert
   rules:
-  - host: keycloak.k8.wildwidewest.xyz
+  - host: keycloak.{{domaine}}
     http:
       paths:
       - path: /

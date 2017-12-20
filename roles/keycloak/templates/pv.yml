@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: slow
   nfs:
-    path: /nfs/keycloak
+    path: /nfs/{{keycloak_folder}}
     server: 149.202.62.219
 
 apiVersion: v1
@@ -25,4 +25,4 @@ spec:
   nfs:
     # FIXME: use the right IP
     server: 149.202.62.219
-    path: "/var/nfs/keycloak"
+    path: "/var/nfs/{{keycloak_folder}}"
