@@ -1,0 +1,44 @@
+[nfs_nodes]
+vps257315.ovh.net ansible_user=root
+vps242564.ovh.net ansible_user=root
+vps267694.ovh.net ansible_user=root
+
+[docker_nodes]
+vps257315.ovh.net ansible_user=root
+vps242564.ovh.net ansible_user=root
+vps267694.ovh.net ansible_user=root
+
+[kubernetes_nodes]
+vps257315.ovh.net ansible_user=root
+vps242564.ovh.net ansible_user=root
+vps267694.ovh.net ansible_user=root
+
+[kubernetes_master_nodes]
+vps242564.ovh.net ansible_user=root
+
+[kubernetes_slave_nodes]
+vps257315.ovh.net ansible_user=root
+vps267694.ovh.net ansible_user=root
+-
+[traefik]
+vps242564.ovh.net ansible_user=root
+
+[usine]
+vps242564.ovh.net ansible_user=root
+
+[jenkins]
+vps242564.ovh.net ansible_user=root
+
+[nexus]
+vps242564.ovh.net ansible_user=root
+
+[keycloak]
+vps242564.ovh.net ansible_user=root
+
+[all:vars]
+domaine=k8.wildwidewest.xyz
+big_node=vps257315.ovh.net
+master=vps242564.ovh.net
+jenkins_folder=jenkins
+nexus_folder=nexus
+keycloak_folder=keycloak

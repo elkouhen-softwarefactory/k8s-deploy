@@ -5,6 +5,16 @@
 
 - lineinfile:
     path: /etc/fstab
+    regexp: '^149.202.62.219:/var/nfs/octobercms/'
+    line: '149.202.62.219:/var/nfs/octobercms /nfs/octobercms/ nfs rw 0 0'
+
+- lineinfile:
+    path: /etc/fstab
+    regexp: '^149.202.62.219:/var/nfs/octobercms-dev/'
+    line: '149.202.62.219:/var/nfs/octobercms-dev /nfs/octobercms-dev/ nfs rw 0 0'
+
+- lineinfile:
+    path: /etc/fstab
     regexp: '^149.202.62.219:/var/nfs/keycloak/'
     line: '149.202.62.219:/var/nfs/keycloak /nfs/keycloak/ nfs rw 0 0'
 
@@ -43,7 +53,7 @@
     path: /nfs/keycloak-dev
     state: directory
     mode: 0755
-
+    
 - file:
     path: /nfs/jenkins
     state: directory
@@ -61,5 +71,15 @@
 
 - file:
     path: /nfs/nexus-dev
+    state: directory
+    mode: 0755
+
+- file:
+    path: /nfs/octobercms
+    state: directory
+    mode: 0755
+
+- file:
+    path: /nfs/octobercms-dev
     state: directory
     mode: 0755
