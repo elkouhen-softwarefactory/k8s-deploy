@@ -1,12 +1,13 @@
 # usine
-`usine` is a great ansible playbook.
 
-# Setup
-`gem install librarian-ansible`
-`librarian-ansible install`
+dev
 
-# Usage
-## Development (if you used `--vagrant` flag: `vagrant up`
-When you make changes, run `vagrant provision` to update your vms.
-## Production
-`ansible-playbook -i production site.yml`
+vps242130 40 Go
+vps242131 20 Go
+vps267690 10 Go
+
+prd
+
+vps257315 40 Go
+vps242564 10 Go
+vps267694 10 Go

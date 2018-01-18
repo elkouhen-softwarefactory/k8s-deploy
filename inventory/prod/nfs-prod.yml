@@ -1,0 +1,8 @@
+[nfs_nodes]
+vps257315.ovh.net ansible_user=root
+vps242564.ovh.net ansible_user=root
+vps267694.ovh.net ansible_user=root
+
+[all:vars]
+domaine=k8-dev.wildwidewest.xyz
+
