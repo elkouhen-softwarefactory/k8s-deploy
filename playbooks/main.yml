@@ -43,7 +43,3 @@
 - hosts: keycloak
   roles:
     - { role: keycloak }
-
-- hosts: octobercms
-  roles:
-    - { role: octobercms }

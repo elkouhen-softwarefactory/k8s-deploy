@@ -11,7 +11,7 @@ spec:
   storageClassName: slow
   nfs:
     path: /nfs/{{keycloak_folder}}
-    server: 149.202.62.219
+    server: {{nfs_server}}
 
 apiVersion: v1
 kind: PersistentVolume
@@ -24,5 +24,5 @@ spec:
     - ReadWriteMany
   nfs:
     # FIXME: use the right IP
-    server: 149.202.62.219
+    server: {{nfs_server}}
     path: "/var/nfs/{{keycloak_folder}}"

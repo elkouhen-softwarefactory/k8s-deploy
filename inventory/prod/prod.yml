@@ -42,3 +42,4 @@ master=vps242564.ovh.net
 jenkins_folder=jenkins
 nexus_folder=nexus
 keycloak_folder=keycloak
+nfs_server=51.255.42.138
