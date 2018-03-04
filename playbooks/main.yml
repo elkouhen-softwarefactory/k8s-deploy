@@ -32,10 +32,6 @@
   roles:
     - { role: nexus }
 
-- hosts: acme
-  roles:
-    - { role: acme }
-
 - hosts: traefik
   roles:
     - { role: traefik }
@@ -43,3 +39,7 @@
 - hosts: keycloak
   roles:
     - { role: keycloak }
+
+- hosts: elasticsearch
+  roles:
+    - { role: elasticsearch }

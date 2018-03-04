@@ -1,4 +1,4 @@
-[acme]
+[jenkins]
 vps242131.ovh.net ansible_user=root
 
 [all:vars]

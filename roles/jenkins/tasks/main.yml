@@ -1,29 +1,29 @@
 - name: Copy PV
   template: src=templates/pv.yml dest=/tmp/pv.yml
 
-- name: Copy PVC
-  template: src=templates/pvc.yml dest=/tmp/pvc.yml
-
-- name: Copy deployment
-  template: src=templates/deployment.yml dest=/tmp/deployment.yml
-
-- name: Copy Service
-  template: src=templates/service.yml dest=/tmp/service.yml
-
-- name: Copy Ingress
-  template: src=templates/ingress.yml dest=/tmp/ingress.yml
-
 - name: Deploy PV
   command: kubectl apply -f /tmp/pv.yml -n usine
+
+- name: Copy PVC
+  template: src=templates/pvc.yml dest=/tmp/pvc.yml
 
 - name: Deploy PVC
   command: kubectl apply -f /tmp/pvc.yml -n usine
 
+- name: Copy deployment
+  template: src=templates/deployment.yml dest=/tmp/deployment.yml
+
 - name: Deploy deployment
   command: kubectl apply -f /tmp/deployment.yml -n usine
 
+- name: Copy Service
+  template: src=templates/service.yml dest=/tmp/service.yml
+
 - name: Deploy Service
   command: kubectl apply -f /tmp/service.yml -n usine
+
+- name: Copy Ingress
+  template: src=templates/ingress.yml dest=/tmp/ingress.yml
 
 - name: Deploy Ingress
   command: kubectl apply -f /tmp/ingress.yml -n usine
