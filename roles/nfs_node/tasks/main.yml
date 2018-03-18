@@ -1,7 +1,8 @@
 - name: Install NFS Client
   yum:
     name: nfs-utils
-    state: latest
+    state: present
 
 
-- include: config-prod.yml
+- include: config.yml
+  with_items: [ nexus, artifactory, artifactory-pg, keycloak, jenkins]

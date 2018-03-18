@@ -1,0 +1,14 @@
+- file:
+    path: "/var/nfs/{{item}}"
+    state: directory
+    mode: 0755
+
+- file:
+    path: "/nfs/{{item}}"
+    state: directory
+    mode: 0755
+
+- lineinfile:
+    path: /etc/fstab
+    regexp: '^51.255.42.138:/var/nfs/{{item}}/'
+    line: '51.255.42.138:/var/nfs/{{item}}/ /nfs/{{item}}/ nfs rw 0 0'

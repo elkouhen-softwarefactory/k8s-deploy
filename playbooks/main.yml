@@ -20,6 +20,10 @@
   roles:
     - { role: nfs_node }
 
+- hosts: nfs
+  roles:
+    - { role: nfs }
+
 - hosts: usine
   roles:
     - { role: usine }
@@ -39,7 +43,3 @@
 - hosts: keycloak
   roles:
     - { role: keycloak }
-
-- hosts: elasticsearch
-  roles:
-    - { role: elasticsearch }

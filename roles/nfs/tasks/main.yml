@@ -1,0 +1,4 @@
+- template:
+    src: templates/exportfs
+    dest: /etc/exports
+  become: true
