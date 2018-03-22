@@ -10,5 +10,5 @@
 
 - lineinfile:
     path: /etc/fstab
-    regexp: '^51.255.42.138:/var/nfs/{{item}}/'
-    line: '51.255.42.138:/var/nfs/{{item}}/ /nfs/{{item}}/ nfs rw 0 0'
+    regexp: "^{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/"
+    line: "{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/ /nfs/{{item}}/ nfs rw 0 0"

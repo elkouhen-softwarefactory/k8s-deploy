@@ -1,24 +1,24 @@
 ---
 
-- hosts: docker_nodes
+- hosts: dockers
   roles:
-    - { role: docker_node }
+    - { role: docker }
 
-- hosts: kubernetes_nodes
+- hosts: kubernetes
   roles:
-    - { role: kubernetes_node }
+    - { role: kubernetes }
 
-- hosts: kubernetes_master_nodes
+- hosts: kubernetes-masters
   roles:
-    - { role: kubernetes_master_node }
+    - { role: kubernetes-master }
 
-- hosts: kubernetes_slave_nodes
+- hosts: kubernetes-slaves
   roles:
-    - { role: kubernetes_slave_node }
+    - { role: kubernetes-slave }
 
-- hosts: nfs_nodes
+- hosts: nfs-master
   roles:
-    - { role: nfs_node }
+    - { role: nfs-master }
 
 - hosts: nfs
   roles:
@@ -27,10 +27,6 @@
 - hosts: usine
   roles:
     - { role: usine }
-
-- hosts: jenkins
-  roles:
-    - { role: jenkins }
 
 - hosts: nexus
   roles:

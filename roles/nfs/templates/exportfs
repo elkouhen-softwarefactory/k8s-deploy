@@ -1,9 +1,0 @@
-/var/nfs/keycloak {% for node in groups['nfs_nodes'] %} {{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
-
-/var/nfs/nexus {% for node in groups['nfs_nodes'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
-
-/var/nfs/jenkins {% for node in groups['nfs_nodes'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
-
-/var/nfs/artifactory {% for node in groups['nfs_nodes'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
-
-/var/nfs/artifactory-pg {% for node in groups['nfs_nodes'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}

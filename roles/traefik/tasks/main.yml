@@ -4,16 +4,6 @@
 - name: Copy Traefik DaemonSet
   copy: src=templates/traefik-ds-ssl.yaml dest=/tmp/traefik-ds.yaml
 
-#- command: openssl genrsa -des3 -passout pass:x -out /tmp/tls.pass.key 2048
-
-#- command: openssl rsa -passin pass:x -in /tmp/tls.pass.key -out /tmp/tls.key
-
-#- command: rm /tmp/tls.pass.key
-
-#- command: openssl req -new -key /tmp/tls.key -out /tmp/tls.csr -subj "/C=FR/ST=-/L=-/O=wildwidewest/OU=-/CN=*.k8-dev.wildwidewest.xyz"
-
-#- command: openssl x509 -req -days 365 -in /tmp/tls.csr -signkey /tmp/tls.key -out /tmp/tls.crt
-
 - name: Copy CRT
   copy: src=files/tls.crt dest=/tmp/tls.crt
 

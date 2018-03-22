@@ -22,13 +22,28 @@ spec:
       serviceAccountName: traefik-ingress-controller
       terminationGracePeriodSeconds: 60
       hostNetwork: true
+      volumes:
+      - name: ssl
+        secret:
+          secretName: traefik-cert
+      - name: config
+        configMap:
+          name: traefik-conf
       containers:
-      - image: traefik:1.3.1-alpine
+      - image: traefik:1.4-alpine
         name: traefik-ingress-lb
+        volumeMounts:
+        - mountPath: "/ssl"
+          name: "ssl"
+        - mountPath: "/config"
+          name: "config"
         ports:
         - name: http
           containerPort: 80
           hostPort: 80
+        - name: https
+          containerPort: 443
+          hostPort: 443
         - name: admin
           containerPort: 8081
         securityContext:
@@ -38,3 +53,4 @@ spec:
         - --web
         - --web.address=:8081
         - --kubernetes
+        - --configfile=/config/traefik.toml

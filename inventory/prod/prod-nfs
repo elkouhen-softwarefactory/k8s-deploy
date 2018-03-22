@@ -1,9 +1,4 @@
-#[nfs_nodes]
-#vps257315.ovh.net ansible_user=root
-#vps242564.ovh.net ansible_user=root
-#vps267694.ovh.net ansible_user=root
-
-[nfs_nodes]
+[nfs]
 vps257315.ovh.net ansible_user=root
 vps242564.ovh.net ansible_user=root
 vps267694.ovh.net ansible_user=root
@@ -11,9 +6,15 @@ vps242130.ovh.net ansible_user=root
 vps242131.ovh.net ansible_user=root
 vps267690.ovh.net ansible_user=root
 
-[nfs]
+[nfs-master]
 vps257315.ovh.net ansible_user=root
+
 
 [all:vars]
 domaine=k8.wildwidewest.xyz
+big-node=vps257315.ovh.net
 
+master=vps242564.ovh.net
+jenkins-folder=jenkins
+nexus-folder=nexus
+keycloak-folder=keycloak

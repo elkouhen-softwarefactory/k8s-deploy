@@ -1,4 +1,8 @@
-- template:
-    src: templates/exportfs
-    dest: /etc/exports
-  become: true
+- name: Install NFS Client
+  yum:
+    name: nfs-utils
+    state: present
+
+
+- include: config.yml
+  with_items: [ nexus, keycloak, jenkins]

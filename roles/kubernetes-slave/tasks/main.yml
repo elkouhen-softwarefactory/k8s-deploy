@@ -1,0 +1,5 @@
+- name: Reset Kubernetes
+  command: kubeadm reset
+
+- name: Join cluster
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
