@@ -2,7 +2,7 @@
   copy: src=templates/traefik.toml dest=/tmp/traefik.toml
 
 - name: Copy Traefik DaemonSet
-  copy: src=templates/traefik-ds-ssl.yaml dest=/tmp/traefik-ds.yaml
+  copy: src=templates/traefik-ds.yaml dest=/tmp/traefik-ds.yaml
 
 - name: Copy CRT
   copy: src=files/tls.crt dest=/tmp/tls.crt
