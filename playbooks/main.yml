@@ -1,6 +1,6 @@
 ---
 
-- hosts: dockers
+- hosts: docker
   roles:
     - { role: docker }
 
@@ -8,11 +8,11 @@
   roles:
     - { role: kubernetes }
 
-- hosts: kubernetes-masters
+- hosts: kubernetes-master
   roles:
     - { role: kubernetes-master }
 
-- hosts: kubernetes-slaves
+- hosts: kubernetes-slave
   roles:
     - { role: kubernetes-slave }
 
