@@ -36,10 +36,14 @@
 - name: Create configmap traefik-conf
   command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
 
-- name: Copy Traefik DaemonSet
+- name: Copy DaemonSet Traefik 
   copy: 
     src: templates/traefik-ds.yaml 
     dest: /tmp/traefik-ds.yaml
+
+- name: Delete DaemonSet traefik 
+  command: kubectl delete ds traefik-ingress-controller -n kube-system 
+  ignore_errors: yes
 
 - name: Deploy traefik
   command: kubectl apply -f /tmp/traefik-ds.yaml -n kube-system
