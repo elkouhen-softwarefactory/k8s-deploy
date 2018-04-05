@@ -1,0 +1,21 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: traefik-cert
+spec:
+  secretName: traefik-cert
+  issuerRef:
+    name: letsencrypt-prod
+  commonName: {{certificates | first}}
+  dnsNames: 
+{% for certificate in certificates %}      
+    - {{certificate}}
+{% endfor %}
+  acme:
+    config:
+    - http01:
+        ingressClass: traefik
+      domains: 
+{% for certificate in certificates %}      
+        - {{certificate}}
+{% endfor %}
