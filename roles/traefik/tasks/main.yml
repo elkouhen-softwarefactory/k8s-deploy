@@ -1,27 +1,45 @@
-- name: Copy traefik.tom
-  copy: src=templates/traefik.toml dest=/tmp/traefik.toml
+- name: Copy Certificate 
+  template: 
+    src: certificate.yaml
+    dest:  /tmp/certificate.yaml
 
-- name: Copy Traefik DaemonSet
-  copy: src=templates/traefik-ds.yaml dest=/tmp/traefik-ds.yaml
+- name: Delete Certificate 
+  command: kubectl delete certificate traefik-cert -n kube-system
+  ignore_errors: yes
 
-- name: Copy CRT
-  copy: src=files/tls.crt dest=/tmp/tls.crt
+- name: Create Certificate
+  command: kubectl apply -f  /tmp/certificate.yaml -n kube-system
 
-- name: Copy KEY
-  copy: src=files/tls.key dest=/tmp/tls.key
+- name: Copy Issuer
+  template: 
+    src: issuer.yaml
+    dest:  /tmp/issuer.yaml
+
+- name: Delete Issuer 
+  command: kubectl delete issuer letsencrypt-prod -n kube-system
+  ignore_errors: yes
+
+- name: Create Issuer
+  command: kubectl apply -f  /tmp/issuer.yaml -n kube-system
 
 - name: Configure RBAC
   command: kubectl apply -f https://raw.githubusercontent.com/containous/traefik/master/examples/k8s/traefik-rbac.yaml
 
-#- command: kubectl delete secret traefik-cert -n kube-system
+- name: Copy traefik.tom
+  copy: 
+    src: templates/traefik.toml 
+    dest: /tmp/traefik.toml
 
-- name: Create secret traefik-cert
-  command: kubectl create secret generic traefik-cert --from-file=/tmp/tls.crt --from-file=/tmp/tls.key -n kube-system
-
-#- command: kubectl delete configmap traefik-conf -n kube-system
+- command: kubectl delete configmap traefik-conf -n kube-system
+  ignore_errors: yes
 
 - name: Create configmap traefik-conf
   command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
 
+- name: Copy Traefik DaemonSet
+  copy: 
+    src: templates/traefik-ds.yaml 
+    dest: /tmp/traefik-ds.yaml
+
 - name: Deploy traefik
-  command: kubectl apply -f /tmp/traefik-ds.yaml
+  command: kubectl apply -f /tmp/traefik-ds.yaml -n kube-system
