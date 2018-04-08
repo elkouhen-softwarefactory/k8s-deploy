@@ -1,4 +1,15 @@
-certificates: 
+domaine: k8.wildwidewest.xyz
+
+registry: registry.k8.wildwidewest.xyz
+
+big_node: vps257315.ovh.net
+nfs_server: 51.255.42.138
+
+jenkins-folder: jenkins
+nexus-folder: nexus
+keycloak-folder: keycloak
+
+certificates:
   - meltingpoc.k8.wildwidewest.xyz
   - artifactory.k8.wildwidewest.xyz
   - jenkins.k8.wildwidewest.xyz

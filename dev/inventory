@@ -25,8 +25,3 @@ vps242131.ovh.net ansible_user=root
 
 [traefik]
 vps267690.ovh.net ansible_user=root
-
-[all:vars]
-domaine=k8-dev.wildwidewest.xyz
-registry=registry.k8.wildwidewest.xyz
-big-node=vps242131.ovh.net

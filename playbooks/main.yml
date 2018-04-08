@@ -39,3 +39,7 @@
 - hosts: keycloak
   roles:
     - { role: keycloak }
+
+- hosts: logrotate
+  roles:
+    - { role: logrotate }
