@@ -1,0 +1,10 @@
+- name: Install logrotate
+  yum:
+    name: logrotate
+    state: latest
+
+- name: Copy logrotate conf file
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/docker
+  become: true

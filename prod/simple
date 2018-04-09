@@ -1,0 +1,8 @@
+#[traefik]
+#vps242564.ovh.net ansible_user=root
+
+[logrotate]
+vps242130.ovh.net ansible_user=root
+vps242564.ovh.net ansible_user=root
+vps257315.ovh.net ansible_user=root
+vps267694.ovh.net ansible_user=root
