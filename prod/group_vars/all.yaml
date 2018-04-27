@@ -10,14 +10,14 @@ nexus-folder: nexus
 keycloak-folder: keycloak
 
 certificates:
-  - meltingpoc.k8.wildwidewest.xyz
-  - artifactory.k8.wildwidewest.xyz
+#  - meltingpoc.k8.wildwidewest.xyz
+#  - artifactory.k8.wildwidewest.xyz
   - jenkins.k8.wildwidewest.xyz
   - nexus.k8.wildwidewest.xyz
-  - keycloak.k8.wildwidewest.xyz
-  - kibana.k8.wildwidewest.xyz
-  - helmet.k8.wildwidewest.xyz
-  - recyclette.k8.wildwidewest.xyz
-  - wallboard.k8.wildwidewest.xyz
-  - wallboard-back.k8.wildwidewest.xyz
-  - bus.wallboard.k8.wildwidewest.xyz
+#  - keycloak.k8.wildwidewest.xyz
+#  - kibana.k8.wildwidewest.xyz
+#  - helmet.k8.wildwidewest.xyz
+#  - recyclette.k8.wildwidewest.xyz
+#  - wallboard.k8.wildwidewest.xyz
+#  - wallboard-back.k8.wildwidewest.xyz
+#  - bus.wallboard.k8.wildwidewest.xyz

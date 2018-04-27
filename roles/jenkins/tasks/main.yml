@@ -1,0 +1,40 @@
+- name: Install gcc
+  yum:
+    name: gcc
+    state: latest
+
+- name: Install python-pip
+  yum:
+    name: python-pip
+    state: latest
+
+- name: Install python-devel
+  yum:
+    name: python-devel
+    state: latest
+
+#- name: Install libgit2
+#  yum:
+#    name: libgit2
+#    state: latest
+
+#- name: Install libgit2-devel
+#  yum:
+#    name: libgit2-devel
+#    state: latest
+
+- name: Install pyhelm
+  command: pip install pyhelm
+
+#- name: Install helm chart
+#  helm:
+#    host: "localhost"
+#    chart:
+#      name: jenkins
+#      version: 0.14.4
+#      source:
+#        type: repo
+#        location: https://kubernetes-charts.storage.googleapis.com
+#    state: present
+#    name: jenkins
+#    namespace: default
