@@ -5,9 +5,9 @@ registry: registry.k8.wildwidewest.xyz
 big_node: vps257315.ovh.net
 nfs_server: 51.255.42.138
 
-jenkins-folder: jenkins
-nexus-folder: nexus
-keycloak-folder: keycloak
+jenkins_folder: jenkins
+nexus_folder: nexus
+keycloak_folder: keycloak
 
 certificates:
 #  - meltingpoc.k8.wildwidewest.xyz

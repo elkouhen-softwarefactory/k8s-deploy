@@ -25,7 +25,7 @@ spec:
       volumes:
       - name: ssl
         secret:
-          secretName: letsencrypt-prod
+          secretName: traefik-cert
       - name: config
         configMap:
           name: traefik-conf

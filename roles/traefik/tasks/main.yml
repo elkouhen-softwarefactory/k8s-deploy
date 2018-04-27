@@ -1,34 +1,32 @@
-
-
 - name: Copy Issuer
-  template: 
+  template:
     src: issuer.yaml
     dest:  /tmp/issuer.yaml
 
-- name: Delete Issuer 
+- name: Delete Issuer
   command: kubectl delete issuer letsencrypt-prod -n kube-system
   ignore_errors: yes
 
 - name: Create Issuer
   command: kubectl apply -f  /tmp/issuer.yaml -n kube-system
 
-- name: Copy Certificate 
-  template: 
+- name: Copy Certificate
+  template:
     src: certificate.yaml
     dest:  /tmp/certificate.yaml
 
-- name: Delete Certificate 
+- name: Delete Certificate
   command: kubectl delete certificate traefik-cert -n kube-system
   ignore_errors: yes
 
 - name: Create Certificate
   command: kubectl apply -f  /tmp/certificate.yaml -n kube-system
-  
+
 - name: Configure RBAC
   command: kubectl apply -f https://raw.githubusercontent.com/containous/traefik/master/examples/k8s/traefik-rbac.yaml
 
 - name: Copy traefik.tom
-  copy: 
+  copy:
     src: templates/traefik.toml 
     dest: /tmp/traefik.toml
 
@@ -38,12 +36,12 @@
 - name: Create configmap traefik-conf
   command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
 
-- name: Copy DaemonSet Traefik 
-  copy: 
-    src: templates/traefik-ds.yaml 
+- name: Copy DaemonSet Traefik
+  copy:
+    src: templates/traefik-ds.yaml
     dest: /tmp/traefik-ds.yaml
 
-- name: Delete DaemonSet traefik 
+- name: Delete DaemonSet traefik
   command: kubectl delete ds traefik-ingress-controller -n kube-system 
   ignore_errors: yes
 
