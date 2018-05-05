@@ -28,7 +28,7 @@
   become: yes
   become_user: root
 
-- name: disable selinux
+- name: Disable selinux
   selinux:
     state: disabled
   become: yes
