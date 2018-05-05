@@ -1,0 +1,20 @@
+[hub-nodes]
+instance1.vif.fr ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/instance1/virtualbox/private_key ansible_host=localhost ansible_ssh_port=2222
+
+[tenant-nodes]
+
+[tenant-hub-nodes]
+
+[all:vars]
+
+vif_platform=HUBMULTI1TEST
+
+admin_deployment_version=6.3.0-SNAPSHOT
+#krakn_adapter_admin_deployment_version=6.0.0
+
+#krakn_deployment_version=2.7.5
+#krakn_adapter_api_ext_deployment_version=2.6.0
+#krakn_adapter_vif57_v1_deployment_version=2.1.0
+
+#seadog_deployment_version=2.6.0
+#krakn_adapter_seadog_deployment_version=2.6.0
