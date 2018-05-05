@@ -4,7 +4,7 @@
   become_user: root
 
 - name: Execute kubeadm init
-  command: kubeadm init
+  command: kubeadm init --apiserver-advertise-address 10.0.0.2
   register: kubeadm_init_message
   become: yes
   become_user: root

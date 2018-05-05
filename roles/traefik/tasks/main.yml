@@ -21,9 +21,13 @@
 
 - name: Create Certificate
   command: kubectl apply -f  /tmp/certificate.yaml -n kube-system
+  become: yes
+  become_user: root
 
 - name: Configure RBAC
   command: kubectl apply -f https://raw.githubusercontent.com/containous/traefik/master/examples/k8s/traefik-rbac.yaml
+  become: yes
+  become_user: root
 
 - name: Copy traefik.tom
   copy:
@@ -33,9 +37,13 @@
 - name: "Delete Configmap traefik-conf"
   command: kubectl delete configmap traefik-conf -n kube-system
   ignore_errors: yes
+  become: yes
+  become_user: root
 
 - name: Create configmap traefik-conf
   command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
+  become: yes
+  become_user: root
 
 - name: Copy DaemonSet Traefik
   copy:
@@ -45,6 +53,11 @@
 - name: Delete DaemonSet traefik
   command: kubectl delete ds traefik-ingress-controller -n kube-system
   ignore_errors: yes
+  become: yes
+  become_user: root
 
 - name: Deploy traefik
   command: kubectl apply -f /tmp/traefik-ds.yaml -n kube-system
+  become: yes
+  become_user: root
+  

@@ -1,4 +1,4 @@
-domaine: k8-dev.wildwidewest.xyz
+domaine: k8.wildwidewest.xyz
 
 registry: registry.k8.wildwidewest.xyz
 
@@ -6,4 +6,4 @@ big_node: vps242131.ovh.net
 nfs_server:
 
 certificates:
-  - grafana.k8-dev.wildwidewest.xyz
+  - jenkins.k8.wildwidewest.xyz
