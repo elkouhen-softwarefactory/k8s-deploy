@@ -1,30 +1,34 @@
-- name: kubeadm reset
+- name: Execute kubeadm reset
   command: kubeadm reset
+  become: yes
+  become_user: root
 
-- name: kubeadm init
+- name: Execute kubeadm init
   command: kubeadm init
   register: kubeadm_init_message
+  become: yes
+  become_user: root
 
-- name: "Jojn master"
+- name: "Create join master fact"
   set_fact:
      join_master: "{{kubeadm_init_message.stdout_lines[-1]}}"
 
-- name: delete .kube folder
+- name: Delete .kube folder
   file:
     path: ~/.kube
     state: absent
 
-- name: create .kube folder
+- name: Create .kube folder
   file:
     path: ~/.kube
     state: directory
 
-- name: copy admin.conf
+- name: Copy admin.conf
   command: cp -i /etc/kubernetes/admin.conf ~/.kube/config
 
 - name: Get K8s version
   shell: kubectl version | base64 | tr -d '\n'
   register: k8_version
 
-- name: "Create k8s network"
+- name: Create k8s network
   command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}

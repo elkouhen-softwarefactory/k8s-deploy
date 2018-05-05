@@ -2,7 +2,7 @@
 
 - hosts: docker
   roles:
-    - { role: docker }
+    - { role: docker}
 
 - hosts: kubernetes
   roles:

@@ -23,6 +23,8 @@ Vagrant.configure("2") do |config|
 	#  policycoreutils-python \
 	#  telnet
 
+	swapoff -a
+
     #echo "10.0.0.2 master1.softeam.fr master1 > /tmp/hosts.back
     #echo "10.0.0.3 slave1.softeam.fr slave1" >> /tmp/hosts.back
 	#cat  /etc/hosts | grep -v 10.0.2.2 | grep -v 10.0.2.3 | grep -v 'slave1' |  grep -v 'master1' >> /tmp/hosts.back
