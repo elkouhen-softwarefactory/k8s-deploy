@@ -27,10 +27,11 @@
 
 - name: Copy traefik.tom
   copy:
-    src: templates/traefik.toml 
+    src: templates/traefik.toml
     dest: /tmp/traefik.toml
 
-- command: kubectl delete configmap traefik-conf -n kube-system
+- name: "Delete Configmap traefik-conf"
+  command: kubectl delete configmap traefik-conf -n kube-system
   ignore_errors: yes
 
 - name: Create configmap traefik-conf
@@ -42,7 +43,7 @@
     dest: /tmp/traefik-ds.yaml
 
 - name: Delete DaemonSet traefik
-  command: kubectl delete ds traefik-ingress-controller -n kube-system 
+  command: kubectl delete ds traefik-ingress-controller -n kube-system
   ignore_errors: yes
 
 - name: Deploy traefik

@@ -26,4 +26,5 @@
   shell: kubectl version | base64 | tr -d '\n'
   register: k8_version
 
-- command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
+- name: "Create k8s network"
+  command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}

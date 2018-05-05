@@ -1,4 +1,5 @@
-- command: "kubectl label node {{big_node}} server_type=big"
+- name: "Label big nodes"
+  command: "kubectl label node {{big_node}} server_type=big"
 
 - name: create namespace usine
   command: kubectl create namespace usine
