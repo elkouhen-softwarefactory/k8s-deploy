@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
 	#sudo yum install -y epel-release
 	#sudo yum update
 
-    #sudo yum install -y \
-    #  redhat-lsb-core \
+        #sudo yum install -y \
+        #  redhat-lsb-core \
 	#  net-tools \
 	#  python-lxml  \
 	#  python-pip \
@@ -25,15 +25,15 @@ Vagrant.configure("2") do |config|
 
 	swapoff -a
 
-    echo "10.0.0.2 master1.softeam.fr master1" > /tmp/hosts.back
-    echo "10.0.0.3 slave1.softeam.fr slave1" >> /tmp/hosts.back
+        echo "10.0.0.2 master1.softeam.fr master1" > /tmp/hosts.back
+        echo "10.0.0.3 slave1.softeam.fr slave1" >> /tmp/hosts.back
 	echo "10.0.0.4 slave2.softeam.fr slave2" >> /tmp/hosts.back
 	cat  /etc/hosts | grep -v 'slave' |  grep -v 'master1' >> /tmp/hosts.back
-    cat /tmp/hosts.back > /etc/hosts
+        cat /tmp/hosts.back > /etc/hosts
 
 	SHELL
 
-	config.vm.define "master1" do |master1_cfg|
+	config.vm.define "master1.softeam.fr" do |master1_cfg|
 
 		# Hostname pour y accéder depuis l'host
 		master1_cfg.vm.hostname = "master1.softeam.fr"
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
 		# Redirection des ports
 		master1_cfg.vm.network "forwarded_port", guest: 80,    host: 11080
 
-        # master1_cfg.vm.synced_folder ".", "/home/vagrant/ansible"
+        	# master1_cfg.vm.synced_folder ".", "/home/vagrant/ansible"
 
 		master1_cfg.vm.provider "virtualbox" do |vb|
 			vb.memory = "2048"
@@ -53,19 +53,14 @@ Vagrant.configure("2") do |config|
 
 	###########################################################
 	# Définition de la VM Ansible pour provisionner l'ensemble
-	config.vm.define "slave1" do |slave1_cfg|
+	config.vm.define "slave1.softeam.fr" do |slave1_cfg|
 
 		# Hostname pour y accéder depuis l'host
 		slave1_cfg.vm.hostname = "slave1.softeam.fr"
-
-        slave1_cfg.vm.network "private_network", ip: "10.0.0.3"
-
-		slave1_cfg.vm.network "forwarded_port", guest: 61616,    host: 61616
-	    slave1_cfg.vm.network "forwarded_port", guest: 27017,    host: 27017
-	    slave1_cfg.vm.network "forwarded_port", guest:  5432,    host:  5432
+	        slave1_cfg.vm.network "private_network", ip: "10.0.0.3"
 
 		slave1_cfg.vm.provider "virtualbox" do |vb|
-			vb.memory = "1024"
+			vb.memory = "2048"
 			vb.cpus = 1
 		end
 
@@ -74,15 +69,15 @@ Vagrant.configure("2") do |config|
 
 	###########################################################
 	# Définition de la VM Ansible pour provisionner l'ensemble
-	config.vm.define "slave2" do |slave2_cfg|
+	config.vm.define "slave2.softeam.fr" do |slave2_cfg|
 
 		# Hostname pour y accéder depuis l'host
 		slave2_cfg.vm.hostname = "slave2.softeam.fr"
 
-        slave2_cfg.vm.network "private_network", ip: "10.0.0.4"
+        	slave2_cfg.vm.network "private_network", ip: "10.0.0.4"
 
 		slave2_cfg.vm.provider "virtualbox" do |vb|
-			vb.memory = "1024"
+			vb.memory = "2048"
 			vb.cpus = 1
 		end
 
