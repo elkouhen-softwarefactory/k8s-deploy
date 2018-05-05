@@ -1,14 +1,17 @@
-- file:
+- name: "Create folder /var/nfs/{{item}}"
+  file:
     path: "/var/nfs/{{item}}"
     state: directory
     mode: 0755
 
-- file:
+- name: "Change rights on /nfs/{{item}}"
+  file:
     path: "/nfs/{{item}}"
     state: directory
     mode: 0755
 
-- lineinfile:
+- name: "Update file /etc/fstab"
+  lineinfile:
     path: /etc/fstab
     regexp: "^{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/"
     line: "{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/ /nfs/{{item}}/ nfs rw 0 0"

@@ -27,17 +27,17 @@
 - name: Install kubelet
   yum:
     name: kubelet
-    state: latest
+    state: present
 
 - name: Install kubeadm
   yum:
     name: kubeadm
-    state: latest
+    state: present
 
 - name: Install kubectl
   yum:
     name: kubeadm
-    state: latest
+    state: present
 
 - name: Start kubelet
   systemd:

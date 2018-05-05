@@ -1,7 +1,7 @@
 - name: Install logrotate
   yum:
     name: logrotate
-    state: latest
+    state: present
 
 - name: Copy logrotate conf file
   template:

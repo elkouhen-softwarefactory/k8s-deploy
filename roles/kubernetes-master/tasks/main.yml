@@ -5,7 +5,8 @@
   command: kubeadm init
   register: kubeadm_init_message
 
-- set_fact:
+- name: "Jojn master"
+  set_fact:
      join_master: "{{kubeadm_init_message.stdout_lines[-1]}}"
 
 - name: delete .kube folder
@@ -26,4 +27,3 @@
   register: k8_version
 
 - command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
-

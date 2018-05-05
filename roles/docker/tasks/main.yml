@@ -12,7 +12,7 @@
 - name: Install Docker
   yum:
     name: docker
-    state: latest
+    state: present
 
 - name: Start Docker Service
   systemd:

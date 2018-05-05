@@ -1,4 +1,5 @@
-- template:
+- name: "Generate /etc/exportfs"
+  template:
     src: templates/exportfs
     dest: /etc/exports
   become: true
