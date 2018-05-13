@@ -4,7 +4,7 @@
   become_user: root
 
 - name: Execute kubeadm init
-  command: kubeadm init --apiserver-advertise-address 10.0.0.2
+  command: kubeadm init --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
   register: kubeadm_init_message
   become: yes
   become_user: root
@@ -40,12 +40,12 @@
   become: yes
   become_user: root
 
-#- name: Create k8s network
-#  command: kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+#- name: Create K8s network
+#  command: kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kube-router-all-service-daemonset.yaml
 #  become: yes
 #  become_user: root
 
-- name: Create k8s network
+- name: Create K8s network
   command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
   become: yes
   become_user: root
