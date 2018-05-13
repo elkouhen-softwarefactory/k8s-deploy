@@ -4,7 +4,7 @@
   become_user: root
 
 - name: Execute kubeadm init
-  command: kubeadm init --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
+  command: kubeadm init {{kubeadm.init.options | default('')}}
   register: kubeadm_init_message
   become: yes
   become_user: root

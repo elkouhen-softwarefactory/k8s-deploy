@@ -7,3 +7,10 @@
   command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
   become: yes
   become_user: root
+  when: kubeadm.init.options is defined
+
+- name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  become: yes
+  become_user: root
+  when: kubeadm.init.options is not defined

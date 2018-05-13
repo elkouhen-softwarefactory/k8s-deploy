@@ -5,5 +5,10 @@ registry: registry.k8.wildwidewest.xyz
 big_node: vps242131.ovh.net
 nfs_server:
 
+kubeadm:
+  init:
+    options: --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
+
 certificates:
   - jenkins.k8.wildwidewest.xyz
+
