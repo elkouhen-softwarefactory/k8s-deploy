@@ -1,0 +1,43 @@
+- name: "Status file /root/helm-v2.8.2-linux-amd64.tar.gz"
+  stat:
+    path:  "/root/helm-v2.8.2-linux-amd64.tar.gz"
+  register: helm_status
+  become: yes
+  become_user: root
+
+- name: Download helm
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz
+    dest: /root
+  become: yes
+  become_user: root
+  when: helm_status.stat.exists == False
+
+- name: Extract helm-v2.8.2-linux-amd64.tar.gz into ~
+  unarchive:
+    src: /root/helm-v2.8.2-linux-amd64.tar.gz
+    dest: /root
+    remote_src: True
+  become: yes
+  become_user: root
+
+- name: Create Role Binding
+  command: kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
+  ignore_errors: True
+  become: yes
+  become_user: root
+
+- name: Execute helm reset
+  command: ./helm reset
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
+  ignore_errors: True
+  
+- name: Execute helm init
+  command: ./helm init
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
