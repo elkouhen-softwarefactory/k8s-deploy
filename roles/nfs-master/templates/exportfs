@@ -1,5 +1,5 @@
-/var/nfs/keycloak {% for node in groups['nfs'] %} {{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
+/var/nfs/keycloak {% for node in groups['nfs-client'] %} {{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
 
-/var/nfs/nexus {% for node in groups['nfs'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
+/var/nfs/nexus {% for node in groups['nfs-client'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
 
-/var/nfs/jenkins {% for node in groups['nfs'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
+/var/nfs/jenkins {% for node in groups['nfs-client'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}

@@ -2,8 +2,7 @@ domaine: k8.wildwidewest.xyz
 
 registry: registry.k8.wildwidewest.xyz
 
-big_node: vps242131.ovh.net
-nfs_server:
+big_node: master1.slave.fr
 
 kubeadm:
   init:
@@ -11,4 +10,3 @@ kubeadm:
 
 certificates:
   - jenkins.k8.wildwidewest.xyz
-

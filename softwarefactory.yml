@@ -16,11 +16,11 @@
 
 - hosts: nfs-master
   roles:
-    - { role: nfs-master, tags: nfs-master }
+    - { role: nfs-master, tags: nfs }
 
-- hosts: nfs
+- hosts: nfs-client
   roles:
-    - { role: nfs, tags: nfs }
+    - { role: nfs-client, tags: nfs }
 
 - hosts: kubernetes-tools
   roles:

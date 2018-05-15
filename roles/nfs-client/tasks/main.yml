@@ -1,7 +1,8 @@
-- name: Install NFS Client
+- name: Install NFS utils
   yum:
     name: nfs-utils
     state: present
+  become: yes
 
 - include: config.yml
   with_items: [ nexus, keycloak, jenkins]

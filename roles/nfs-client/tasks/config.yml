@@ -3,15 +3,20 @@
     path: "/var/nfs/{{item}}"
     state: directory
     mode: 0755
+    owner: nfsnobody
+    group: nfsnobody
+  become: yes
 
 - name: "Change rights on /nfs/{{item}}"
   file:
     path: "/nfs/{{item}}"
     state: directory
     mode: 0755
+  become: yes
 
 - name: "Update file /etc/fstab"
   lineinfile:
     path: /etc/fstab
     regexp: "^{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/"
     line: "{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/ /nfs/{{item}}/ nfs rw 0 0"
+  become: yes
