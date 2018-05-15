@@ -1,18 +1,4 @@
 ---
- 
-- hosts: kubernetes
-  roles:
-    - { role: logrotate, tags: kubernetes }
-    - { role: docker, tags:  kubernetes}
-    - { role: kubernetes, tags:  kubernetes }
-
-- hosts: kubernetes-master
-  roles:
-    - { role: kubernetes-master, tags:  kubernetes}
-  
-- hosts: kubernetes-slave
-  roles:
-    - { role: kubernetes-slave, tags: kubernetes }
 
 - hosts: nfs-master
   roles:
@@ -22,11 +8,25 @@
   roles:
     - { role: nfs-client, tags: nfs }
 
+- hosts: kubernetes-master
+  roles:
+    - { role: logrotate, tags: kubernetes }
+    - { role: docker, tags:  kubernetes}
+    - { role: kubernetes, tags:  kubernetes }
+    - { role: kubernetes-master, tags:  kubernetes}
+
+- hosts: kubernetes-slave
+  roles:
+    - { role: logrotate, tags: kubernetes }
+    - { role: docker, tags:  kubernetes}
+    - { role: kubernetes, tags:  kubernetes }
+    - { role: kubernetes-slave, tags: kubernetes }
+
 - hosts: kubernetes-tools
   roles:
 #    - { role: usine, tags: usine }
 #    - { role: nexus, tags: nexus }
-#    - { role: traefik, tags: traefik }
+    - { role: traefik, tags: traefik }
 #    - { role: keycloak, tags: keycloak }
     - { role: helm, tags: helm }
    

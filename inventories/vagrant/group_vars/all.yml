@@ -2,7 +2,10 @@ domaine: k8.wildwidewest.xyz
 
 registry: registry.k8.wildwidewest.xyz
 
-big_node: master1.slave.fr
+big_nodeb: master1.slave.fr
+
+traefik:
+  ssl: False
 
 kubeadm:
   init:
