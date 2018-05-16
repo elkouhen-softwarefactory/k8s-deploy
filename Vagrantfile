@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
 		  slave1_cfg.vm.network "forwarded_port", guest: 80, host: 8080
 
 		  slave1_cfg.vm.provider "virtualbox" do |vb|
-			vb.memory = "2048"
+			vb.memory = "4096"
 			vb.cpus = 2
 		end
 	end
