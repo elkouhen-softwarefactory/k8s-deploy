@@ -24,9 +24,11 @@
 
 - hosts: kubernetes-tools
   roles:
-#    - { role: usine, tags: usine }
+    - { role: helm, tags: helm }
+    #    - { role: usine, tags: usine }
 #    - { role: nexus, tags: nexus }
+    - { role: jenkins, tags: jenkins }
     - { role: traefik, tags: traefik }
 #    - { role: keycloak, tags: keycloak }
-    - { role: helm, tags: helm }
+
    

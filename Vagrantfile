@@ -28,9 +28,9 @@ Vagrant.configure("2") do |config|
 		  master1_cfg.vm.hostname = "master1.softeam.fr"
 		  master1_cfg.vm.network "public_network", ip: "10.0.0.2", bridge: "wlp2s0"
 
-			master1_cfg.vm.network "forwarded_port", guest: 6433, host: 6433
+		  master1_cfg.vm.network "forwarded_port", guest: 6433, host: 6433
 
-      master1_cfg.vm.provider "virtualbox" do |vb|
+		  master1_cfg.vm.provider "virtualbox" do |vb|
 			vb.memory = "2048"
 			vb.cpus = 2
 		end
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 
 		  # Hostname pour y accéder depuis l'host
 		  slave1_cfg.vm.hostname = "slave1.softeam.fr"
-	    slave1_cfg.vm.network "public_network", ip: "10.0.0.3", bridge: "wlp2s0"
+		  slave1_cfg.vm.network "public_network", ip: "10.0.0.3", bridge: "wlp2s0"
 
 		  slave1_cfg.vm.provider "virtualbox" do |vb|
 			vb.memory = "2048"

@@ -11,6 +11,9 @@
     enabled: yes
   become: yes
 
+- include: config.yml
+  with_items: [ nexus, keycloak, jenkins]
+
 - name: "Generate /etc/exportfs"
   template:
     src: templates/exportfs
