@@ -19,3 +19,7 @@
     chdir: ~/linux-amd64
   ignore_errors: true
   become: yes
+
+- name: create rolebinding admin
+  command: kubectl create rolebinding jenkins-admin-binding --clusterrole=admin --user=system:serviceaccount:default:default
+  become: yes

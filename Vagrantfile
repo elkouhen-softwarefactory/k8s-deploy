@@ -42,6 +42,8 @@ Vagrant.configure("2") do |config|
 		  slave1_cfg.vm.hostname = "slave1.softeam.fr"
 		  slave1_cfg.vm.network "public_network", ip: "10.0.0.3", bridge: "wlp2s0"
 
+		  slave1_cfg.vm.network "forwarded_port", guest: 80, host: 8080
+
 		  slave1_cfg.vm.provider "virtualbox" do |vb|
 			vb.memory = "2048"
 			vb.cpus = 2

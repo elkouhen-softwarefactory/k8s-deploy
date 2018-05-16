@@ -1,8 +1,6 @@
-domaine: k8.wildwidewest.xyz
+domaine: k8-dev.wildwidewest.xyz
 
 registry: registry.k8.wildwidewest.xyz
-
-big_nodeb: master1.slave.fr
 
 traefik:
   ssl: False
