@@ -1,0 +1,8 @@
+- name: "Create folder /var/nfs/{{item}}"
+  file:
+    path: "/var/nfs/{{item}}"
+    state: directory
+    mode: 0666
+    owner: nfsnobody
+    group: nfsnobody
+  become: yes
