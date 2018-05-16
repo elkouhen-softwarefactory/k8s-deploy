@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nexus
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: nexus.{{domaine}}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nexus-sonatype-nexus
+          servicePort: 8080
