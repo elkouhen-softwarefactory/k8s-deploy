@@ -6,6 +6,7 @@ spec:
   secretName: traefik-cert
   issuerRef:
     name: letsencrypt-prod
+    kind: ClusterIssuer
   commonName: {{certificates | first}}
   dnsNames: 
 {% for certificate in certificates %}      

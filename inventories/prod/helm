@@ -1,4 +1,4 @@
-[traefik]
+[helm]
 vps242131.ovh.net
 
 [targets]

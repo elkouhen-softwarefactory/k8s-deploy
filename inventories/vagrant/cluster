@@ -1,7 +1,3 @@
-[docker]
-master1.softeam.fr
-slave1.softeam.fr 
-
 [kubernetes:children]
 kubernetes-master
 kubernetes-slave

@@ -1,3 +1,11 @@
+- name: "Status file /var/nfs/{{item}}"
+  stat:
+    path:  "/var/nfs/{{item}}"
+  register: nfs_status
+  become: yes
+  become_user: root
+
+
 - name: "Create folder /var/nfs/{{item}}"
   file:
     path: "/var/nfs/{{item}}"
@@ -6,3 +14,4 @@
     owner: nfsnobody
     group: nfsnobody
   become: yes
+  when: nfs_status.stat.exists == False

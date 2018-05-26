@@ -26,7 +26,8 @@ spec:
 {% if traefik.ssl is defined and traefik.ssl  == True %}
       - name: ssl
         secret:
-          secretName: traefik-cert{% endif %}
+          secretName: traefik-cert
+{% endif %}
       - name: config
         configMap:
           name: traefik-conf
@@ -36,7 +37,8 @@ spec:
         volumeMounts:
 {% if traefik.ssl is defined and traefik.ssl  == True %}
         - mountPath: "/ssl"
-          name: "ssl"{% endif %}
+          name: "ssl"
+{% endif %}
         - mountPath: "/config"
           name: "config"
         ports:
@@ -46,7 +48,8 @@ spec:
 {% if traefik.ssl is defined and traefik.ssl  == True %}
         - name: https
           containerPort: 443
-          hostPort: 443{% endif %}
+          hostPort: 443
+{% endif %}
         - name: admin
           containerPort: 8081
         securityContext:

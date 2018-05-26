@@ -8,27 +8,32 @@
   roles:
     - { role: nfs-client, tags: nfs }
 
-- hosts: kubernetes-master
+- hosts: kubernetes
   roles:
     - { role: logrotate, tags: kubernetes }
     - { role: docker, tags:  kubernetes}
     - { role: kubernetes, tags:  kubernetes }
+
+- hosts: kubernetes-master
+  roles:
     - { role: kubernetes-master, tags:  kubernetes}
 
 - hosts: kubernetes-slave
   roles:
-    - { role: logrotate, tags: kubernetes }
-    - { role: docker, tags:  kubernetes}
-    - { role: kubernetes, tags:  kubernetes }
     - { role: kubernetes-slave, tags: kubernetes }
+
+- hosts: helm
+  roles:
+    - { role: helm, tags: helm }
+
+- hosts: cert-manager
+  roles:
+    - { role: cert-manager, tags: cert-manager }
+    - { role: traefik, tags: traefik }
 
 - hosts: kubernetes-tools
   roles:
-    - { role: helm, tags: helm }
-    #    - { role: usine, tags: usine }
+    - { role: traefik, tags: traefik }
     - { role: nexus, tags: nexus }
     - { role: jenkins, tags: jenkins }
-    - { role: traefik, tags: traefik }
-#    - { role: keycloak, tags: keycloak }
-
-   
+    - { role: keycloak, tags: keycloak }

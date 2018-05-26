@@ -1,26 +1,44 @@
-
-- template: 
-    src: "templates/{{item}}"
-    dest: "/tmp/{{item}}"
-  with_items:
-    - pv.yml
-    - ingress.yml
-
-- command: "kubectl apply -f /tmp/{{item}}"
-  become: yes
-  ignore_errors: true
-  with_items:
-    - pv.yml
-    - ingress.yml
-
-- name: Install Jenkins
-  command: ./helm install --name jenkins stable/jenkins
+- name: Install cert-manager
+  command: ./helm install --version 0.2.4 --name cert-manager --namespace kube-system stable/cert-manager
   args: 
     chdir: ~/linux-amd64
   ignore_errors: true
   become: yes
 
-- name: create rolebinding admin
-  command: kubectl create rolebinding jenkins-admin-binding --clusterrole=admin --user=system:serviceaccount:default:default
+- name: Copy Issuer
+  template:
+    src: issuer.yaml
+    dest:  /tmp/issuer.yaml
+  when: traefik.ssl is defined and traefik.ssl == true
+
+- name: Delete Issuer
+  command: kubectl delete issuer letsencrypt-prod -n kube-system
+  ignore_errors: yes
   become: yes
-  ignore_errors: true
+  become_user: root
+  when: traefik.ssl is defined and traefik.ssl == true
+
+- name: Create Issuer
+  command: kubectl apply -f  /tmp/issuer.yaml -n kube-system
+  become: yes
+  become_user: root
+  when: traefik.ssl is defined and traefik.ssl == true
+
+- name: Copy Certificate
+  template:
+    src: certificate.yaml
+    dest:  /tmp/certificate.yaml
+  when: traefik.ssl is defined and traefik.ssl == true
+
+- name: Delete Certificate
+  command: kubectl delete certificate traefik-cert -n kube-system
+  ignore_errors: yes
+  become: yes
+  become_user: root
+  when: traefik.ssl is defined and traefik.ssl == true
+
+- name: Create Certificate
+  command: kubectl apply -f  /tmp/certificate.yaml -n kube-system
+  become: yes
+  become_user: root
+  when: traefik.ssl is defined and traefik.ssl == true

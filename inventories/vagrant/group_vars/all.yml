@@ -1,6 +1,6 @@
 domaine: k8-dev.wildwidewest.xyz
 
-registry: registry.k8.wildwidewest.xyz
+registry: registry.{{domaine}}
 
 traefik:
   ssl: False
@@ -10,4 +10,4 @@ kubeadm:
     options: --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
 
 certificates:
-  - jenkins.k8.wildwidewest.xyz
+  - jenkins.{{domaine}}
