@@ -1,0 +1,26 @@
+
+- template: 
+    src: "templates/{{item}}"
+    dest: "/tmp/{{item}}"
+  with_items:
+    - pv.yml
+    - ingress.yml
+
+- command: "kubectl apply -f /tmp/{{item}}"
+  become: yes
+  ignore_errors: true
+  with_items:
+    - pv.yml
+    - ingress.yml
+
+- name: Install Jenkins
+  command: ./helm install --name jenkins stable/jenkins
+  args: 
+    chdir: ~/linux-amd64
+  ignore_errors: true
+  become: yes
+
+- name: create rolebinding admin
+  command: kubectl create rolebinding jenkins-admin-binding --clusterrole=admin --user=system:serviceaccount:default:default
+  become: yes
+  ignore_errors: true
