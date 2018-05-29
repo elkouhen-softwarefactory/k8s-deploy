@@ -33,7 +33,7 @@
 
 - hosts: kubernetes-tools
   roles:
-    - { role: traefik, tags: traefik }
+    - { role: secrets, tags: secrets }
     - { role: nexus, tags: nexus }
     - { role: jenkins, tags: jenkins }
     - { role: keycloak, tags: keycloak }

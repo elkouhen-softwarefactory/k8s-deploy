@@ -4,6 +4,7 @@ metadata:
   name: nexus
   annotations:
     kubernetes.io/ingress.class: traefik
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   rules:

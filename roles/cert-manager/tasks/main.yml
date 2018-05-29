@@ -1,5 +1,5 @@
 - name: Install cert-manager
-  command: ./helm install --version 0.2.4 --name cert-manager --namespace kube-system stable/cert-manager
+  command: ./helm install --name cert-manager --namespace kube-system stable/cert-manager
   args: 
     chdir: ~/linux-amd64
   ignore_errors: true

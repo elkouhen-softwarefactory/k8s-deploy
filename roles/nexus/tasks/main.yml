@@ -23,3 +23,7 @@
     chdir: ~/linux-amd64
   ignore_errors: true
   become: yes
+
+- command: kubectl expose deployment nexus-sonatype-nexus --name=registry --port=8082 --type=ClusterIP
+  ignore_errors: true
+  become: yes
