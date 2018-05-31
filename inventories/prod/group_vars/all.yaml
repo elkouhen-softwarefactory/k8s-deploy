@@ -10,7 +10,7 @@ nexus_folder: nexus
 keycloak_folder: keycloak
 
 traefik:
-  ssl: True
+  ssl: "{{ traefik_ssl | default(True) }}"
 
 kubeadm:
   init:

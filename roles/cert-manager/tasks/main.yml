@@ -9,36 +9,30 @@
   template:
     src: issuer.yaml
     dest:  /tmp/issuer.yaml
-  when: traefik.ssl is defined and traefik.ssl == true
 
 - name: Delete Issuer
   command: kubectl delete issuer letsencrypt-prod -n kube-system
   ignore_errors: yes
   become: yes
   become_user: root
-  when: traefik.ssl is defined and traefik.ssl == true
 
 - name: Create Issuer
   command: kubectl apply -f  /tmp/issuer.yaml -n kube-system
   become: yes
   become_user: root
-  when: traefik.ssl is defined and traefik.ssl == true
 
 - name: Copy Certificate
   template:
     src: certificate.yaml
     dest:  /tmp/certificate.yaml
-  when: traefik.ssl is defined and traefik.ssl == true
 
 - name: Delete Certificate
   command: kubectl delete certificate traefik-cert -n kube-system
   ignore_errors: yes
   become: yes
   become_user: root
-  when: traefik.ssl is defined and traefik.ssl == true
 
 - name: Create Certificate
   command: kubectl apply -f  /tmp/certificate.yaml -n kube-system
   become: yes
   become_user: root
-  when: traefik.ssl is defined and traefik.ssl == true

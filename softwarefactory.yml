@@ -26,6 +26,11 @@
   roles:
     - { role: helm, tags: helm }
 
+- hosts: traefik
+  roles:
+    - { role: cert-manager, tags: cert-manager }
+    - { role: traefik, tags: traefik }
+
 - hosts: cert-manager
   roles:
     - { role: cert-manager, tags: cert-manager }
