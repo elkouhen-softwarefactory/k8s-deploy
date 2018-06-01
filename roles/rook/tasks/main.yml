@@ -1,0 +1,39 @@
+- command: ./helm repo add rook-master https://charts.rook.io/master
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
+
+- name: helm list
+  command: ./helm list
+  args:
+      chdir: /root/linux-amd64
+  register: helm_list
+  become: yes
+  become_user: root
+
+- name: helm install rook-ceph
+  command: ./helm install --namespace rook-ceph-system rook-master/rook-ceph --name rook-ceph --version v0.7.0-160.g3060813
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
+  when: "'rook-ceph' not in helm_list.stdout"
+
+- name: Copy FileSystem Resource
+  copy:
+    src: files/filesystem.yml
+    dest: /tmp/rook-filesystem.yml
+
+- command: kubectl apply -f /tmp/rook-filesystem.yml
+  become: yes
+  become_user: root
+
+- name: Copy Toolbox
+  copy:
+    src: files/toolbox.yml
+    dest: /tmp/toolbox.yml
+
+- command: kubectl apply -f /tmp/toolbox.yml
+  become: yes
+  become_user: root

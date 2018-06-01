@@ -1,8 +1,0 @@
-- name: "Label big nodes"
-  command: "kubectl label node {{big_node}} server_type=big"
-
-- name: create namespace usine
-  command: kubectl create namespace usine
-
-- name: create rolebinding admin / usine
-  command: kubectl create rolebinding usine-admin-binding --clusterrole=admin --user=system:serviceaccount:usine:default --namespace=usine
