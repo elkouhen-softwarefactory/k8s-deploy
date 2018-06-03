@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: rook-ceph-tools
-  namespace: rook-ceph-system
+  namespace: rook-ceph
 spec:
   dnsPolicy: ClusterFirstWithHostNet
   containers:

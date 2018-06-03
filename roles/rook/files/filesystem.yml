@@ -2,7 +2,7 @@ apiVersion: ceph.rook.io/v1alpha1
 kind: Filesystem
 metadata:
   name: myfs
-  namespace: rook-ceph-system
+  namespace: rook-ceph
 spec:
   metadataPool:
     replicated:
