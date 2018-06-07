@@ -36,6 +36,7 @@
     - { role: secrets, tags: secrets }
     - { role: nexus, tags: nexus }
     - { role: jenkins, tags: jenkins }
+    - { role: sonarqube, tags: sonarqube }
     - { role: keycloak, tags: keycloak }
 
 - hosts: cert-manager

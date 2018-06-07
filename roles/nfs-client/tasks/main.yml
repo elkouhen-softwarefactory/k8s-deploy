@@ -5,4 +5,4 @@
   become: yes
 
 - include: config.yml
-  with_items: [ nexus, keycloak, jenkins]
+  with_items: [ nexus, keycloak, jenkins, sonarqube]

@@ -8,6 +8,7 @@ nfs_server: 51.255.42.138
 jenkins_folder: jenkins
 nexus_folder: nexus
 keycloak_folder: keycloak
+sonarqube_folder: sonarqube
 
 traefik:
   ssl: "{{ traefik_ssl | default(True) }}"
@@ -18,11 +19,11 @@ kubeadm:
 
 certificates:
   - jenkins.{{domaine}}
-  - meltingpoc.{{domaine}}
   - nexus.{{domaine}}
+  - sonarqube.{{domaine}}
   - keycloak.{{domaine}}
   - kibana.{{domaine}}
-  - helmet.{{domaine}}
+  - meltingpoc.{{domaine}}
   - recyclette.{{domaine}}
   - wallboard.{{domaine}}
   - wallboard-back.{{domaine}}
