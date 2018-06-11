@@ -38,6 +38,7 @@
     - { role: jenkins, tags: jenkins }
     - { role: sonarqube, tags: sonarqube }
     - { role: keycloak, tags: keycloak }
+    - { role: kafka, tags: kafka }
 
 - hosts: cert-manager
   roles:
@@ -47,3 +48,7 @@
 - hosts: rook
   roles:
     - { role: rook, tags: rook }
+
+- hosts: kibana
+  roles:
+    - { role: kibana, tags: kibana }

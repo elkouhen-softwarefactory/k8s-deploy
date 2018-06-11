@@ -1,0 +1,23 @@
+- command: ./helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
+
+#- command: ./helm install --name elasticsearch incubator/elasticsearch --set master.persistence.enabled=false --set data.persistence.enabled=false --set master.replicas=1 --set data.replicas=1
+#  args:
+#    chdir: /root/linux-amd64
+#  become: yes
+#  become_user: root
+
+#- command: ./helm install --name kibana stable/kibana
+#  args:
+#    chdir: /root/linux-amd64
+#  become: yes
+#  become_user: root
+
+- name: Copy ingress
+  template: src=templates/ingress.yml dest=/tmp/ingress.yml
+
+- name: Deploy ingress
+  command: kubectl apply -f /tmp/ingress.yml
