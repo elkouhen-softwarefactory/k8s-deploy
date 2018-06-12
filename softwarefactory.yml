@@ -31,7 +31,7 @@
     - { role: cert-manager, tags: cert-manager }
     - { role: traefik, tags: traefik }
 
-- hosts: kubernetes-tools
+- hosts: softwarefactory
   roles:
     - { role: secrets, tags: secrets }
     - { role: nexus, tags: nexus }
@@ -39,6 +39,7 @@
     - { role: sonarqube, tags: sonarqube }
     - { role: keycloak, tags: keycloak }
     - { role: kafka, tags: kafka }
+    - { role: kibana, tags: kibana }
 
 - hosts: cert-manager
   roles:
@@ -49,9 +50,9 @@
   roles:
     - { role: rook, tags: rook }
 
-- hosts: kibana
+- hosts: ping
   roles:
-    - { role: kibana, tags: kibana }
+    - { role: ping, tags: ping }
 
 - hosts: reboot
   roles:
