@@ -47,4 +47,4 @@ spec:
       volumes:
       - name: keycloak-home
         persistentVolumeClaim:
-          claimName: keycloak-pvc
+          claimName: pvc-keycloak
