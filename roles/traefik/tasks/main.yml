@@ -9,11 +9,17 @@
     src: templates/traefik.toml
     dest: /tmp/traefik.toml
 
-- name: "Delete Configmap traefik-conf"
-  command: kubectl delete configmap traefik-conf -n kube-system
-  ignore_errors: yes
+- name: Check
+  command: kubectl get configmap -n kube-system
   become: yes
   become_user: root
+  register: configmap_check
+
+- name: "Delete Configmap traefik-conf"
+  command: kubectl delete configmap traefik-conf -n kube-system
+  become: yes
+  become_user: root
+  when: "'traefik-conf' in configmap_check.stdout"
 
 - name: Create configmap traefik-conf
   command: kubectl create configmap traefik-conf --from-file=/tmp/traefik.toml -n kube-system
@@ -25,11 +31,18 @@
     src: templates/traefik-ds.yaml
     dest: /tmp/traefik-ds.yaml
 
-- name: Delete DaemonSet traefik
-  command: kubectl delete ds traefik-ingress-controller -n kube-system
-  ignore_errors: yes
+- name: Check
+  command: kubectl get ds -n kube-system
   become: yes
   become_user: root
+  register: ds_check
+
+- name: Delete DaemonSet traefik
+  command: kubectl delete ds traefik-ingress-controller -n kube-system
+  ignore_errors: True
+  become: yes
+  become_user: root
+  when: "'traefik-ingress-controller' in ds_check.stdout"
 
 - name: Deploy traefik
   command: kubectl apply -f /tmp/traefik-ds.yaml -n kube-system

@@ -16,7 +16,7 @@
   sysctl:
     name: net.bridge.bridge-nf-call-iptables
     value: 1
-  ignore_errors: yes
+  ignore_errors: True
   become: yes
   become_user: root
 

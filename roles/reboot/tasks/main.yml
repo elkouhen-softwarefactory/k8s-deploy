@@ -1,2 +1,2 @@
 - command: reboot
-  ignore_errors: true
+  ignore_errors: True

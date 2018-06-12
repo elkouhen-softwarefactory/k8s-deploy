@@ -26,9 +26,14 @@
     chdir: ~/linux-amd64
   become: yes
   when: "'jenkins' not in helm_list.stdout"
-  when: "'jenkins' not in helm_list.stdout"
+
+- name: Check
+  command: kubectl get rolebinding
+  become: yes
+  become_user: root
+  register: rolebinding_check
 
 - name: create rolebinding admin
   command: kubectl create rolebinding jenkins-admin-binding --clusterrole=admin --user=system:serviceaccount:default:default
   become: yes
-  ignore_errors: true
+  when: "'jenkins-admin-binding' not in rolebinding_check.stdout"

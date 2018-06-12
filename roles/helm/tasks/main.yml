@@ -21,11 +21,17 @@
   become: yes
   become_user: root
 
-- name: Create Role Binding
-  command: kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
-  ignore_errors: True
+- name: Check
+  command: kubectl get clusterrolebinding
   become: yes
   become_user: root
+  register: clusterrolebinding_check
+
+- name: Create Role Binding
+  command: kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
+  become: yes
+  become_user: root
+  when: "'add-on-cluster-admin' not in clusterrolebinding_check.stdout"
 
 - name: Execute helm reset
   command: ./helm reset
