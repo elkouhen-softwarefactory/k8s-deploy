@@ -12,7 +12,7 @@
   become: yes
 
 - include: config.yml
-  with_items: [ nexus, keycloak, jenkins, sonarqube]
+  with_items: "{{nfs_mounts}}"
 
 - name: "Generate /etc/exportfs"
   template:

@@ -4,13 +4,13 @@
   become: yes
   become_user: root
 
-- name: helm list
+- name: Helm List
   command: ./helm list
   args:
-      chdir: /root/linux-amd64
-  register: helm_list
+    chdir: /root/linux-amd64
   become: yes
   become_user: root
+  register: helm_list
 
 - name: helm install rook-ceph
   command: ./helm install --namespace rook-ceph-system rook-master/rook-ceph --name rook-ceph --version v0.7.0-160.g3060813

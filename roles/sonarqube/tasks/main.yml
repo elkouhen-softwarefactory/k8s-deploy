@@ -8,19 +8,21 @@
 
 - command: "kubectl apply -f /tmp/{{item}}"
   become: yes
-  ignore_errors: true
   with_items:
     - pv.yml
     - ingress.yml
+
+- name: Helm List
+  command: ./helm list
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
+  register: helm_list
 
 - name: Install sonarqube
   command: ./helm install --name sonarqube stable/sonarqube
   args: 
     chdir: ~/linux-amd64
-  ignore_errors: true
   become: yes
-
-#- name: create rolebinding admin
-#  command: kubectl create rolebinding sonarqube-admin-binding --clusterrole=admin --user=system:serviceaccount:default:default
-#  become: yes
-#  ignore_errors: true
+  when: "'sonarqube' not in helm_list.stdout"

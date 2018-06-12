@@ -1,7 +1,5 @@
-/var/nfs/keycloak {% for node in groups['nfs-client'] %} {{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
+{% for mount in nfs_mounts %}
 
-/var/nfs/nexus {% for node in groups['nfs-client'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
+/var/nfs/{{mount}} {% for node in groups['nfs-client'] %} {{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
 
-/var/nfs/jenkins {% for node in groups['nfs-client'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
-
-/var/nfs/sonarqube {% for node in groups['nfs-client'] %}{{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
+{% endfor %}

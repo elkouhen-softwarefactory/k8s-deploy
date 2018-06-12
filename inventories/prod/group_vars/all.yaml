@@ -2,13 +2,14 @@ domaine: k8.wildwidewest.xyz
 
 registry: registry.{{domaine}}
 
-big_node: vps257315.ovh.net
 nfs_server: 51.255.42.138
 
-jenkins_folder: jenkins
-nexus_folder: nexus
-keycloak_folder: keycloak
-sonarqube_folder: sonarqube
+nfs_mounts:
+  - jenkins
+  - nexus
+  - keycloak
+  - sonarqube
+  - logstash_0
 
 traefik:
   ssl: "{{ traefik_ssl | default(True) }}"

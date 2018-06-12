@@ -10,20 +10,26 @@
 
 - command: "kubectl apply -f /tmp/{{item}}"
   become: yes
-  ignore_errors: true
   with_items:
     - pv.yml
     - service-registry.yml
     - ingress.yml
     - ingress-registry.yml
-    
+
+- name: Helm List
+  command: ./helm list
+  args:
+    chdir: /root/linux-amd64
+  become: yes
+  become_user: root
+  register: helm_list
+
 - name: Install nexus
   command: ./helm install --name nexus stable/sonatype-nexus
   args: 
     chdir: ~/linux-amd64
-  ignore_errors: true
   become: yes
+  when: "'nexus' not in helm_list.stdout"
 
-- command: kubectl expose deployment nexus-sonatype-nexus --name=registry --port=8082 --type=ClusterIP
-  ignore_errors: true
+- command: kubectl expose deployment nexus-sonatype-nexus --name=registry --port=8082 --type=LoadBalancer
   become: yes

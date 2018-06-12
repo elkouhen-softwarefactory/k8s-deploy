@@ -15,5 +15,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: kibana
-          servicePort: 443
+          serviceName: elasticsearch-elasticsearch-kibana
+          servicePort: 80
