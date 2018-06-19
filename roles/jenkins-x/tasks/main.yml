@@ -1,0 +1,13 @@
+
+- template:
+    src: "templates/{{item}}"
+    dest: "/tmp/{{item}}"
+  with_items:
+    - pv.yml
+    - ingress.yml
+
+- command: "kubectl apply -f /tmp/{{item}} -n jx"
+  become: yes
+  with_items:
+    - pv.yml
+    - ingress.yml

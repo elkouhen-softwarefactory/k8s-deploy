@@ -8,6 +8,11 @@ nfs_mounts:
   - keycloak
   - sonarqube
   - logstash_0
+  - jenkins_x
+  - jenkins_x_chartmuseum
+  - jenkins_x_docker_registry
+  - jenkins_x_mongodb
+  - jenkins_x_nexus
 
 traefik:
   ssl: "{{ traefik_ssl | default(True) }}"

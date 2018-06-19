@@ -41,6 +41,10 @@
     - { role: kafka, tags: kafka }
     - { role: kibana, tags: kibana }
 
+- hosts: jenkins-x
+  roles:
+    - { role: jenkins-x, tags: jenkins-x }
+
 - hosts: cert-manager
   roles:
     - { role: cert-manager, tags: cert-manager }
@@ -49,6 +53,10 @@
 - hosts: rook
   roles:
     - { role: rook, tags: rook }
+
+- hosts: upgrade
+  roles:
+    - { role: upgrade, tags: upgrade }
 
 - hosts: ping
   roles:
