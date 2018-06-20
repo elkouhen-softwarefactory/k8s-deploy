@@ -8,6 +8,6 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/nexus
+    path: /zpool-126262/WWWNEXUS
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle

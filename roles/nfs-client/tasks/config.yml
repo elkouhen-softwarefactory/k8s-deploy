@@ -1,6 +1,6 @@
 - name: "Update file /etc/fstab"
   lineinfile:
     path: /etc/fstab
-    regexp: "^{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/"
-    line: "{{ groups['nfs-master'][0] }}:/var/nfs/{{item}}/ /nfs/{{item}}/ nfs rw 0 0"
+    regexp: "^{{item.remote}}/"
+    line: "{{item.remote}}/ {{item.local}} nfs rw 0 0"
   become: yes

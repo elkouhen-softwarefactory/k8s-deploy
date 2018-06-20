@@ -1,5 +1,0 @@
-{% for mount in nfs_mounts %}
-
-/var/nfs/{{mount}} {% for node in groups['nfs-client'] %} {{node}}(rw,sync,no_root_squash,no_subtree_check)  {% endfor %}
-
-{% endfor %}

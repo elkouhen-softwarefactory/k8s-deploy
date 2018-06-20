@@ -8,6 +8,6 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/sonarqube
+    path: /zpool-126262/WWWSONARQUBE
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle

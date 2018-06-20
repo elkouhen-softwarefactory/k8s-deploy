@@ -8,7 +8,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/jenkins_x
+    path: /zpool-126262/WWWJENKINSX
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
 
@@ -23,7 +23,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/jenkins_x_chartmuseum
+    path: /zpool-126262/WWWJENKINSXCHARTMUSEUM
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
 ---
@@ -37,7 +37,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/jenkins_x_docker_registry
+    path: /zpool-126262/WWWJENKINSXDOCKERREGISTRY
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
 ---
@@ -51,7 +51,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/jenkins_x_mongodb
+    path: /zpool-126262/WWWJENKINSXMONGODB
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
 ---
@@ -65,6 +65,6 @@ spec:
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/nfs/jenkins_x_nexus
+    path: /zpool-126262/WWWJENKINSXNEXUS
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle

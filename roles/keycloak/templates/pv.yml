@@ -11,6 +11,6 @@ spec:
     namespace: default
     name: pvc-keycloak
   nfs:
-    path: /var/nfs/keycloak
+    path: /zpool-126262/WWWKEYCLOAK
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle

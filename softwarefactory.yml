@@ -1,9 +1,5 @@
 ---
 
-- hosts: nfs-master
-  roles:
-    - { role: nfs-master, tags: nfs }
-
 - hosts: nfs-client
   roles:
     - { role: nfs-client, tags: nfs }

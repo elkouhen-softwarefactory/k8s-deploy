@@ -3,16 +3,11 @@ domaine: k8.wildwidewest.xyz
 registry: registry.{{domaine}}
 
 nfs_mounts:
-  - jenkins
-  - nexus
-  - keycloak
-  - sonarqube
-  - logstash_0
-  - jenkins_x
-  - jenkins_x_chartmuseum
-  - jenkins_x_docker_registry
-  - jenkins_x_mongodb
-  - jenkins_x_nexus
+  - { remote: "10.16.103.9:/zpool-126262/WWWJENKINS",   local: /mnt/jenkins}
+  - { remote: "10.16.103.9:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
+  - { remote: "10.16.103.9:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
+  - { remote: "10.16.103.9:/zpool-126262/WWWSONARQUBE", local: /mnt/sonarqube}
+#  - { remote: 10.16.103.9:/zpool-126262/WWWJENKINS, locale: /mnt/logstash_0}
 
 traefik:
   ssl: "{{ traefik_ssl | default(True) }}"

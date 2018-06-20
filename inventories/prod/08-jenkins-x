@@ -1,5 +1,5 @@
 [nfs-master]
-vps257315.ovh.net
+10.16.103.9
 
 [nfs-client]
 vps242564.ovh.net
@@ -10,8 +10,6 @@ vps242565.ovh.net
 vps242131.ovh.net
 vps267690.ovh.net
 
-[jenkins-x]
-vps242131.ovh.net
 
 [targets]
 vps242564.ovh.net ansible_user=root
