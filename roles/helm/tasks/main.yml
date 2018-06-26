@@ -34,7 +34,7 @@
   when: "'add-on-cluster-admin' not in clusterrolebinding_check.stdout"
 
 - name: Execute helm reset
-  command: ./helm reset
+  command: helm reset
   args:
     chdir: /root/linux-amd64
   become: yes
@@ -42,7 +42,7 @@
   ignore_errors: True
   
 - name: Execute helm init
-  command: ./helm init
+  command: helm init
   args:
     chdir: /root/linux-amd64
   become: yes

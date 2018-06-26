@@ -15,7 +15,7 @@
     - ingress-registry.yml
 
 - name: Helm List
-  command: ./helm list
+  command: helm list
   args:
     chdir: /root/linux-amd64
   become: yes
@@ -23,7 +23,7 @@
   register: helm_list
 
 - name: Install nexus
-  command: ./helm install --name nexus stable/sonatype-nexus
+  command: helm install --name nexus stable/sonatype-nexus
   args: 
     chdir: ~/linux-amd64
   become: yes

@@ -1,0 +1,4 @@
+- template:
+    src: bashrc.j2
+    dest: /root/.bashrc
+  become: yes

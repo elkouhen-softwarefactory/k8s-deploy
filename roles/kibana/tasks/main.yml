@@ -1,34 +1,34 @@
-- command: ./helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+- command: helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
   args:
     chdir: /root/linux-amd64
   become: yes
   become_user: root
 
 - name: Helm List
-  command: ./helm list
+  command: helm list
   args:
     chdir: /root/linux-amd64
   become: yes
   become_user: root
   register: helm_list
 
-- name: "Status file /root/linux-amd64/helm-elasticsearch"
+- name: "Status file /root/helm-elasticsearch"
   stat:
-    path:  "/root/linux-amd64/helm-elasticsearch"
+    path:  "/root/helm-elasticsearch"
   register: helm_elasticsearch_status
   become: yes
   become_user: root
 
 - command: git clone https://github.com/clockworksoul/helm-elasticsearch.git
   args:
-    chdir: /root/linux-amd64
+    chdir: /root
   become: yes
   become_user: root
   when: helm_elasticsearch_status.stat.exists == False
 
-- command: ./helm install --name elasticsearch helm-elasticsearch
+- command: helm install --name elasticsearch helm-elasticsearch
   args:
-    chdir: /root/linux-amd64
+    chdir: /root
   become: yes
   become_user: root
   when: "'elasticsearch' not in helm_list.stdout"
@@ -38,23 +38,23 @@
     src: templates/{{item}}.yml
     dest: /tmp/{{item}}.yml
   with_items:
-    - ingress
-    - pv_data_logstash_0
-    - filebeat-ds
-    - logstash-config
-    - logstash-deployment
-    - logstash-service
+  - ingress
+  - pv_data_logstash_0
+  - filebeat-ds
+  - logstash-config
+  - logstash-deployment
+  - logstash-service
   become: yes
   become_user: root
 
 - name: Deploy configs
   command: kubectl apply -f /tmp/{{item}}.yml
   with_items:
-    - ingress
-    - pv_data_logstash_0
-    - filebeat-ds
-    - logstash-config
-    - logstash-deployment
-    - logstash-service
+  - ingress
+  - pv_data_logstash_0
+  - filebeat-ds
+  - logstash-config
+  - logstash-deployment
+  - logstash-service
   become: yes
   become_user: root
