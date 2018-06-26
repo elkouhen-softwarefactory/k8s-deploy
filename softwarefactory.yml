@@ -29,13 +29,13 @@
 
 - hosts: softwarefactory
   roles:
-    - { role: secrets, tags: secrets }
-    - { role: nexus, tags: nexus }
-    - { role: jenkins, tags: jenkins }
-    - { role: sonarqube, tags: sonarqube }
-    - { role: keycloak, tags: keycloak }
-    - { role: kafka, tags: kafka }
-    - { role: kibana, tags: kibana }
+    - { role: secrets, tags: [softwarefactory, secrets] }
+    - { role: nexus, tags: [softwarefactory, nexus] }
+    - { role: jenkins, tags: [softwarefactory, jenkins] }
+    - { role: sonarqube, tags: [softwarefactory, sonarqube] }
+    - { role: keycloak, tags: [softwarefactory, keycloak] }
+    - { role: kafka, tags: [softwarefactory, kafka] }
+    - { role: kibana, tags: [softwarefactory, kibana] }
 
 - hosts: jenkins-x
   roles:
