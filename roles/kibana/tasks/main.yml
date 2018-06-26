@@ -19,14 +19,16 @@
   become: yes
   become_user: root
 
-- command: git clone https://github.com/clockworksoul/helm-elasticsearch.git
+- name: Clone elasticsearch chart
+  command: git clone https://github.com/clockworksoul/helm-elasticsearch.git
   args:
     chdir: /root
   become: yes
   become_user: root
   when: helm_elasticsearch_status.stat.exists == False
 
-- command: helm install --name elasticsearch helm-elasticsearch
+- name: Install elasticsearch chart
+  command: helm install --name elasticsearch helm-elasticsearch
   args:
     chdir: /root
   become: yes
@@ -40,10 +42,10 @@
   with_items:
   - ingress
   - pv_data_logstash_0
-  - filebeat-ds
-  - logstash-config
-  - logstash-deployment
-  - logstash-service
+  #  - filebeat-ds
+  #  - logstash-config
+  #  - logstash-deployment
+  #  - logstash-service
   become: yes
   become_user: root
 
@@ -52,9 +54,9 @@
   with_items:
   - ingress
   - pv_data_logstash_0
-  - filebeat-ds
-  - logstash-config
-  - logstash-deployment
-  - logstash-service
+  #  - filebeat-ds
+  #  - logstash-config
+  #  - logstash-deployment
+  #  - logstash-service
   become: yes
   become_user: root
