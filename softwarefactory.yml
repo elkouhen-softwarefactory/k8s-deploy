@@ -29,18 +29,17 @@
 
 - hosts: softwarefactory
   roles:
-  - { role: secrets, tags: [softwarefactory, secrets] }
+  - { role: app-secrets, tags: [softwarefactory, app-secrets] }
   - { role: app-nexus, tags: [softwarefactory, app-nexus] }
-  - { role: app-jenkins, tags: [softwarefactory, jenkins] }
-  - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
-  - { role: app-keycloak, tags: [softwarefactory, keycloak] }
-  - { role: kafka, tags: [softwarefactory, kafka] }
-  #  - { role: kibana, tags: [softwarefactory, kibana] }
+  - { role: app-jenkins, tags: [softwarefactory, app-jenkins] }
+  - { role: app-sonarqube, tags: [softwarefactory, app-sonarqube] }
+  - { role: app-keycloak, tags: [softwarefactory, app-keycloak] }
 
-- hosts: cert-manager
+- hosts: middleware
   roles:
-  - { role: cert-manager, tags: cert-manager }
-  - { role: ingress-nginx, tags: ingress }
+  - { role: kafka, tags: [middleware, kafka] }
+
+  #  - { role: kibana, tags: [softwarefactory, kibana] }
 
 - hosts: rook
   roles:
