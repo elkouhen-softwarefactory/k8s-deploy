@@ -2,11 +2,11 @@
 
 - hosts: nfs-client
   roles:
-  - { role: nfs-client, tags: nfs }
+  - { role: storage-client-nfs, tags: nfs }
 
 - hosts: kubernetes
   roles:
-  - { role: logrotate, tags: kubernetes }
+  - { role: tool-logrotate, tags: kubernetes }
   - { role: docker, tags:  kubernetes}
   - { role: kubernetes, tags:  kubernetes }
 
@@ -20,7 +20,7 @@
 
 - hosts: helm
   roles:
-  - { role: helm, tags: helm }
+  - { role: tool-helm, tags: tool-helm }
 
 - hosts: ingress
   roles:
@@ -37,22 +37,22 @@
 
 - hosts: middleware
   roles:
-  - { role: kafka, tags: [middleware, kafka] }
+  - { role: middleware-kafka, tags: [middleware, middleware-kafka] }
 
   #  - { role: kibana, tags: [softwarefactory, kibana] }
 
 - hosts: rook
   roles:
-  - { role: rook, tags: rook }
+  - { role: storage-rook, tags: storage-rook }
 
 - hosts: upgrade
   roles:
-  - { role: upgrade, tags: upgrade }
+  - { role: util-upgrade, tags: upgrade }
 
 - hosts: ping
   roles:
-  - { role: ping, tags: ping }
+  - { role: util-ping, tags: ping }
 
 - hosts: reboot
   roles:
-  - { role: reboot, tags: reboot }
+  - { role: util-reboot, tags: reboot }
