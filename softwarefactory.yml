@@ -22,20 +22,20 @@
   roles:
     - { role: helm, tags: helm }
 
-- hosts: traefik
+- hosts: ingress
   roles:
     - { role: cert-manager, tags: cert-manager }
-    - { role: traefik, tags: traefik }
+    - { role: ingress-nginx, tags: ingress }
 
 - hosts: softwarefactory
   roles:
     - { role: secrets, tags: [softwarefactory, secrets] }
     - { role: nexus, tags: [softwarefactory, nexus] }
-    - { role: jenkins, tags: [softwarefactory, jenkins] }
-    - { role: sonarqube, tags: [softwarefactory, sonarqube] }
-    - { role: keycloak, tags: [softwarefactory, keycloak] }
-    - { role: kafka, tags: [softwarefactory, kafka] }
-    - { role: kibana, tags: [softwarefactory, kibana] }
+#    - { role: jenkins, tags: [softwarefactory, jenkins] }
+#    - { role: sonarqube, tags: [softwarefactory, sonarqube] }
+#    - { role: keycloak, tags: [softwarefactory, keycloak] }
+#    - { role: kafka, tags: [softwarefactory, kafka] }
+#    - { role: kibana, tags: [softwarefactory, kibana] }
 
 - hosts: jenkins-x
   roles:
@@ -44,7 +44,7 @@
 - hosts: cert-manager
   roles:
     - { role: cert-manager, tags: cert-manager }
-    - { role: traefik, tags: traefik }
+    - { role: ingress-nginx, tags: ingress }
 
 - hosts: rook
   roles:

@@ -1,13 +1,9 @@
 - command: helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-  args:
-    chdir: /root/linux-amd64
   become: yes
   become_user: root
 
 - name: Helm List
   command: helm list
-  args:
-    chdir: /root/linux-amd64
   become: yes
   become_user: root
   register: helm_list

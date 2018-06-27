@@ -1,5 +1,6 @@
 
-- template: 
+- name: Copy Resources
+  template: 
     src: "templates/{{item}}"
     dest: "/tmp/{{item}}"
   with_items:
@@ -7,7 +8,8 @@
     - ingress.yml
     - ingress-registry.yml
 
-- command: "kubectl apply -f /tmp/{{item}}"
+- name: Create Resources
+  command: "kubectl apply -f /tmp/{{item}}"
   become: yes
   with_items:
     - pv.yml
@@ -16,16 +18,12 @@
 
 - name: Helm List
   command: helm list
-  args:
-    chdir: /root/linux-amd64
   become: yes
   become_user: root
   register: helm_list
 
 - name: Install nexus
   command: helm install --name nexus stable/sonatype-nexus
-  args: 
-    chdir: ~/linux-amd64
   become: yes
   when: "'nexus' not in helm_list.stdout"
 

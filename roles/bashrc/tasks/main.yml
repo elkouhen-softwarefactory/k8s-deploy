@@ -1,4 +1,5 @@
-- template:
+- name: Copy Resources 
+  template:
     src: bashrc.j2
     dest: /root/.bashrc
   become: yes
