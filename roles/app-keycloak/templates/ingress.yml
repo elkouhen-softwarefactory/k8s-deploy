@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: keycloak
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
     - secretName: traefik-cert

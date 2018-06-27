@@ -2,62 +2,58 @@
 
 - hosts: nfs-client
   roles:
-    - { role: nfs-client, tags: nfs }
+  - { role: nfs-client, tags: nfs }
 
 - hosts: kubernetes
   roles:
-    - { role: logrotate, tags: kubernetes }
-    - { role: docker, tags:  kubernetes}
-    - { role: kubernetes, tags:  kubernetes }
+  - { role: logrotate, tags: kubernetes }
+  - { role: docker, tags:  kubernetes}
+  - { role: kubernetes, tags:  kubernetes }
 
 - hosts: kubernetes-master
   roles:
-    - { role: kubernetes-master, tags:  kubernetes}
+  - { role: kubernetes-master, tags:  [kubernetes-master, kubernetes]}
 
 - hosts: kubernetes-slave
   roles:
-    - { role: kubernetes-slave, tags: kubernetes }
+  - { role: kubernetes-slave, tags: [kubernetes-slave, kubernetes] }
 
 - hosts: helm
   roles:
-    - { role: helm, tags: helm }
+  - { role: helm, tags: helm }
 
 - hosts: ingress
   roles:
-    - { role: cert-manager, tags: cert-manager }
-    - { role: ingress-nginx, tags: ingress }
+  - { role: cert-manager, tags: [ ingress, cert-manager] }
+  - { role: ingress-nginx, tags: [ ingress-nginx, ingress] }
 
 - hosts: softwarefactory
   roles:
-    - { role: secrets, tags: [softwarefactory, secrets] }
-    - { role: nexus, tags: [softwarefactory, nexus] }
-#    - { role: jenkins, tags: [softwarefactory, jenkins] }
-#    - { role: sonarqube, tags: [softwarefactory, sonarqube] }
-#    - { role: keycloak, tags: [softwarefactory, keycloak] }
-#    - { role: kafka, tags: [softwarefactory, kafka] }
-#    - { role: kibana, tags: [softwarefactory, kibana] }
-
-- hosts: jenkins-x
-  roles:
-    - { role: jenkins-x, tags: jenkins-x }
+  - { role: secrets, tags: [softwarefactory, secrets] }
+  - { role: app-nexus, tags: [softwarefactory, app-nexus] }
+  - { role: app-jenkins, tags: [softwarefactory, jenkins] }
+  - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
+  - { role: app-keycloak, tags: [softwarefactory, keycloak] }
+  - { role: kafka, tags: [softwarefactory, kafka] }
+  #  - { role: kibana, tags: [softwarefactory, kibana] }
 
 - hosts: cert-manager
   roles:
-    - { role: cert-manager, tags: cert-manager }
-    - { role: ingress-nginx, tags: ingress }
+  - { role: cert-manager, tags: cert-manager }
+  - { role: ingress-nginx, tags: ingress }
 
 - hosts: rook
   roles:
-    - { role: rook, tags: rook }
+  - { role: rook, tags: rook }
 
 - hosts: upgrade
   roles:
-    - { role: upgrade, tags: upgrade }
+  - { role: upgrade, tags: upgrade }
 
 - hosts: ping
   roles:
-    - { role: ping, tags: ping }
+  - { role: ping, tags: ping }
 
 - hosts: reboot
   roles:
-    - { role: reboot, tags: reboot }
+  - { role: reboot, tags: reboot }

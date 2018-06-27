@@ -44,11 +44,11 @@
   register: certificate_check
 
 - name: Delete Certificate
-  command: kubectl delete certificate traefik-cert -n kube-system
+  command: kubectl delete certificate certificate -n kube-system
   ignore_errors: True
   become: yes
   become_user: root
-  when: "'traefik-cert' in certificate_check.stdout"
+  when: "'certificate' in certificate_check.stdout"
 
 - name: Create Certificate
   command: kubectl apply -f  /tmp/certificate.yaml -n kube-system

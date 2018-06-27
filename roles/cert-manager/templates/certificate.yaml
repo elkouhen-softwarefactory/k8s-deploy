@@ -1,9 +1,9 @@
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
-  name: traefik-cert
+  name: certificate
 spec:
-  secretName: traefik-cert
+  secretName: certificate
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
@@ -15,7 +15,7 @@ spec:
   acme:
     config:
     - http01:
-        ingressClass: traefik
+        ingressClass: nginx
       domains: 
 {% for certificate in certificates %}      
         - {{certificate}}
