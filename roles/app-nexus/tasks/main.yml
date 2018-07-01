@@ -7,6 +7,7 @@
     - pv.yml
     - ingress.yml
     - ingress-registry.yml
+    - patch.yml
 
 - name: Create Resources
   command: "kubectl apply -f /tmp/{{item}}"
@@ -15,6 +16,7 @@
     - pv.yml
     - ingress.yml
     - ingress-registry.yml
+    - patch.yml
 
 - name: Helm List
   command: helm list
@@ -27,6 +29,13 @@
   become: yes
   when: "'nexus' not in helm_list.stdout"
 
+- name: Svc List
+  command: kubectl get svc
+  become: yes
+  become_user: root
+  register: svc_list
+
 - command: kubectl expose deployment nexus-sonatype-nexus --name=registry --port=8082 --type=LoadBalancer
   become: yes
   become_user: root
+  when: "'registry' not in svc_list.stdout"

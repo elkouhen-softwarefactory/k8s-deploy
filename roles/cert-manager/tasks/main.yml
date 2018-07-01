@@ -15,20 +15,19 @@
     dest:  /tmp/issuer.yaml
 
 - name: Check
-  command: kubectl get issuer -n kube-system
+  command: kubectl get issuer 
   become: yes
   become_user: root
   register: issuer_check
 
 - name: Delete Issuer
-  command: kubectl delete issuer letsencrypt-prod -n kube-system
-  ignore_errors: True
+  command: kubectl delete issuer letsencrypt-prod 
   become: yes
   become_user: root
   when: "'letsencrypt-prod' in issuer_check.stdout"
 
 - name: Create Issuer
-  command: kubectl apply -f  /tmp/issuer.yaml -n kube-system
+  command: kubectl apply -f  /tmp/issuer.yaml 
   become: yes
   become_user: root
 
@@ -38,19 +37,18 @@
     dest:  /tmp/certificate.yaml
 
 - name: Check
-  command: kubectl get certificate -n kube-system
+  command: kubectl get certificate 
   become: yes
   become_user: root
   register: certificate_check
 
 - name: Delete Certificate
-  command: kubectl delete certificate certificate -n kube-system
-  ignore_errors: True
+  command: kubectl delete certificate certificate 
   become: yes
   become_user: root
   when: "'certificate' in certificate_check.stdout"
 
 - name: Create Certificate
-  command: kubectl apply -f  /tmp/certificate.yaml -n kube-system
+  command: kubectl apply -f  /tmp/certificate.yaml 
   become: yes
   become_user: root

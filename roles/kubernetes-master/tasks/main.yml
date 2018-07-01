@@ -1,5 +1,5 @@
 - name: Execute kubeadm reset
-  command: kubeadm reset
+  command: kubeadm reset -f
   become: yes
   become_user: root
 
