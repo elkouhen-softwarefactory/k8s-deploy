@@ -21,7 +21,7 @@ certificates:
   - nexus.{{domaine}}
   - sonarqube.{{domaine}}
   - keycloak.{{domaine}}
-  - kibana.{{domaine}}
+ # - kibana.{{domaine}}
   - meltingpoc.{{domaine}}
   - recyclette.{{domaine}}
   - wallboard.{{domaine}}

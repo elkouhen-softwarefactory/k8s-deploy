@@ -22,9 +22,12 @@
   roles:
   - { role: tool-helm, tags: tool-helm }
 
-- hosts: ingress
+- hosts: cert-manager
   roles:
   - { role: cert-manager, tags: [ ingress, cert-manager] }
+
+- hosts: ingress
+  roles:
   - { role: ingress-nginx, tags: [ ingress-nginx, ingress] }
 
 - hosts: softwarefactory
