@@ -34,9 +34,9 @@
   roles:
   - { role: app-secrets, tags: [softwarefactory, app-secrets] }
   - { role: app-nexus, tags: [softwarefactory, app-nexus] }
-#  - { role: app-jenkins, tags: [softwarefactory, app-jenkins] }
-#  - { role: app-sonarqube, tags: [softwarefactory, app-sonarqube] }
-#  - { role: app-keycloak, tags: [softwarefactory, app-keycloak] }
+  - { role: app-jenkins, tags: [softwarefactory, app-jenkins] }
+  - { role: app-sonarqube, tags: [softwarefactory, app-sonarqube] }
+  - { role: app-keycloak, tags: [softwarefactory, app-keycloak] }
 
 - hosts: middleware
   roles:
