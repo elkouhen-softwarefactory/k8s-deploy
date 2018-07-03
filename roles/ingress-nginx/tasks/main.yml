@@ -29,10 +29,10 @@
         "proxy-body-size": "100m"
         "proxy-buffering": "on"
 
-
-#- name: Patch ConfigMap
-#  command: kubectl patch configmap nginx-configuration -n ingress-nginx --patch 'data.proxy-body-size: 100m'
-# become: yes
+- name: Patch ConfigMap
+  shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
+  ignore_errors: True
+  become: yes
 
 #- name: Install nginx-ingress
 #  command: helm install stable/nginx-ingress --name nginx-ingress --set rbac.create=true

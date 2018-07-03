@@ -27,8 +27,8 @@
   become: yes
   when: "'nexus' not in helm_list.stdout"
 
-  #- name: "Patch Svc"
-  #  command: kubectl patch svc nexus-sonatype-nexus --patch "$(cat /tmp/patch.yml)"
+- name: "Patch Svc"
+  shell: kubectl patch svc nexus-sonatype-nexus --patch "$(cat /tmp/patch.yml)"
 
 - name: Svc List
   command: kubectl get svc
