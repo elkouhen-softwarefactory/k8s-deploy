@@ -1,0 +1,3 @@
+data:
+  proxy-body-size: "100m"
+  proxy-buffering: "on"
