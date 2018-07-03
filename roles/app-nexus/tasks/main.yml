@@ -29,7 +29,8 @@
 
 - name: "Patch Svc"
   shell: kubectl patch svc nexus-sonatype-nexus --patch "$(cat /tmp/patch.yml)"
-
+  ignore_errors: True
+  
 - name: Svc List
   command: kubectl get svc
   become: yes
