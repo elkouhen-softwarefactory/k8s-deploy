@@ -2,6 +2,9 @@ domaine: k8.wildwidewest.xyz
 
 registry: registry.{{domaine}}
 
+#acme: https://acme-v02.api.letsencrypt.org/directory
+acme: https://acme-staging-v02.api.letsencrypt.org/directory
+
 nfs_mounts:
   - { remote: "10.16.103.9:/zpool-126262/WWWJENKINS",   local: /mnt/jenkins}
   - { remote: "10.16.103.9:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}

@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: certificate
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt-issuer
     kind: ClusterIssuer
   commonName: {{certificates | first}}
   dnsNames: 

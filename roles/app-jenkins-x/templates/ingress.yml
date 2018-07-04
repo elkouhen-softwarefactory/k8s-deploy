@@ -17,7 +17,7 @@ metadata:
   name: nexus
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
@@ -38,7 +38,7 @@ metadata:
   name: monocular-ui
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
@@ -61,7 +61,7 @@ metadata:
   name: docker-registry
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
@@ -83,7 +83,7 @@ metadata:
   name: chartmuseum
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
@@ -105,7 +105,7 @@ metadata:
   name: jenkins
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
@@ -126,7 +126,7 @@ metadata:
   name: heapster
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:

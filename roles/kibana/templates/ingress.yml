@@ -4,7 +4,7 @@ metadata:
   name: kibana
   annotations:
     kubernetes.io/ingress.class: traefik
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
