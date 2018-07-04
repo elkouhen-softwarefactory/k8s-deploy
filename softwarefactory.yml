@@ -48,6 +48,10 @@
   roles:
   - { role: storage-rook, tags: storage-rook }
 
+- hosts: authorized-keys
+  roles:
+  - { role: config-authorized-keys, tags: authorized-keys }
+
 - hosts: upgrade
   roles:
   - { role: util-upgrade, tags: upgrade }
