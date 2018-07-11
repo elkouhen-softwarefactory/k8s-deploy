@@ -1,3 +1,10 @@
 data:
-  proxy-body-size: "100m"
+  body-size: 64m
+  client-max-body-size: 100m
+  hsts-include-subdomains: "false"
+  proxy-body-size: 100m
   proxy-buffering: "on"
+  proxy-connect-timeout: "15"
+  proxy-read-timeout: "600"
+  proxy-send-timeout: "600"
+  server-name-hash-bucket-size: "256"
