@@ -10,18 +10,17 @@
 #jenkins-x-monocular-prerender   ClusterIP   10.111.68.83     <none>        80/TCP      4m        app=jenkins-x-monocular-prerender
 #jenkins-x-monocular-ui          ClusterIP   10.97.48.134     <none>        80/TCP      4m        app=jenkins-x-monocular-ui
 #nexus                           ClusterIP   10.99.41.34      <none>        80/TCP      4m        app=nexus,release=jenkins-x
-
+          
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: nexus
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
-    - secretName: traefik-cert
+    - secretName: certificate
   rules:
   - host: nexus.{{domaine}}
     http:
@@ -37,12 +36,11 @@ kind: Ingress
 metadata:
   name: monocular-ui
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
-    - secretName: traefik-cert
+    - secretName: certificate
   rules:
   - host: monocular-ui.{{domaine}}
     http:
@@ -60,12 +58,11 @@ kind: Ingress
 metadata:
   name: docker-registry
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
-    - secretName: traefik-cert
+    - secretName: certificate
   rules:
   - host: docker-registry.{{domaine}}
     http:
@@ -82,12 +79,11 @@ kind: Ingress
 metadata:
   name: chartmuseum
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
-    - secretName: traefik-cert
+    - secretName: certificate
   rules:
   - host: chartmuseum.{{domaine}}
     http:
@@ -104,12 +100,11 @@ kind: Ingress
 metadata:
   name: jenkins
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
-    - secretName: traefik-cert
+    - secretName: certificate
   rules:
   - host: jenkins.{{domaine}}
     http:
@@ -125,12 +120,11 @@ kind: Ingress
 metadata:
   name: heapster
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-issuer
-    traefik.frontend.rule.type: PathPrefixStrip
 spec:
   tls:
-    - secretName: traefik-cert
+    - secretName: certificate
   rules:
   - host: heapster.{{domaine}}
     http:
