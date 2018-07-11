@@ -48,6 +48,10 @@
   roles:
   - { role: storage-rook, tags: storage-rook }
 
+- hosts: jenkins-x
+  roles:
+  - { role: app-jenkins-x, tags: [ jenkins-x ] }
+
 - hosts: authorized-keys
   roles:
   - { role: config-authorized-keys, tags: authorized-keys }

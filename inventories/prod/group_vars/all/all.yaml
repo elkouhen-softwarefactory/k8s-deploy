@@ -10,7 +10,11 @@ nfs_mounts:
   - { remote: "10.16.103.9:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
   - { remote: "10.16.103.9:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
   - { remote: "10.16.103.9:/zpool-126262/WWWSONARQUBE", local: /mnt/sonarqube}
-#  - { remote: 10.16.103.9:/zpool-126262/WWWJENKINS, locale: /mnt/logstash_0}
+  - { remote: "10.16.103.9:/zpool-126262/WWWJENKINSX", local: /mnt/jenkinsx}
+  - { remote: "10.16.103.9:/zpool-126262/WWWJENKINSXCHARTMSM", local: /mnt/jenkinsxchartmsm}
+  - { remote: "10.16.103.9:/zpool-126262/WWWJENKINSXDOCKERREG", local: /mnt/jenkinsxdockerreg}
+  - { remote: "10.16.103.9:/zpool-126262/WWWJENKINSXMONGODB", local: /mnt/jenkinsxmongodb}  
+  - { remote: "10.16.103.9:/zpool-126262/WWWJENKINSXNEXUS", local: /mnt/jenkinsxnexus }  
 
 traefik:
   ssl: "{{ traefik_ssl | default(True) }}"
