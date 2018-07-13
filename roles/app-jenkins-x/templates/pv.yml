@@ -7,9 +7,6 @@ spec:
     storage: 30Gi
   accessModes:
   - ReadWriteOnce
-  claimRef:
-    namespace: jx
-    name: jenkins
   nfs:
     path: /zpool-126262/WWWJENKINSX
     server: "{{groups['nfs-master'][0] }}"
@@ -25,14 +22,10 @@ spec:
     storage: 8Gi
   accessModes:
   - ReadWriteOnce
-  claimRef:
-    namespace: jx
-    name: jenkins-x-chartmuseum
   nfs:
     path: /zpool-126262/WWWJENKINSXCHARTMSM
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
-
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -43,14 +36,10 @@ spec:
     storage: 100Gi
   accessModes:
   - ReadWriteOnce
-  claimRef:
-    namespace: jx
-    name: jenkins-x-docker-registry
   nfs:
     path: /zpool-126262/WWWJENKINSXDOCKERREG
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
-
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -61,14 +50,10 @@ spec:
     storage: 30Gi
   accessModes:
   - ReadWriteOnce
-  claimRef:
-    namespace: jx
-    name: jenkins-x-mongodb
   nfs:
     path: /zpool-126262/WWWJENKINSXMONGODB
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
-
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -79,10 +64,7 @@ spec:
     storage: 8Gi
   accessModes:
   - ReadWriteOnce
-  claimRef:
-    namespace: jx
-    name: jenkins-x-nexus
   nfs:
-    path: /zpool-126262/WWWJENKINSXNEXUS/app
+    path: /zpool-126262/WWWJENKINSXNEXUS
     server: "{{groups['nfs-master'][0] }}"
   persistentVolumeReclaimPolicy: Recycle
