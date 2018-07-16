@@ -17,7 +17,7 @@
   become_user: root
   register: helm_list
 
-- name: Install metrics-server
-  command: helm install --name metrics-server stable/metrics-server
+- name: Install grafana
+  command: helm install --name grafana stable/grafana
   become: yes
-  when: "'metrics-server' not in helm_list.stdout"
+  when: "'grafana' not in helm_list.stdout"

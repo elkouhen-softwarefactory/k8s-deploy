@@ -37,6 +37,7 @@
   - { role: app-jenkins, tags: [softwarefactory, app-jenkins] }
   - { role: app-sonarqube, tags: [softwarefactory, app-sonarqube] }
   - { role: app-keycloak, tags: [softwarefactory, app-keycloak] }
+#  - { role: app-grafana, tags: [softwarefactory, app-grafana] }
 
 - hosts: middleware
   roles:
