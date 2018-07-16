@@ -1,6 +1,6 @@
 data:
-  body-size: 0
-  client-max-body-size: 200m
+  body-size: "0"
+  client-max-body-size: "200m"
   hsts-include-subdomains: "false"
   proxy-body-size: 200m
   proxy-buffering: "on"
