@@ -49,3 +49,8 @@
   command: helm init
   become: yes
   become_user: root
+
+- name: Add Helm Repo
+  command: helm repo add meltingpoc-charts https://softeamouest.github.io/charts/
+  become: yes
+  become_user: root
