@@ -6,9 +6,10 @@
 
 - hosts: softwarefactory-docker
   roles:
+  - { role: storage-client-nfs, tags: nfs }
   - { role: tool-logrotate, tags:  [logrotate, softwarefactory-docker ]}
   - { role: docker,         tags:  [docker, softwarefactory-docker ]}
-  - { role: nginx,         tags:   [nginx, softwarefactory-docker ]}
+  - { role: nginx,          tags:   [nginx, softwarefactory-docker ]}
   - { role: dck-jenkins,    tags:  [jenkins, softwarefactory-docker]}
   - { role: dck-nexus,      tags:  [nexus, softwarefactory-docker]}
 

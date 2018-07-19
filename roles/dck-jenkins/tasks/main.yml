@@ -16,6 +16,12 @@
     dest: /etc/nginx/conf.d/jenkins.conf
   become: true
 
+- name: Daemon Reload Jenkins
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: jenkins
+
 - name: Start Jenkins Service
   systemd:
     name: jenkins
@@ -23,3 +29,14 @@
     enabled: yes
   become: yes
   become_user: root
+
+- name: Create folder /etc/jenkins
+  file:
+    path: /mnt/jenkins
+    state: directory
+    mode: 0755
+  become: yes
+  become_user: root
+
+#- name: Mount /mnt/jenkins
+#  command: mount /mnt/jenkins

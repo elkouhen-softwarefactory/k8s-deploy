@@ -4,7 +4,10 @@ server {
     error_log   /var/log/nginx/nginx.error.log;
 
     listen 80;
-    server_name nginx.{{domaine}};
+    server_name nexus.{{domaine}};
+
+    # allow large uploads of files
+    client_max_body_size 1G;
 
 	# ssl_certificate      /etc/pki/tls/certs/STAR_vif_fr-chained.crt;
 	# ssl_certificate_key  /etc/pki/tls/private/STAR_vif_fr.key;
@@ -25,7 +28,9 @@ server {
 	#ssl_trusted_certificate /etc/ssl/certs/STAR_vif_fr.ca-bundle;
 
 	location / {
-
-	    proxy_pass http://localhost:8081;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	    proxy_pass http://localhost:8081/;
 	}
 }
