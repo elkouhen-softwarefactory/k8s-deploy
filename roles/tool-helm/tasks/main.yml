@@ -34,7 +34,7 @@
   when: "'add-on-cluster-admin' not in clusterrolebinding_check.stdout"
 
 - name: Create Role Binding
-  kubectl create clusterrolebinding add-on-cluster-helm --clusterrole=cluster-admin --serviceaccount=default:default
+  command: kubectl create clusterrolebinding add-on-cluster-helm --clusterrole=cluster-admin --serviceaccount=default:default
   become: yes
   become_user: root
   when: "'add-on-cluster-helm' not in clusterrolebinding_check.stdout"

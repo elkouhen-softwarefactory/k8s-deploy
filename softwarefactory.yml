@@ -4,6 +4,14 @@
   roles:
   - { role: storage-client-nfs, tags: nfs }
 
+- hosts: softwarefactory-docker
+  roles:
+  - { role: tool-logrotate, tags:  [logrotate, softwarefactory-docker ]}
+  - { role: docker,         tags:  [docker, softwarefactory-docker ]}
+  - { role: nginx,         tags:   [nginx, softwarefactory-docker ]}
+  - { role: dck-jenkins,    tags:  [jenkins, softwarefactory-docker]}
+  - { role: dck-nexus,      tags:  [nexus, softwarefactory-docker]}
+
 - hosts: kubernetes
   roles:
   - { role: tool-logrotate, tags: kubernetes }
@@ -32,16 +40,16 @@
 
 - hosts: softwarefactory
   roles:
-  - { role: app-secrets, tags: [softwarefactory, app-secrets] }
-  - { role: app-nexus, tags: [softwarefactory, app-nexus] }
-  - { role: app-jenkins, tags: [softwarefactory, app-jenkins] }
-  - { role: app-sonarqube, tags: [softwarefactory, app-sonarqube] }
-  - { role: app-keycloak, tags: [softwarefactory, app-keycloak] }
+  - { role: app-secrets, tags: [softwarefactory, secrets] }
+  - { role: app-nexus, tags: [softwarefactory, nexus] }
+  - { role: app-jenkins, tags: [softwarefactory, jenkins] }
+  - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
+  - { role: app-keycloak, tags: [softwarefactory, keycloak] }
 #  - { role: app-grafana, tags: [softwarefactory, app-grafana] }
 
 - hosts: middleware
   roles:
-  - { role: middleware-kafka, tags: [middleware, middleware-kafka] }
+  - { role: middleware-kafka, tags: [middleware, kafka] }
 
   #  - { role: kibana, tags: [softwarefactory, kibana] }
 

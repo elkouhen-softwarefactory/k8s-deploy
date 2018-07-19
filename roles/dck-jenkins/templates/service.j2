@@ -1,0 +1,14 @@
+[Unit]
+Description=Jenkins
+Requires=docker.service
+
+[Service]
+ExecStartPre=/bin/sleep 1
+ExecStartPre=/bin/docker pull jenkins/jenkins:latest
+ExecStart=/bin/docker run --restart=always --name=systemd_jenkins -p 8080:8080 jenkins/jenkins:2.133
+ExecStop=/bin/docker stop systemd_jenkins
+ExecStopPost=/bin/docker rm -f systemd_jenkins
+ExecReload=/bin/docker restart systemd_jenkins
+
+[Install]
+WantedBy=multi-user.target

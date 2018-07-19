@@ -12,6 +12,7 @@
     dest: /etc/docker/daemon.json
   become: yes
   become_user: root
+  when: registry is defined
 
 - name: Install Docker
   yum:
@@ -20,6 +21,13 @@
   become: yes
   become_user: root
 
+- name: Create Groupe Docker
+  group:
+    name: docker
+    state: present
+  become: yes
+  become_user: root
+  
 - name: Start Docker Service
   systemd:
     name: docker

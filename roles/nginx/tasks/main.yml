@@ -1,0 +1,29 @@
+- name: "Add NGinx repository"
+  yum_repository:
+    name: nginx
+    description: NGinx YUM repo
+    baseurl: http://nginx.org/packages/centos/7/$basearch/
+    gpgcheck: no
+  become: yes
+  become_user: root
+
+- name: "Install NGinx"
+  yum:
+    name: nginx
+    state: present
+  become: yes
+  become_user: root
+
+- selinux:
+    state: disabled
+  become: yes
+  become_user: root
+  
+- name: Start NGinx Service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+  become: yes
+  become_user: root
+
