@@ -4,6 +4,9 @@
 [apps-docker]
 51.38.238.181
 
+[all:vars]
+app_version=0.0.10
+
 [targets]
 51.38.238.172 ansible_user=root
 51.38.238.181 ansible_user=root
