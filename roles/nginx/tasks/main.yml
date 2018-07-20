@@ -29,6 +29,13 @@
   become: yes
   become_user: root
 
+- name: "Renew CertBot Certificates"
+  cron:
+    name: "Renew CertBot Certificates"
+    special_time: weekly
+    job: "letsencrypt renew --dry-run --agree-tos"
+
+
 - name: "Disable Selinux"
   selinux:
     state: disabled
@@ -43,6 +50,6 @@
   become: yes
   become_user: root
 
-- command: firewall-cmd --zone=public --permanent --add-service=http
+- command: firewall-cmd --zone=public --permanent --add-service=https
   become: yes
   become_user: root
