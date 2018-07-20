@@ -9,9 +9,19 @@
   - { role: storage-client-nfs, tags: nfs }
   - { role: tool-logrotate, tags:  [logrotate, softwarefactory-docker ]}
   - { role: docker,         tags:  [docker, softwarefactory-docker ]}
-  - { role: nginx,          tags:   [nginx, softwarefactory-docker ]}
+  - { role: nginx,          tags:  [nginx, softwarefactory-docker ]}
   - { role: dck-jenkins,    tags:  [jenkins, softwarefactory-docker]}
   - { role: dck-nexus,      tags:  [nexus, softwarefactory-docker]}
+
+- hosts: apps-front-docker
+  roles:
+  - { role: dck-app-front,      tags:  [dck-app-front, softwarefactory-docker]}
+
+- hosts: apps-docker
+  roles:
+  - { role: docker,         tags:  [docker, softwarefactory-docker ]}
+  - { role: nginx,          tags:  [nginx, softwarefactory-docker ]}
+  - { role: dck-app,      tags:  [dck-app, softwarefactory-docker]}
 
 - hosts: kubernetes
   roles:

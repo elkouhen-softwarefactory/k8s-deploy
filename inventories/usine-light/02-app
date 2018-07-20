@@ -1,0 +1,9 @@
+[apps-front-docker]
+51.38.238.172
+
+[apps-docker]
+51.38.238.181
+
+[targets]
+51.38.238.172 ansible_user=root
+51.38.238.181 ansible_user=root

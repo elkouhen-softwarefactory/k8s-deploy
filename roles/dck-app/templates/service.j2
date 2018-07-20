@@ -1,0 +1,14 @@
+[Unit]
+Description=App
+Requires=docker.service
+
+[Service]
+ExecStartPre=/bin/sleep 1
+ExecStartPre=/bin/docker pull registry.coface.softeamgroup.fr/repository/docker/testproject
+ExecStart=/bin/docker run --restart=always --name=systemd_app -p 8080:80 registry.coface.softeamgroup.fr/repository/docker/testproject
+ExecStop=/bin/docker stop systemd_app
+ExecStopPost=/bin/docker rm -f systemd_app
+ExecReload=/bin/docker restart systemd_app
+
+[Install]
+WantedBy=multi-user.target

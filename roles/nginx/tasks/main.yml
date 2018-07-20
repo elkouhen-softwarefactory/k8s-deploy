@@ -28,13 +28,14 @@
     disable_gpg_check: True
   become: yes
   become_user: root
+  when: install_certbot is defined
 
 - name: "Renew CertBot Certificates"
   cron:
     name: "Renew CertBot Certificates"
     special_time: weekly
     job: "letsencrypt renew --dry-run --agree-tos"
-
+  when: renew_certbot is defined
 
 - name: "Disable Selinux"
   selinux:
@@ -47,6 +48,10 @@
     name: nginx
     state: started
     enabled: yes
+  become: yes
+  become_user: root
+
+- command: firewall-cmd --zone=public --permanent --add-service=http
   become: yes
   become_user: root
 
