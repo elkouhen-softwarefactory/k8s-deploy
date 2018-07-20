@@ -1,10 +1,10 @@
 server {
     # Logs
-    access_log  /var/log/nginx/nginx.access.log;
-    error_log   /var/log/nginx/nginx.error.log;
+    access_log  /var/log/nginx/registry.access.log;
+    error_log   /var/log/nginx/registry.error.log;
 
     listen 443 ssl; # managed by Certbot
-    server_name nexus.{{domaine}};
+    server_name registry.{{domaine}};
 
     # allow large uploads of files
     client_max_body_size 1G;
@@ -15,10 +15,11 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
 	location / {
-       proxy_set_header Host $host;
-       proxy_set_header X-Real-IP $remote_addr;
-       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-       proxy_set_header X-Forwarded-Proto "https";
-	   proxy_pass http://localhost:8081/;
+        proxy_set_header Host $http_host;   # required for docker client's sake
+        proxy_set_header X-Real-IP $remote_addr; # pass on real client's IP
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 900;
+        proxy_pass https://localhost:8443/;
 	}
 }
