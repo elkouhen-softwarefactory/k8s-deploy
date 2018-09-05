@@ -3,15 +3,15 @@
 
 [nfs-client]
 vps242564.ovh.net
-#vps242130.ovh.net
+vps242130.ovh.net
 vps257315.ovh.net
 vps267694.ovh.net
 vps242565.ovh.net
 vps242131.ovh.net
 vps267690.ovh.net
 
-#[softwarefactory]
-#vps242131.ovh.net
+[softwarefactory]
+vps242131.ovh.net
 
 [targets]
 vps242564.ovh.net ansible_user=root

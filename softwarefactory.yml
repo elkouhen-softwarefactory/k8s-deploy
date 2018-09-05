@@ -43,11 +43,11 @@
 
 - hosts: cert-manager
   roles:
-  - { role: cert-manager, tags: [ ingress, cert-manager] }
+  - { role: cert-manager, tags: [ingress, cert-manager] }
 
 - hosts: ingress
   roles:
-  - { role: ingress-nginx, tags: [ ingress-nginx, ingress] }
+  - { role: ingress-nginx, tags: [ingress, ingress-nginx] }
 
 - hosts: softwarefactory
   roles:
