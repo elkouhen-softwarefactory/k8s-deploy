@@ -1,8 +1,8 @@
 data:
   body-size: "0"
-  client-max-body-size: "200m"
+  client-max-body-size: "512m"
   hsts-include-subdomains: "false"
-  proxy-body-size: 200m
+  proxy-body-size: 512m
   proxy-buffering: "on"
   proxy-connect-timeout: "15"
   proxy-read-timeout: "600"
