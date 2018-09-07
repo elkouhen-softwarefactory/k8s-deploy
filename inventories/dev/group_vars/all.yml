@@ -1,6 +1,0 @@
-domaine: k8-dev.wildwidewest.xyz
-
-registry: registry.k8.wildwidewest.xyz
-
-certificates:
-  - grafana.k8-dev.wildwidewest.xyz
