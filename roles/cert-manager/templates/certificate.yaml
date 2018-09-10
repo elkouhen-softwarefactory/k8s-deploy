@@ -9,14 +9,14 @@ spec:
     kind: Issuer
   commonName: {{certificates | selectattr("namespace", "match", namespace_item) | map(attribute='name') | first }}
   dnsNames:
-  {% for certificate in certificates if certificate.namespace == namespace_item %}
+{% for certificate in certificates if certificate.namespace == namespace_item %}
   - {{certificate.name}}
-  {% endfor %}
-acme:
-  config:
-  - http01:
-      ingressClass: nginx
-    domains:
+{% endfor %}
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
   {% for certificate in certificates if certificate.namespace == namespace_item  %}
-    - {{certificate.name}}
+        - {{certificate.name}}
   {% endfor %}
