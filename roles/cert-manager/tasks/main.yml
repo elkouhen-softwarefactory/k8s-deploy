@@ -9,46 +9,10 @@
   become: yes
   when: "'cert-manager' not in helm_list.stdout"
 
-- name: Copy Issuer
-  template:
-    src: issuer.yaml
-    dest:  /tmp/issuer.yaml
-
-- name: Check
-  command: kubectl get issuer 
-  become: yes
-  become_user: root
-  register: issuer_check
-
-- name: Delete Issuer
-  command: kubectl delete issuer letsencrypt-issuer
-  become: yes
-  become_user: root
-  when: "'letsencrypt-issuer' in issuer_check.stdout"
-
-- name: Create Issuer
-  command: kubectl apply -f  /tmp/issuer.yaml 
-  become: yes
-  become_user: root
-
-- name: Copy Certificate
-  template:
-    src: certificate.yaml
-    dest:  /tmp/certificate.yaml
-
-- name: Check
-  command: kubectl get certificate 
-  become: yes
-  become_user: root
-  register: certificate_check
-
-- name: Delete Certificate
-  command: kubectl delete certificate certificate 
-  become: yes
-  become_user: root
-  when: "'certificate' in certificate_check.stdout"
-
-- name: Create Certificate
-  command: kubectl apply -f  /tmp/certificate.yaml 
-  become: yes
-  become_user: root
+- name: Create Certificates
+  include_tasks: create-certificate.yml
+  loop_control:
+    loop_var: namespace_item
+  with_items:
+  - default
+  - dev

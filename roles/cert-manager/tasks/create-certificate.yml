@@ -1,0 +1,43 @@
+- name: Copy Issuer
+  template:
+    src: issuer.yaml
+    dest:  /tmp/issuer.yaml
+
+- name: Check
+  command: "kubectl get issuer --namespace {{namespace_item}}"
+  become: yes
+  become_user: root
+  register: issuer_check
+
+- name: Delete Issuer
+  command: "kubectl delete issuer letsencrypt-issuer --namespace {{namespace_item}}"
+  become: yes
+  become_user: root
+  when: "'letsencrypt-issuer' in issuer_check.stdout"
+
+- name: Create Issuer
+  command: "kubectl apply -f  /tmp/issuer.yaml --namespace {{namespace_item}}"
+  become: yes
+  become_user: root
+
+- name: Copy Certificate
+  template:
+    src: certificate.yaml
+    dest:  /tmp/certificate.yaml
+
+- name: Check
+  command: "kubectl get certificate --namespace {{namespace_item}}"
+  become: yes
+  become_user: root
+  register: certificate_check
+
+- name: Delete Certificate
+  command: "kubectl delete certificate certificate --namespace {{namespace_item}}"
+  become: yes
+  become_user: root
+  when: "'certificate' in certificate_check.stdout"
+
+- name: Create Certificate
+  command: "kubectl apply -f  /tmp/certificate.yaml --namespace {{namespace_item}}"
+  become: yes
+  become_user: root
