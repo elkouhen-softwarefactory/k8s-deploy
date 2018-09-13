@@ -1,5 +1,0 @@
-[softwarefactory-docker]
-51.38.238.172
-
-[targets]
-51.38.238.172 ansible_user=root

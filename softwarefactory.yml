@@ -2,88 +2,86 @@
 
 - hosts: nfs-client
   roles:
-  - { role: storage-client-nfs, tags: nfs }
+    - { role: storage-client-nfs, tags: nfs }
 
 - hosts: softwarefactory-docker
   roles:
-  - { role: storage-client-nfs, tags: nfs }
-  - { role: tool-logrotate, tags:  [logrotate, softwarefactory-docker ]}
-  - { role: docker,         tags:  [docker, softwarefactory-docker ]}
-  - { role: nginx,          tags:  [nginx, softwarefactory-docker ]}
-  - { role: dck-jenkins,    tags:  [jenkins, softwarefactory-docker]}
-  - { role: dck-nexus,      tags:  [nexus, softwarefactory-docker]}
+    - { role: storage-client-nfs, tags: nfs }
+    - { role: tool-logrotate, tags:  [logrotate, softwarefactory-docker ]}
+    - { role: docker,         tags:  [docker, softwarefactory-docker ]}
+    - { role: nginx,          tags:  [nginx, softwarefactory-docker ]}
+    - { role: dck-jenkins,    tags:  [jenkins, softwarefactory-docker]}
+    - { role: dck-nexus,      tags:  [nexus, softwarefactory-docker]}
 
 - hosts: apps-front-docker
   roles:
-  - { role: dck-app-front,      tags:  [dck-app-front, softwarefactory-docker]}
+    - { role: dck-app-front,      tags:  [dck-app-front, softwarefactory-docker]}
 
 - hosts: apps-docker
   roles:
-  - { role: docker,         tags:  [docker, softwarefactory-docker ]}
-  - { role: nginx,          tags:  [nginx, softwarefactory-docker ]}
-  - { role: dck-app,      tags:  [dck-app, softwarefactory-docker]}
+    - { role: docker,         tags:  [docker, softwarefactory-docker ]}
+    - { role: nginx,          tags:  [nginx, softwarefactory-docker ]}
+    - { role: dck-app,      tags:  [dck-app, softwarefactory-docker]}
 
 - hosts: kubernetes
   roles:
-  - { role: tool-logrotate, tags: kubernetes }
-  - { role: docker, tags:  kubernetes}
-  - { role: kubernetes, tags:  kubernetes }
+    - { role: tool-logrotate, tags: kubernetes }
+    - { role: docker, tags:  kubernetes}
+    - { role: k8s, tags:  kubernetes }
 
 - hosts: kubernetes-master
   roles:
-  - { role: kubernetes-master, tags:  [kubernetes-master, kubernetes]}
+    - { role: k8s-master, tags:  [kubernetes-master, kubernetes]}
 
 - hosts: kubernetes-slave
   roles:
-  - { role: kubernetes-slave, tags: [kubernetes-slave, kubernetes] }
+    - { role: k8s-slave, tags: [kubernetes-slave, kubernetes] }
 
 - hosts: helm
   roles:
-  - { role: tool-helm, tags: tool-helm }
+    - { role: tool-helm, tags: tool-helm }
 
 - hosts: cert-manager
   roles:
-  - { role: cert-manager, tags: [ingress, cert-manager] }
+    - { role: cert-manager, tags: [ingress, cert-manager] }
 
 - hosts: ingress
   roles:
-  - { role: ingress-nginx, tags: [ingress, ingress-nginx] }
+    - { role: ingress-nginx, tags: [ingress, ingress-nginx] }
 
 - hosts: softwarefactory
   roles:
-#  - { role: app-secrets, tags: [softwarefactory, secrets] }
-  #  - { role: app-nexus, tags: [softwarefactory, nexus] }
-  #  - { role: app-jenkins, tags: [softwarefactory, jenkins] }
-  #  - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
-  - { role: app-keycloak, tags: [softwarefactory, keycloak] }
+    - { role: app-secrets, tags: [softwarefactory, secrets] }
+    - { role: app-nexus, tags: [softwarefactory, nexus] }
+    - { role: app-jenkins, tags: [softwarefactory, jenkins] }
+    - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
+    - { role: app-keycloak, tags: [softwarefactory, keycloak] }
 #  - { role: app-grafana, tags: [softwarefactory, app-grafana] }
 
 - hosts: middleware
   roles:
-  - { role: middleware-kafka, tags: [middleware, kafka] }
-
-  #  - { role: kibana, tags: [softwarefactory, kibana] }
+    - { role: app-kafka, tags: [middleware, kafka] }
 
 - hosts: rook
   roles:
-  - { role: storage-rook, tags: storage-rook }
+    - { role: storage-rook, tags: storage-rook }
 
 - hosts: jenkins-x
   roles:
-  - { role: app-jenkins-x, tags: [ jenkins-x ] }
+    - { role: app-jenkins-x, tags: [ jenkins-x ] }
 
 - hosts: authorized-keys
   roles:
-  - { role: config-authorized-keys, tags: authorized-keys }
+    - { role: config-authorized-keys, tags: authorized-keys }
 
 - hosts: upgrade
   roles:
-  - { role: util-upgrade, tags: upgrade }
+    - { role: util-upgrade, tags: upgrade }
 
 - hosts: ping
   roles:
-  - { role: util-ping, tags: ping }
+    - { role: util-ping, tags: ping }
 
 - hosts: reboot
   roles:
-  - { role: util-reboot, tags: reboot }
+    - { role: util-reboot, tags: reboot }
