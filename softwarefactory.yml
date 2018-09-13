@@ -51,10 +51,10 @@
 
 - hosts: softwarefactory
   roles:
-  - { role: app-secrets, tags: [softwarefactory, secrets] }
-  - { role: app-nexus, tags: [softwarefactory, nexus] }
-  - { role: app-jenkins, tags: [softwarefactory, jenkins] }
-  - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
+#  - { role: app-secrets, tags: [softwarefactory, secrets] }
+  #  - { role: app-nexus, tags: [softwarefactory, nexus] }
+  #  - { role: app-jenkins, tags: [softwarefactory, jenkins] }
+  #  - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
   - { role: app-keycloak, tags: [softwarefactory, keycloak] }
 #  - { role: app-grafana, tags: [softwarefactory, app-grafana] }
 

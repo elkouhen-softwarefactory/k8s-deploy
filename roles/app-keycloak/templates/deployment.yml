@@ -40,6 +40,10 @@ spec:
           value: admin
         - name: KEYCLOAK_PASSWORD
           value: admin
+        - name: KEYCLOAK_HOSTNAME
+          value: keycloak.k8.wildwidewest.xyz
+        - name: PROXY_ADDRESS_FORWARDING
+          value: "true"
         - name: POSTGRES_DB
           value: keycloak
         - name: POSTGRES_USER
