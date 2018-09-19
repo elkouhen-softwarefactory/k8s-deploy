@@ -31,11 +31,11 @@
 
 - hosts: kubernetes-master
   roles:
-    - { role: k8s-master, tags:  [kubernetes-master, kubernetes]}
+    - { role: k8s-master, tags:  [kubernetes-master]}
 
 - hosts: kubernetes-slave
   roles:
-    - { role: k8s-slave, tags: [kubernetes-slave, kubernetes] }
+    - { role: k8s-slave, tags: [kubernetes-slave] }
 
 - hosts: helm
   roles:
@@ -43,15 +43,20 @@
 
 - hosts: cert-manager
   roles:
-    - { role: cert-manager, tags: [ingress, cert-manager] }
+    - { role: k8s-namespace, tags: [cert-manager, k8s-namespace] }
+    - { role: app-secrets, tags: [cert-manager, app-secrets] }
+    - { role: k8s-cert-manager, tags: [cert-manager, k8s-cert-manager] }
 
 - hosts: ingress
   roles:
     - { role: ingress-nginx, tags: [ingress, ingress-nginx] }
 
+- hosts: monitoring
+  roles:
+    - { role: k8s-dashboard, tags: [monitoring, k8s-dashboard] }
+
 - hosts: softwarefactory
   roles:
-    - { role: app-secrets, tags: [softwarefactory, secrets] }
     - { role: app-nexus, tags: [softwarefactory, nexus] }
     - { role: app-jenkins, tags: [softwarefactory, jenkins] }
     - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }

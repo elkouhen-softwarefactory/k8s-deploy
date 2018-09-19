@@ -13,6 +13,4 @@
   include_tasks: create-certificate.yml
   loop_control:
     loop_var: namespace_item
-  with_items:
-  - default
-  - dev
+  with_items: "{{namespaces}}"

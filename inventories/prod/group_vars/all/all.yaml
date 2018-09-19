@@ -19,6 +19,10 @@ kubeadm:
   init:
     options:
 
+namespaces:
+- default
+- dev
+
 certificates:
 - { namespace: 'default', name: "jenkins.{{domaine}}" }
 - { namespace: 'default', name: "nexus.{{domaine}}" }
@@ -26,7 +30,9 @@ certificates:
 - { namespace: 'default', name: "keycloak.{{domaine}}" }
 - { namespace: 'dev', name: "meltingpoc-dev.{{domaine}}" }
 - { namespace: 'dev', name: "parcours-integration-dev.{{domaine}}" }
-- { namespace: 'dev', name: "recyclette-dev.{{domaine}}" }
-- { namespace: 'dev', name: "wallboard-dev.{{domaine}}" }
-- { namespace: 'dev', name: "wallboard-back-dev.{{domaine}}" }
-- { namespace: 'dev', name: "bus.wallboard-dev.{{domaine}}" }
+#  - { namespace: 'dev', name: "helloworld-ingress-dev.{{domaine}}" }
+#  - { namespace: 'dev', name: "recyclette-dev.{{domaine}}" }
+#  - { namespace: 'dev', name: "wallboard-dev.{{domaine}}" }
+#  - { namespace: 'dev', name: "wallboard-back-dev.{{domaine}}" }
+#  - { namespace: 'dev', name: "bus.wallboard-dev.{{domaine}}" }
+#  - { namespace: 'prod', name: "helloworld-ingress.{{domaine}}" }
