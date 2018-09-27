@@ -36,7 +36,16 @@
 
 - name: Install kubelet
   yum:
-    name: kubelet
+    name: kubelet-1.11.3-0
+    state: latest
+    update_cache: yes
+    allow_downgrade: true
+  become: yes
+  become_user: root
+
+- name: Install ipvsadm
+  yum:
+    name: ipvsadm
     state: latest
     update_cache: yes
   become: yes
