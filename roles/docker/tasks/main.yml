@@ -14,6 +14,13 @@
   become_user: root
   when: registry is defined
 
+- name: Configure /etc/sysconfig/docker
+  template:
+    src: templates/sysconfig_docker
+    dest: /etc/sysconfig/docker
+  become: yes
+  become_user: root
+  
 - name: Install Docker
   yum:
     name: docker

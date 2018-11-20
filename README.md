@@ -95,13 +95,13 @@ tls.key:  1679 bytes
 ### Installation des services de l'usine
 
 ```bash
-ansible-playbook -vv softwarefactory.yml -i inventories/prod/05-softwarefactory
+ansible-playbook -vv softwarefactory.yml -i inventories/prod/06-softwarefactory
 ```
 
 ## Liste des Machines
 
 * vps242131 20 Go (master kubernetes)
-* vps242565 10 Go 
+* vps242565 10 Go
 * vps267690 10 Go
 * vps242130 40 Go
 * vps257315 40 Go

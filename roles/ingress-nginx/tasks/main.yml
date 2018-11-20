@@ -3,12 +3,6 @@
   become: yes
   become_user: root
 
-- name: Helm List
-  command: helm list
-  become: yes
-  become_user: root
-  register: helm_list
-
 - name: Copy Resources
   template:
     src: "templates/{{item}}"

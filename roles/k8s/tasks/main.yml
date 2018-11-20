@@ -36,7 +36,7 @@
 
 - name: Install kubelet
   yum:
-    name: kubelet-1.11.3-0
+    name: kubelet
     state: latest
     update_cache: yes
     allow_downgrade: true

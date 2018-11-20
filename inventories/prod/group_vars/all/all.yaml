@@ -7,6 +7,7 @@ acme: https://acme-v02.api.letsencrypt.org/directory
 
 nfs_mounts:
 - { remote: "10.16.103.9:/zpool-126262/WWWJENKINS",   local: /mnt/jenkins}
+- { remote: "10.16.103.9:/zpool-126262/WWWLOGSTASH",  local: /mnt/logstash}
 - { remote: "10.16.103.9:/zpool-126262/WWWGRAV",      local: /mnt/grav}
 - { remote: "10.16.103.9:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
 - { remote: "10.16.103.9:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
