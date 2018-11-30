@@ -2,6 +2,8 @@ domaine: k8-dev.wildwidewest.xyz
 
 registry: registry.{{domaine}}
 
+acme: https://acme-staging-v02.api.letsencrypt.org/directory
+
 traefik:
   ssl: False
 
@@ -9,5 +11,9 @@ kubeadm:
   init:
     options: --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
 
+namespaces:
+- default
+- dev
+
 certificates:
-  - jenkins.{{domaine}}
+- { namespace: 'default', name: "jenkins.{{domaine}}" }

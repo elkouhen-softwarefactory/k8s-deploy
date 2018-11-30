@@ -26,14 +26,7 @@ namespaces:
 
 certificates:
 - { namespace: 'default', name: "jenkins.{{domaine}}" }
+- { namespace: 'default', name: "registry.{{domaine}}" }
 - { namespace: 'default', name: "nexus.{{domaine}}" }
 - { namespace: 'default', name: "sonarqube.{{domaine}}" }
 - { namespace: 'default', name: "keycloak.{{domaine}}" }
-- { namespace: 'dev', name: "meltingpoc-dev.{{domaine}}" }
-- { namespace: 'dev', name: "parcours-integration-dev.{{domaine}}" }
-#  - { namespace: 'dev', name: "helloworld-ingress-dev.{{domaine}}" }
-#  - { namespace: 'dev', name: "recyclette-dev.{{domaine}}" }
-#  - { namespace: 'dev', name: "wallboard-dev.{{domaine}}" }
-#  - { namespace: 'dev', name: "wallboard-back-dev.{{domaine}}" }
-#  - { namespace: 'dev', name: "bus.wallboard-dev.{{domaine}}" }
-#  - { namespace: 'prod', name: "helloworld-ingress.{{domaine}}" }

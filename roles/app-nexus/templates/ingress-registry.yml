@@ -12,7 +12,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - nexus.{{domaine}}
+    - registry.{{domaine}}
     secretName: certificate
   rules:
   - host: registry.{{domaine}}

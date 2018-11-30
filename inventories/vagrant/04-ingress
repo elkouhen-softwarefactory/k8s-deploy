@@ -1,5 +1,5 @@
-[cert-manager]
-master1.softeam.fr 
+[helm]
+master1.softeam.fr
 
 [targets]
 master1.softeam.fr ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/master1.softeam.fr/virtualbox/private_key ansible_host=localhost ansible_ssh_port=2222

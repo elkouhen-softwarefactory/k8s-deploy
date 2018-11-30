@@ -34,30 +34,44 @@
   become: yes
   become_user: root
 
-- name: Install kubelet
-  yum:
-    name: kubelet
-    state: latest
-    update_cache: yes
-    allow_downgrade: true
+- name: "Update System"
+  shell: yum update -y
   become: yes
   become_user: root
 
-- name: Install ipvsadm
-  yum:
-    name: ipvsadm
-    state: latest
-    update_cache: yes
+- name: "Install kubelet"
+  shell: yum install -y kubelet-1.11.5-0 kubeadm-1.11.5-0 kubectl-1.11.5-0 ipvsadm  --disableexcludes=kubernetes
   become: yes
   become_user: root
 
-- name: Install kubeadm
-  yum:
-    name: kubeadm
-    state: present
+- selinux:
+    policy: targeted
+    state: permissive
   become: yes
   become_user: root
 
+- name:
+  shell: sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  become: yes
+  become_user: root
+
+# wait for ansible 2.7
+#- name: Install kubelet
+#  yum:
+#    name: "{{ packages }}"
+#    state: latest
+#    update_cache: yes
+#    allow_downgrade: true
+#    disable_excludes: kubernetes
+#  vars:
+#    packages:
+#    - kubelet
+#    - kubeadm
+#    - kubectl
+#    - ipvsadm
+#  become: yes
+#  become_user: root
+#
 - name: Start kubelet
   systemd:
     name: kubelet
