@@ -30,3 +30,5 @@ certificates:
 - { namespace: 'default', name: "nexus.{{domaine}}" }
 - { namespace: 'default', name: "sonarqube.{{domaine}}" }
 - { namespace: 'default', name: "keycloak.{{domaine}}" }
+- { namespace: 'dev', name: "test-dev.{{domaine}}" }
+
