@@ -18,7 +18,9 @@ traefik:
 
 kubeadm:
   init:
-    options:
+    options: --ignore-preflight-errors=NumCPU --apiserver-advertise-address 0.0.0.0 --pod-network-cidr=10.32.0.0/12
+
+#  --allocate-node-cidrs=true
 
 namespaces:
 - default

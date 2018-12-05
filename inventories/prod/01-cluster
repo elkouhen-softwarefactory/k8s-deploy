@@ -7,7 +7,7 @@ vps242131.ovh.net
 
 [kubernetes-slave]
 vps242130.ovh.net
-#vps257315.ovh.net
+vps257315.ovh.net
 vps267694.ovh.net
 vps242565.ovh.net
 vps267690.ovh.net
@@ -16,7 +16,7 @@ vps242564.ovh.net
 [targets]
 vps242564.ovh.net ansible_user=root
 vps242130.ovh.net ansible_user=root
-#vps257315.ovh.net ansible_user=root
+vps257315.ovh.net ansible_user=root
 vps267694.ovh.net ansible_user=root
 vps242565.ovh.net ansible_user=root
 vps242131.ovh.net ansible_user=root

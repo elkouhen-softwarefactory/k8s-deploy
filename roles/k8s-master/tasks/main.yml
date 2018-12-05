@@ -41,7 +41,7 @@
   become_user: root
 
 #- name: Create K8s network
-#  command: kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kube-router-all-service-daemonset.yaml
+#  command: kubectl apply -f https://raw.githubusercontent.com/romana/romana/master/containerize/specs/romana-kubeadm.yml
 #  become: yes
 #  become_user: root
 

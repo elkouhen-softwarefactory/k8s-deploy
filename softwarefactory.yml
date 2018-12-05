@@ -26,6 +26,7 @@
 - hosts: kubernetes
   roles:
     - { role: tool-logrotate, tags: kubernetes }
+    - { role: network, tags:  kubernetes}
     - { role: docker, tags:  kubernetes}
     - { role: k8s, tags:  kubernetes }
 
@@ -43,13 +44,13 @@
 
 - hosts: cert-manager
   roles:
-    - { role: k8s-namespace, tags: [cert-manager, k8s-namespace] }
-    - { role: app-secrets, tags: [cert-manager, app-secrets] }
+    - { role: k8s-namespace,    tags: [cert-manager, k8s-namespace] }
+    - { role: app-secrets,      tags: [cert-manager, app-secrets] }
     - { role: k8s-cert-manager, tags: [cert-manager, k8s-cert-manager] }
 
 - hosts: ingress
   roles:
-    - { role: ingress-nginx, tags: [ingress, ingress-nginx] }
+    - { role: ingress-nginx,    tags: [ingress, ingress-nginx] }
 
 - hosts: monitoring
   roles:
@@ -59,9 +60,9 @@
   roles:
     - { role: app-nexus, tags: [softwarefactory, nexus] }
     - { role: app-jenkins, tags: [softwarefactory, jenkins] }
-    - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
-    - { role: app-keycloak, tags: [softwarefactory, keycloak] }
-#  - { role: app-grafana, tags: [softwarefactory, app-grafana] }
+#    - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
+#    - { role: app-keycloak, tags: [softwarefactory, keycloak] }
+#    - { role: app-grafana, tags: [softwarefactory, app-grafana] }
 
 - hosts: middleware
   roles:
@@ -70,10 +71,6 @@
 - hosts: rook
   roles:
     - { role: storage-rook, tags: storage-rook }
-
-- hosts: jenkins-x
-  roles:
-    - { role: app-jenkins-x, tags: [ jenkins-x ] }
 
 - hosts: authorized-keys
   roles:

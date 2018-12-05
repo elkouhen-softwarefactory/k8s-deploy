@@ -5,63 +5,40 @@
   become: yes
   become_user: root
 
-- name: Updatesysctl variable net.bridge.bridge-nf-call-ip6tables
-  sysctl:
-    name: net.bridge.bridge-nf-call-ip6tables
-    value: 1
-  become: yes
-  become_user: root
-
-- name: Updatesysctl variable net.bridge.bridge-nf-call-iptables
-  sysctl:
-    name: net.bridge.bridge-nf-call-iptables
-    value: 1
-  ignore_errors: True
-  become: yes
-  become_user: root
-
-- name: Disable firewalld
-  systemd:
-    name: firewalld
-    enabled: no
-    state: stopped
-  become: yes
-  become_user: root
-
 - name: Disable selinux
   selinux:
     state: disabled
   become: yes
   become_user: root
 
-- name: Install kubelet
+- name: Ensure a list of packages are not installed
   yum:
-    name: kubelet
-    state: latest
-    update_cache: yes
-    allow_downgrade: true
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+    - kubernetes-cni
   become: yes
   become_user: root
 
-- name: Install ipvsadm
+- name: Ensure a list of packages are installed
   yum:
-    name: ipvsadm
+    name: "{{ packages }}"
     state: latest
-    update_cache: yes
-  become: yes
-  become_user: root
-
-- name: Install kubeadm
-  yum:
-    name: kubeadm
-    state: present
+    update_cache: True
+  vars:
+    packages:
+    - kubelet
+    - kubeadm
+    - ipvsadm
   become: yes
   become_user: root
 
 - name: Start kubelet
   systemd:
     name: kubelet
-    state: started
+    state: restarted
     enabled: yes
+    daemon_reload: yes
   become: yes
   become_user: root

@@ -1,3 +1,0 @@
-dependencies:
-- { role: tool-git }
-- { role: config-bashrc }
