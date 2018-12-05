@@ -13,40 +13,26 @@
   become: yes
   become_user: root
 
-- name: Configure Daemon.json
-  template:
-    src: templates/daemon.json
-    dest: /etc/docker/daemon.json
-  become: yes
-  become_user: root
-  when: registry is defined
-
+- name: Ensure a list of packages installed
+  yum:
+    name: yum-utils
+    state: present
+    update_cache: True
+    validate_certs: false
 
 - shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-
-- name: Ensure a list of packages are not installed
-  yum:
-    name: "{{ packages }}"
-    state: absent
-    update_cache: True
-  vars:
-    packages:
-    - docker
-    - docker-common
-  become: yes
-  become_user: root
-
+  
 - name: Ensure a list of packages installed
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
     update_cache: True
+    validate_certs: false
   vars:
     packages:
-    - docker-ce-18.06.1.ce
-    - yum-utils
-#    - device-mapper-persistent-data
-#    - lvm2
+    - docker-ce
+    - device-mapper-persistent-data
+    - lvm2
   become: yes
   become_user: root
 
@@ -56,7 +42,15 @@
     state: present
   become: yes
   become_user: root
-  
+
+- name: Configure Daemon.json
+  template:
+    src: templates/daemon.json
+    dest: /etc/docker/daemon.json
+  become: yes
+  become_user: root
+  when: registry is defined
+
 - name: Start Docker Service
   systemd:
     name: docker

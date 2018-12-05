@@ -2,6 +2,7 @@
   sysctl:
     name: net.bridge.bridge-nf-call-ip6tables
     value: 1
+  ignore_errors: True
   become: yes
   become_user: root
 
@@ -23,3 +24,10 @@
 
 - name: clear iptables
   shell: iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+  become: yes
+  become_user: root
+
+- name: clear iptables
+  shell: ipvsadm --clear
+  become: yes
+  become_user: root

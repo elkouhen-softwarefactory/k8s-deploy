@@ -11,20 +11,10 @@
   become: yes
   become_user: root
 
-- name: Ensure a list of packages are not installed
-  yum:
-    name: "{{ packages }}"
-    state: absent
-  vars:
-    packages:
-    - kubernetes-cni
-  become: yes
-  become_user: root
-
 - name: Ensure a list of packages are installed
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
     update_cache: True
   vars:
     packages:
@@ -40,5 +30,10 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+  become: yes
+  become_user: root
+
+- name: Execute kubeadm reset
+  command: kubeadm reset -f
   become: yes
   become_user: root

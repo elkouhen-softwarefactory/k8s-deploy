@@ -25,9 +25,9 @@
 
 - hosts: kubernetes
   roles:
-    - { role: tool-logrotate, tags: kubernetes }
-    - { role: network, tags:  kubernetes}
-    - { role: docker, tags:  kubernetes}
+    - { role: tool-logrotate, tags: [log, kubernetes ] }
+    - { role: network, tags: [network, kubernetes] }
+    - { role: docker, tags:  [docker, kubernetes]}
     - { role: k8s, tags:  kubernetes }
 
 - hosts: kubernetes-master
