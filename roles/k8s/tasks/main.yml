@@ -20,7 +20,6 @@
     packages:
     - kubelet
     - kubeadm
-    - ipvsadm
   become: yes
   become_user: root
 

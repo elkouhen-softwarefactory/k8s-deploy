@@ -60,9 +60,8 @@
   roles:
     - { role: app-nexus, tags: [softwarefactory, nexus] }
     - { role: app-jenkins, tags: [softwarefactory, jenkins] }
-#    - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
+    - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
 #    - { role: app-keycloak, tags: [softwarefactory, keycloak] }
-#    - { role: app-grafana, tags: [softwarefactory, app-grafana] }
 
 - hosts: middleware
   roles:

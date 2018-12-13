@@ -27,6 +27,17 @@
   become: yes
   become_user: root
 
+- name: Ensure a list of packages are installed
+  yum:
+    name: "{{ packages }}"
+    state: present
+    update_cache: True
+  vars:
+    packages:
+    - ipvsadm
+  become: yes
+  become_user: root
+
 - name: clear iptables
   shell: ipvsadm --clear
   become: yes
