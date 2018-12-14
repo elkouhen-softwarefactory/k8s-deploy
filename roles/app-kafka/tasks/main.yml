@@ -1,8 +1,12 @@
 - name: Copy Deployment
-  template: src=templates/deployment.yml dest=/tmp/deployment-kafka.yml
+  template: 
+    src: templates/deployment.yml 
+    dest: /tmp/deployment-kafka.yml
 
 - name: Copy Service
-  template: src=templates/service.yml dest=/tmp/service-kafka.yml
+  template: 
+    src: templates/service.yml 
+    dest: /tmp/service-kafka.yml
 
 - name: Deploy Deployment
   command: kubectl apply -f /tmp/deployment-kafka.yml

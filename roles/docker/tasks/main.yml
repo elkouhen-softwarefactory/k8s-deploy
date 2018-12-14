@@ -6,7 +6,8 @@
   become: yes
   become_user: root
 
-- file:
+- name: "Create Folder docker.service.d"
+  file:
     path: /etc/systemd/system/docker.service.d
     mode: 0755
     state: directory
@@ -47,6 +48,14 @@
   template:
     src: templates/daemon.json
     dest: /etc/docker/daemon.json
+  become: yes
+  become_user: root
+  when: registry is defined
+
+- name: Configure Docker Service
+  template:
+    src: templates/etc_sysconfig_docker
+    dest: /etc/sysconfig/docker
   become: yes
   become_user: root
   when: registry is defined
