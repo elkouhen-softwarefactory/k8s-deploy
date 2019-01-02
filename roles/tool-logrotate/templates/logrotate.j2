@@ -1,9 +1,9 @@
 /var/lib/docker/containers/**/*-json.log {
-  rotate 7
   daily
-  compress
+  rotate 7
+  maxage 7
   size=1M
   missingok
-  delaycompress
   copytruncate
 }
+

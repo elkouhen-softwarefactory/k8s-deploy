@@ -1,21 +1,21 @@
-- name: "Status file /root/helm-v2.9.1-linux-amd64.tar.gz"
+- name: "Status file /root/helm-v2.12.1-linux-amd64.tar.gz"
   stat:
-    path:  "/root/helm-v2.9.1-linux-amd64.tar.gz"
+    path:  "/root/helm-v2.12.1-linux-amd64.tar.gz"
   register: helm_status
   become: yes
   become_user: root
 
 - name: Download helm
   get_url:
-    url: https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz
+    url: https://storage.googleapis.com/kubernetes-helm/helm-v2.12.1-linux-amd64.tar.gz
     dest: /root
   become: yes
   become_user: root
   when: helm_status.stat.exists == False
 
-- name: Extract helm-v2.9.1-linux-amd64.tar.gz into ~
+- name: Extract helm-v2.12.1-linux-amd64.tar.gz into ~
   unarchive:
-    src: /root/helm-v2.9.1-linux-amd64.tar.gz
+    src: /root/helm-v2.12.1-linux-amd64.tar.gz
     dest: /root
     remote_src: True
   become: yes

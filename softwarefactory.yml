@@ -1,5 +1,9 @@
 ---
 
+- hosts: all
+  roles:
+    - { role: util-crond, tags: [alert, crond] }
+
 - hosts: nfs-client
   roles:
     - { role: storage-client-nfs, tags: nfs }
@@ -62,10 +66,6 @@
     - { role: app-jenkins, tags: [softwarefactory, jenkins] }
     - { role: app-sonarqube, tags: [softwarefactory, sonarqube] }
 #    - { role: app-keycloak, tags: [softwarefactory, keycloak] }
-
-- hosts: middleware
-  roles:
-    - { role: app-kafka, tags: [middleware, kafka] }
 
 - hosts: rook
   roles:

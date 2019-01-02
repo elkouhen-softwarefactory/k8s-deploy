@@ -1,0 +1,77 @@
+unclassified:
+  globalConfigFiles:
+    configs:
+    - custom:
+        content: "nexusUsername=admin\nnexusPassword=softeam44"
+        id: "gradle.properties"
+        name: "gradle.properties"
+        providerId: "org.jenkinsci.plugins.configfiles.custom.CustomConfig"
+    - custom:
+        content: "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAus73xT+nyXATE14ufwS6mKQ6WPW6vhDjtL4vV2ZSj7XO1gQr\n\
+          iaRmX2AOhy6+Staks3TbeZ05U4ZjyXhP2jjyatzQ5wXiLIotAfOJqttd101amnZ3\n+wWI8JJD+sSi1rv4q9NUCPaB0O4B2c4Nll+g0KEW+OkbIsPGvdFUzkJwXKQAkXYL\n\
+          Qb+36VmeRX/77uu05zxRBe6nhbU8chStW8Q4AJ3SvhJt0muJt5d6lZeCyFflA+oT\n69kG0RHvCIeRSW6arhVioW6nnJC3YJLjTPykTX+fJKczy0THJLda5x3p1XKkw6SX\n\
+          SCe1NzpbQurFHuZCVkWLxCJMRTXN1Q+AnG9JHQIDAQABAoIBADGT1hwKPcxvKxDb\n0Pky1xbFlxqe9JWWw+fnBYdrh4POW3tfFfLsp6KuSozD8grIlmNuIwVOnbU2GGuS\n\
+          u5aNwIBt5B8753+smC9JZALtPyVxyRbvU/5RxLscBmCaKSFWN7PaXRYX3fIGCIW2\nctKyxGo6Jm+e5e2/CZK86IXpCgr7oss9rSteM8BvQlzhsdx6x2bMP1h6CxhM7EV0\n\
+          AVScgPx6+3ed2e9QhyuWXPAdzixPPhbvt//H7sZuXtmBz3+Cno/XHDMHRv0o29Qn\nKSHQJjgCD9EWb13zRU5VLc12V0fswZsQJNhwY/aicbsM8dBucDgXTrwLpcZcn4uG\n\
+          +UbEAh0CgYEA89WvBt7xLZX9Q+WDOJdBbQLBqYsfRl700VqeWR62Dj8gQYcQ7WcK\nfIyAarZOAZknVrm3dv/7mvQ0MkWAyU1eBS5064m4X3Mi1MDnPZ7fpdRF5JGVdMKq\n\
+          TohCOpGAJ8EIlI0isMJjlBsz9/a0aymqzzCuFOJt6SiF6LusslFZ9ZsCgYEAxCDu\nYhz2NIHMM89rtyNgGdvrB0HqxuzZObSQad2fYeSFabsZrRZ9hlRw/9nytHoSVS3e\n\
+          Br2Psvo+BaZjoDXZH5TTjYHIHtrobqQo6aaeC8MYBp+EfEd8h6FDa3LUmnBRBO0r\nIslV6SnxVb/U18gK4jhV2gGJB2aJ+zRIqyYxw6cCgYEAxzuJONb/P503hLvKvXmx\n\
+          hs3iyZKYalp6NXmSuwUCAqAHziL7bM9t3Ri8cPUmxd2LLCyxQLWmsxTodU8fDNx/\nf0JXXIF6OduM0UQRbeMboJbSyRE/iljo6SQi4VIz4cezKBYuCzm6PbEAhJJ7FrjE\n\
+          DWkcRIpC/mkTCXgXgtg/5hMCgYAQSG+iI6dpKpGKh6D4vm4fF3wGyTk1tLpAKTaI\nI4c0+GT/JzJ1hVV8jownIbAdvbjB66HwS1Kf2FjH3U2OIopZLeD2cZzsut3rOaPP\n\
+          6i5a6aKYAixcqQ60r/XJ+OmfvM1tLEeVhsOkLQBFTzzbgVct+uFdzRzUSXYRLgEO\nfIhLJwKBgAniqSXxfD2Y+6mqhjX2w2RCn0w1jrOBYJwliowTQbeMLXZMTs9KQoKt\n\
+          d3rXKnX5f2ChTYUBWk1thkZRq2nzV2OukQG5ZuAA9LYk+RwaEPyVDSTxOHJYhJrE\n4ixAvQK4SF9NNACKUxayBcmOOTaPIyQLxPFdYTq5kpbUqXXIP/zp\n\
+          -----END RSA PRIVATE KEY-----"
+        id: "id_rsa"
+        name: "id_rsa"
+        providerId: "org.jenkinsci.plugins.configfiles.custom.CustomConfig"
+    - custom:
+        content: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6zvfFP6fJcBMTXi5/BLqYpDpY9bq+EOO0vi9XZlKPtc7WBCuJpGZfYA6HLr5K1qSzdNt5nTlThmPJeE/aOPJq3NDnBeIsii0B84mq213XTVqadnf7BYjwkkP6xKLWu/ir01QI9oHQ7gHZzg2WX6DQoRb46Rsiw8a90VTOQnBcpACRdgtBv7fpWZ5Ff/vu67TnPFEF7qeFtTxyFK1bxDgAndK+Em3Sa4m3l3qVl4LIV+UD6hPr2QbREe8Ih5FJbpquFWKhbqeckLdgkuNM/KRNf58kpzPLRMckt1rnHenVcqTDpJdIJ7U3OltC6sUe5kJWRYvEIkxFNc3VD4Ccb0kd\
+          \ jenkins@frp02400"
+        id: "id_rsa.pub"
+        name: "id_rsa.pub"
+        providerId: "org.jenkinsci.plugins.configfiles.custom.CustomConfig"
+    - custom:
+        content: "-----BEGIN PGP PRIVATE KEY BLOCK-----\n\n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\n\
+          =36mm\n-----END PGP PRIVATE KEY BLOCK-----"
+        id: "pgp-helm"
+        name: "pgp-private-key"
+        providerId: "org.jenkinsci.plugins.configfiles.custom.CustomConfig"

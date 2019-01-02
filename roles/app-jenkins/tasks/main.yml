@@ -1,5 +1,5 @@
 
-- name: Copy Resources 
+- name: Copy Resources
   template:
     src: "templates/{{item}}"
     dest: "/tmp/{{item}}"
