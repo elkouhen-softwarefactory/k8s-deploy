@@ -39,6 +39,6 @@
   become_user: root
 
 - name: clear iptables
-  shell: ipvsadm --clear
+  command: ipvsadm --clear
   become: yes
   become_user: root

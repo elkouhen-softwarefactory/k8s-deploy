@@ -2,19 +2,19 @@
 
 - hosts: all
   roles:
-    - { role: util-crond, tags: [alert, crond] }
-    - { role: config-authorized-keys, tags: authorized-keys }
+  - { role: util-crond, tags: [alert, crond] }
+  - { role: config-authorized-keys, tags: authorized-keys }
 
 - hosts: nfs-client
   roles:
-    - { role: storage-client-nfs, tags: nfs }
+  - { role: storage-client-nfs, tags: nfs }
 
 - hosts: kubernetes
   roles:
-    - { role: tool-logrotate, tags: [log, kubernetes ] }
-    - { role: network, tags: [network, kubernetes] }
-    - { role: docker, tags:  [docker, kubernetes]}
-    - { role: k8s, tags:  kubernetes }
+  - { role: tool-logrotate, tags: [log, kubernetes ] }
+  - { role: network, tags: [network, kubernetes] }
+  - { role: docker, tags:  [docker, kubernetes]}
+  - { role: k8s, tags:  kubernetes }
 
 - hosts: kubernetes-master
   roles:
@@ -22,7 +22,7 @@
 
 - hosts: kubernetes-slave
   roles:
-    - { role: k8s-slave, tags: [kubernetes-slave] }
+  - { role: k8s-slave, tags: [kubernetes-slave] }
 
 - hosts: helm
   roles:
@@ -36,24 +36,24 @@
 
 - hosts: ingress
   roles:
-    - { role: ingress-nginx,    tags: [ingress, ingress-nginx] }
+  - { role: ingress-nginx,    tags: [ingress, ingress-nginx] }
 
 - hosts: monitoring
   roles:
-    - { role: k8s-dashboard, tags: [monitoring, k8s-dashboard] }
+  - { role: k8s-dashboard, tags: [monitoring, k8s-dashboard] }
 
 - hosts: rook
   roles:
-    - { role: storage-rook, tags: storage-rook }
+  - { role: storage-rook, tags: storage-rook }
 
 - hosts: upgrade
   roles:
-    - { role: util-upgrade, tags: upgrade }
+  - { role: util-upgrade, tags: upgrade }
 
 - hosts: ping
   roles:
-    - { role: util-ping, tags: ping }
+  - { role: util-ping, tags: ping }
 
 - hosts: reboot
   roles:
-    - { role: util-reboot, tags: reboot }
+  - { role: util-reboot, tags: reboot }

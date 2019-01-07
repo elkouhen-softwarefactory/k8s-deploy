@@ -44,8 +44,8 @@
   become: yes
   become_user: root
   ignore_errors: True
-  
+
 - name: Execute helm init
-  command: helm init
+  shell: source /root/.bashrc; /root/linux-amd64/helm init
   become: yes
   become_user: root
