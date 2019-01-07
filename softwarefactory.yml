@@ -3,6 +3,7 @@
 - hosts: all
   roles:
     - { role: util-crond, tags: [alert, crond] }
+    - { role: config-authorized-keys, tags: authorized-keys }
 
 - hosts: nfs-client
   roles:
@@ -25,7 +26,7 @@
 
 - hosts: helm
   roles:
-    - { role: tool-helm, tags: tool-helm }
+  - { role: tool-helm, tags: tool-helm }
 
 - hosts: cert-manager
   roles:
@@ -44,10 +45,6 @@
 - hosts: rook
   roles:
     - { role: storage-rook, tags: storage-rook }
-
-- hosts: authorized-keys
-  roles:
-    - { role: config-authorized-keys, tags: authorized-keys }
 
 - hosts: upgrade
   roles:

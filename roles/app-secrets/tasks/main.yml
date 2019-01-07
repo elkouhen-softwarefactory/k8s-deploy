@@ -3,6 +3,7 @@
   with_items:
   - { name: 'regsecret', server: 'registry.k8.wildwidewest.xyz' , username: 'admin', password: 'softeam44', email: 'mehdi.elkouhen@gmail.com', namespace: 'default'}
   - { name: 'regsecret', server: 'registry.k8.wildwidewest.xyz' , username: 'admin', password: 'softeam44', email: 'mehdi.elkouhen@gmail.com', namespace: 'dev'}
+  - { name: 'regsecret', server: 'registry.k8.wildwidewest.xyz' , username: 'admin', password: 'softeam44', email: 'mehdi.elkouhen@gmail.com', namespace: 'prod'}
 
 - name: Create Secret
   include_tasks: create-secret.yml

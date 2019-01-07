@@ -13,6 +13,18 @@ vps242565.ovh.net
 vps267690.ovh.net
 vps242564.ovh.net
 
+[helm]
+vps242131.ovh.net
+
+[ingress]
+vps242131.ovh.net
+
+[cert-manager]
+vps242131.ovh.net
+
+[all:vars]
+public_ip=149.202.62.97
+
 [targets]
 vps242564.ovh.net ansible_user=root
 vps242130.ovh.net ansible_user=root

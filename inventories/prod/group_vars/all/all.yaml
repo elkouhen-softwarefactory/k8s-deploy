@@ -27,10 +27,6 @@ namespaces:
 - dev
 
 certificates:
-- { namespace: 'default', name: "jenkins.{{domaine}}" }
-- { namespace: 'default', name: "registry.{{domaine}}" }
-- { namespace: 'default', name: "nexus.{{domaine}}" }
-- { namespace: 'default', name: "sonarqube.{{domaine}}" }
 - { namespace: 'default', name: "keycloak.{{domaine}}" }
 - { namespace: 'dev', name: "test-dev.{{domaine}}" }
 
