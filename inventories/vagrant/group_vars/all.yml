@@ -16,4 +16,5 @@ namespaces:
 - dev
 
 certificates:
-- { namespace: 'default', name: "jenkins.{{domaine}}" }
+- { namespace: 'default', name: "keycloak.{{domaine}}" }
+- { namespace: 'dev', name: "test-dev.{{domaine}}" }

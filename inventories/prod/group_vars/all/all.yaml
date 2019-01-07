@@ -29,4 +29,3 @@ namespaces:
 certificates:
 - { namespace: 'default', name: "keycloak.{{domaine}}" }
 - { namespace: 'dev', name: "test-dev.{{domaine}}" }
-

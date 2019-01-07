@@ -1,9 +1,0 @@
-[ingress]
-vps242131.ovh.net
-
-[all:vars]
-traefik_ssl=True
-public_ip=149.202.62.97
-
-[targets]
-vps242131.ovh.net ansible_user=root

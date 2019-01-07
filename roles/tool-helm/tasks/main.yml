@@ -13,7 +13,7 @@
   become_user: root
   when: helm_status.stat.exists == False
 
-- name: Extract helm-v2.12.1-linux-amd64.tar.gz into ~
+- name: Extract helm-v2.12.1-linux-amd64.tar.gz into /root
   unarchive:
     src: /root/helm-v2.12.1-linux-amd64.tar.gz
     dest: /root
@@ -21,7 +21,7 @@
   become: yes
   become_user: root
 
-- name: Check
+- name: List clusterrolebinding
   command: kubectl get clusterrolebinding
   become: yes
   become_user: root
@@ -47,15 +47,5 @@
   
 - name: Execute helm init
   command: helm init
-  become: yes
-  become_user: root
-
-- name: Add Helm Repo
-  command: helm repo add meltingpoc-charts https://softeamouest.github.io/charts/
-  become: yes
-  become_user: root
-
-- name: Add Helm Repo
-  command: helm repo add helloworld-charts https://helloworld-k8s.github.io/charts/
   become: yes
   become_user: root

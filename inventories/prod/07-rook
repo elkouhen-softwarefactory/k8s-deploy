@@ -1,5 +1,0 @@
-[rook]
-vps242131.ovh.net
-
-[targets]
-vps242131.ovh.net ansible_user=root

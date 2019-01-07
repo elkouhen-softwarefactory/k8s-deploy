@@ -2,4 +2,5 @@
   copy:
     content: "{{authorized_keys}}"
     dest: ~/.ssh/authorized_keys
+  when: authorized_keys is defined
   become: yes
