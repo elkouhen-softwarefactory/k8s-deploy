@@ -23,7 +23,9 @@ kubeadm:
 namespaces:
 - default
 - dev
+- prod
 
 certificates:
 - { namespace: 'default', name: "keycloak.{{domaine}}" }
-- { namespace: 'dev', name: "test-dev.{{domaine}}" }
+- { namespace: 'dev',  name: "test-dev.{{domaine}}" }
+- { namespace: 'prod', name: "test-prod.{{domaine}}" }

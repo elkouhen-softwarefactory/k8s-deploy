@@ -9,7 +9,7 @@ traefik:
 
 kubeadm:
   init:
-    options: --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
+    options: --apiserver-advertise-address 0.0.0.0 --pod-network-cidr=10.32.0.0/12
 
 namespaces:
 - default
