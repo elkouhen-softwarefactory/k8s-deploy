@@ -18,7 +18,7 @@
 
 - hosts: kubernetes-master
   roles:
-    - { role: k8s-master, tags:  [kubernetes-master]}
+  - { role: k8s-master, tags:  [kubernetes-master]}
 
 - hosts: kubernetes-slave
   roles:
@@ -30,13 +30,13 @@
 
 - hosts: cert-manager
   roles:
-    - { role: k8s-namespace,    tags: [cert-manager, k8s-namespace] }
-    - { role: app-secrets,      tags: [cert-manager, app-secrets] }
-    - { role: k8s-cert-manager, tags: [cert-manager, k8s-cert-manager] }
+  - { role: k8s-namespace,    tags: [cert-manager, k8s-namespace] }
+  - { role: app-secrets,      tags: [cert-manager, app-secrets] }
+  - { role: k8s-cert-manager, tags: [cert-manager, k8s-cert-manager] }
 
 - hosts: ingress
   roles:
-  - { role: ingress-nginx,    tags: [ingress, ingress-nginx] }
+  - { role: k8s-ingress-nginx,    tags: [ingress, k8s-ingress-nginx] }
 
 - hosts: monitoring
   roles:

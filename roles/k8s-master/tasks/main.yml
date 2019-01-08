@@ -35,11 +35,6 @@
   become: yes
   become_user: root
 
-#- name: Create K8s network
-#  command: kubectl apply -f https://raw.githubusercontent.com/romana/romana/master/containerize/specs/romana-kubeadm.yml
-#  become: yes
-#  become_user: root
-
 - name: Create K8s network
   command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
   become: yes
