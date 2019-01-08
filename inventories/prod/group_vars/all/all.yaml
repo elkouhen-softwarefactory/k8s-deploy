@@ -20,12 +20,3 @@ kubeadm:
   init:
     options: --ignore-preflight-errors=NumCPU --apiserver-advertise-address 0.0.0.0 --pod-network-cidr=10.32.0.0/12
 
-namespaces:
-- default
-- dev
-- prod
-
-certificates:
-- { namespace: 'default', name: "keycloak.{{domaine}}" }
-- { namespace: 'dev',  name: "test-dev.{{domaine}}" }
-- { namespace: 'prod', name: "test-prod.{{domaine}}" }

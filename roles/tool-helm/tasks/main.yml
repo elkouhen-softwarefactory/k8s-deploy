@@ -46,15 +46,15 @@
   ignore_errors: True
 
 - name: Execute helm init
-  shell: source /root/.bashrc; /root/linux-amd64/helm init
+  shell: /root/linux-amd64/helm init
   become: yes
   become_user: root
 
 - name: Execute helm init
-  shell: helm list
+  shell: /root/linux-amd64/helm list
   become: yes
   become_user: root
   register: result
   until: "'Error' not in result.stderr"
-  retries: 20
+  retries: 50
   delay: 5

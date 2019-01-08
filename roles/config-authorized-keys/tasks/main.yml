@@ -1,3 +1,9 @@
+- name: Ensure Folder exists
+  file:
+    path: ~/.ssh/
+    state: directory
+  become: yes
+
 - name: Copy Authorized Keys
   copy:
     content: "{{authorized_keys}}"

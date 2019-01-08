@@ -1,6 +1,13 @@
-- name: Copy Resources 
+- name: Copy .bashrc
   template:
     src: bashrc.j2
     dest: /root/.bashrc
+  become: yes
+  become_user: root
+
+- name: Copy .bash_profile
+  template:
+    src: bashrc.j2
+    dest: /root/.bash_profile
   become: yes
   become_user: root

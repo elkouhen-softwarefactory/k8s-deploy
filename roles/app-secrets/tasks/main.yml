@@ -1,9 +1,7 @@
 - name: Create Docker Secret
   include_tasks: create-docker-secret.yml
-  with_items:
-  - { name: 'regsecret', server: 'registry.k8.wildwidewest.xyz' , username: 'admin', password: 'softeam44', email: 'mehdi.elkouhen@gmail.com', namespace: 'default'}
-  - { name: 'regsecret', server: 'registry.k8.wildwidewest.xyz' , username: 'admin', password: 'softeam44', email: 'mehdi.elkouhen@gmail.com', namespace: 'dev'}
-  - { name: 'regsecret', server: 'registry.k8.wildwidewest.xyz' , username: 'admin', password: 'softeam44', email: 'mehdi.elkouhen@gmail.com', namespace: 'prod'}
+  with_items: "{{docker_secrets}}"
+
 
 - name: Create Secret
   include_tasks: create-secret.yml
