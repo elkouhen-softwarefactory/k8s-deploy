@@ -18,29 +18,29 @@
 
 - hosts: kubernetes-master
   roles:
-  - { role: k8s-master, tags:  [kubernetes-master]}
+  - { role: k8s-master, tags:  [kubernetes, kubernetes-master]}
 
 - hosts: kubernetes-slave
   roles:
-  - { role: k8s-slave, tags: [kubernetes-slave] }
+  - { role: k8s-slave, tags: [kubernetes,kubernetes-slave] }
 
 - hosts: helm
   roles:
-  - { role: tool-helm, tags: tool-helm }
+  - { role: tool-helm, tags: [kubernetes,tool-helm] }
 
 - hosts: cert-manager
   roles:
-  - { role: k8s-namespace,    tags: [cert-manager, k8s-namespace] }
-  - { role: app-secrets,      tags: [cert-manager, app-secrets] }
-  - { role: k8s-cert-manager, tags: [cert-manager, k8s-cert-manager] }
+  - { role: k8s-namespace,    tags: [kubernetes, k8s-namespace] }
+  - { role: app-secrets,      tags: [kubernetes, app-secrets] }
+  - { role: k8s-cert-manager, tags: [kubernetes, k8s-cert-manager] }
 
 - hosts: ingress
   roles:
-  - { role: k8s-ingress-nginx,    tags: [ingress, k8s-ingress-nginx] }
+  - { role: k8s-ingress-nginx,    tags: [kubernetes, k8s-ingress-nginx] }
 
 - hosts: monitoring
   roles:
-  - { role: k8s-dashboard, tags: [monitoring, k8s-dashboard] }
+  - { role: k8s-dashboard, tags: [kubernetes, k8s-dashboard] }
 
 - hosts: rook
   roles:
