@@ -5,18 +5,17 @@ registry: registry.{{domaine}}
 acme: https://acme-v02.api.letsencrypt.org/directory
 #acme: https://acme-staging-v02.api.letsencrypt.org/directory
 
-nfs_mounts:
-- { remote: "10.16.103.9:/zpool-126262/WWWJENKINS",   local: /mnt/jenkins}
-- { remote: "10.16.103.9:/zpool-126262/WWWLOGSTASH",  local: /mnt/logstash}
-- { remote: "10.16.103.9:/zpool-126262/WWWGRAV",      local: /mnt/grav}
-- { remote: "10.16.103.9:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
-- { remote: "10.16.103.9:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
-- { remote: "10.16.103.9:/zpool-126262/WWWSONARQUBE", local: /mnt/sonarqube}
+nfs_server: 10.16.103.9
 
-traefik:
-  ssl: "{{ traefik_ssl | default(True) }}"
+nfs_mounts:
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWJENKINS",   local: /mnt/jenkins}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWLOGSTASH",  local: /mnt/logstash}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWGRAV",      local: /mnt/grav}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWSONARQUBE", local: /mnt/sonarqube}
+  - { remote: "{{nfs_server}}:/zpool-126262/K8SBACKUP",    local: /mnt/backup}
 
 kubeadm:
   init:
     options: --ignore-preflight-errors=NumCPU --apiserver-advertise-address 0.0.0.0 --pod-network-cidr=10.32.0.0/12
-

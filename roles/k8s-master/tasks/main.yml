@@ -25,7 +25,10 @@
   become_user: root
 
 - name: Copy admin.conf
-  command: cp -i /etc/kubernetes/admin.conf ~/.kube/config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: ~/.kube/config
+    remote_src: true
   become: yes
   become_user: root
 

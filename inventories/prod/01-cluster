@@ -13,22 +13,7 @@ vps242565.ovh.net
 vps267690.ovh.net
 vps242564.ovh.net
 
-[nfs-client]
-vps242131.ovh.net
-vps242130.ovh.net
-vps257315.ovh.net
-vps267694.ovh.net
-vps242565.ovh.net
-vps267690.ovh.net
-vps242564.ovh.net
-
-[helm]
-vps242131.ovh.net
-
 [ingress]
-vps242131.ovh.net
-
-[cert-manager]
 vps242131.ovh.net
 
 [all:vars]

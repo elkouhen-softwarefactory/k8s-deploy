@@ -1,11 +1,9 @@
 namespaces:
-- default
-- dev
-- prod
-
-
+  - default
+  - dev
+  - prod
 
 certificates:
-- { namespace: 'default', name: "test-default.{{domaine}}" }
-- { namespace: 'dev',  name: "test-dev.{{domaine}}" }
-- { namespace: 'prod', name: "test-prod.{{domaine}}" }
+  - { namespace: 'default', name: "test-default.{{domaine}}" }
+  - { namespace: 'dev',  name: "test-dev.{{domaine}}" }
+  - { namespace: 'prod', name: "test-prod.{{domaine}}" }

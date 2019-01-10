@@ -1,0 +1,48 @@
+- name: Create /mnt/backup/pki/ folder
+  file:
+    path: /mnt/backup/pki/
+    state: directory
+  become: yes
+  become_user: root
+
+- name: Copy ca.crt
+  copy:
+    src: /etc/kubernetes/pki/ca.crt
+    dest: /mnt/backup/pki/
+    remote_src: true
+  become: yes
+  become_user: root
+
+- name: Copy ca.key
+  copy:
+    src: /etc/kubernetes/pki/ca.key
+    dest: /mnt/backup/pki/
+    remote_src: true
+  become: yes
+  become_user: root
+
+- name: Copy backup config
+  template:
+    src: backup.j2
+    dest:  /tmp/backup.yaml
+  become: yes
+  become_user: root
+
+- name: Check cronjob backup
+  command: kubectl get cronjob backup -n kube-system
+  become: yes
+  become_user: root
+  register: cronjob_check
+  ignore_errors: True
+
+- name: Update backup config
+  command: kubectl apply -f /tmp/backup.yaml
+  become: yes
+  become_user: root
+  when: "'backup' in cronjob_check.stdout"
+
+- name: Create backup config
+  command: kubectl create -f /tmp/backup.yaml
+  become: yes
+  become_user: root
+  when: "'backup' not in cronjob_check.stdout"

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker run --rm \
+    -v '/mnt/backup:/backup' \
+    -v '/var/lib/etcd:/var/lib/etcd' \
+    --env ETCDCTL_API=3 \
+    'k8s.gcr.io/etcd-amd64:3.1.12' \
+    /bin/sh -c "etcdctl snapshot restore '/backup/etcd-snapshot-2019-01-10_14:55:04_UTC.db' ; mv /default.etcd/member/ /var/lib/etcd/"

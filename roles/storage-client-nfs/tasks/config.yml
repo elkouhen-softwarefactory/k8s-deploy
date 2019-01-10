@@ -4,3 +4,17 @@
     regexp: "^{{item.remote}}/"
     line: "{{item.remote}}/ {{item.local}} nfs rw 0 0"
   become: yes
+
+- name: "Create local Mount Folder"
+  file:
+    path: "{{item.local}}"
+    state: directory
+  become: yes
+
+- name: "Mount folder"
+  mount:
+    src: "{{item.remote}}"
+    path: "{{item.local}}"
+    state: mounted
+    fstype: nfs
+  become: yes
