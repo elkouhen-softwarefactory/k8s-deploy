@@ -1,15 +1,13 @@
-- name: Helm List
-  command: kubectl get namespace
-  become: yes
-  become_user: root
-  register: namespace_list
+- name: Create dev k8s namespace
+  k8s:
+    name: dev
+    api_version: v1
+    kind: Namespace
+    state: present
 
-- name: Create namespace dev
-  command: kubectl create namespace dev
-  become: yes
-  when: "'dev' not in namespace_list.stdout"
-
-- name: Create namespace prod
-  command: kubectl create namespace prod
-  become: yes
-  when: "'prod' not in namespace_list.stdout"
+- name: Create prod k8s namespace
+  k8s:
+    name: prod
+    api_version: v1
+    kind: Namespace
+    state: present

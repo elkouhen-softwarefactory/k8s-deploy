@@ -2,13 +2,6 @@
   command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
   become: yes
 
-- name: Check ServiceAccount admin-user
-  command: kubectl get ServiceAccount admin-user -n kube-system
-  become: yes
-  become_user: root
-  register: admin_user_exists_check
-  ignore_errors: True
-
 - name: Copy template admin-user.yml
   template: 
     src: admin-user.yml
@@ -16,17 +9,11 @@
   when: "'admin-user' not in admin_user_exists_check.stdout"
 
 - name: Create ServiceAccount admin-user
-  command: kubectl create -f /tmp/admin-user.yml
+  k8s:
+    state: present
+    src: /tmp/admin-user.yml
   become: yes
   become_user: root
-  when: "'admin-user' not in admin_user_exists_check.stdout"
-
-- name: Check ClusterRoleBinding admin-user
-  command: kubectl get ClusterRoleBinding admin-user -n kube-system
-  become: yes
-  become_user: root
-  register: role_binding_exists_check
-  ignore_errors: True
 
 - name: Copy template admin-user.yml
   template:
@@ -35,7 +22,8 @@
   when: "'admin-user' not in role_binding_exists_check.stdout"
 
 - name: Create ClusterRoleBinding admin-user
-  command: kubectl create -f /tmp/role-binding.yml
+  k8s:
+    state: present
+    src: /tmp/role-binding.yml
   become: yes
   become_user: root
-  when: "'admin-user' not in role_binding_exists_check.stdout"

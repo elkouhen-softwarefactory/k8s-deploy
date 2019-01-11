@@ -11,11 +11,12 @@
   - service.j2
   - patch.yml
 
-- name: Create Resources
-  command: "kubectl apply -f /tmp/{{item}}"
+- name: Create Service
+  k8s:
+    state: present
+    src: /tmp/service.j2
   become: yes
-  with_items:
-  - service.j2
+  become_user: root
 
 - set_fact:
     patch:

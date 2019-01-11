@@ -1,0 +1,26 @@
+- name: Ensure pip is installed
+  yum:
+    name: python-pip
+    state: present
+    update_cache: True
+  become: yes
+  become_user: root
+
+- name: "Install pip"
+  pip:
+    name: pip
+    version: 9.0.3
+  become: yes
+  become_user: root
+
+- name: "Install setuptools"
+  pip:
+    name: setuptools
+  become: yes
+  become_user: root
+
+- name: "Install openshift"
+  pip:
+    name: openshift
+  become: yes
+  become_user: root

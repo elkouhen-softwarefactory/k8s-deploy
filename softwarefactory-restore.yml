@@ -1,0 +1,9 @@
+---
+
+- hosts: kubernetes-master
+  roles:
+    - { role: k8s-restore,             tags: [kubernetes, k8s-restore], when: nfs_server is defined}
+
+- hosts: kubernetes-slave
+  roles:
+    - { role: k8s-slave,              tags: [kubernetes, k8s-slave], when: false }

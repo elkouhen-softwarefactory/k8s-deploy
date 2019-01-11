@@ -1,0 +1,72 @@
+- name: Execute kubeadm reset
+  command: kubeadm reset -f
+  become: yes
+  become_user: root
+
+- name: Remove folder /etc/kubernetes/pki
+  file:
+    path: /etc/kubernetes/pki
+    state: absent
+
+- synchronize:
+    src: /mnt/backup/pki/
+    dest: /etc/kubernetes/
+  delegate_to: "{{ inventory_hostname }}"
+  become: yes
+  become_user: root
+
+- name: Delete .kube folder
+  file:
+    path: ~/.kube
+    state: absent
+  become: yes
+  become_user: root
+
+- name: Create .kube folder
+  file:
+    path: ~/.kube
+    state: directory
+  become: yes
+  become_user: root
+
+- name: Execute kubeadm init
+  command: kubeadm init {{kubeadm.init.options | default('')}} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki --ignore-preflight-errors=DirAvailable--var-lib-etcd
+  register: kubeadm_init_message
+  become: yes
+  become_user: root
+
+- name: "Create join master fact"
+  set_fact:
+    join_master: "{{kubeadm_init_message.stdout_lines[-1]}}"
+  become: yes
+  become_user: root
+
+- name: "Create Restore script"
+  template:
+    src: restore.j2
+    dest: /tmp/restore.sh
+
+- command: sh /tmp/restore.sh
+  become: yes
+  become_user: root
+
+- name: Copy admin.conf
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: ~/.kube/config
+    remote_src: true
+  become: yes
+  become_user: root
+
+#- name: Get K8s version
+#  shell: kubectl version | base64 | tr -d '\n'
+#  register: k8_version
+#  become: yes
+#  become_user: root
+#  when: false
+#
+#- name: Create K8s network
+#  command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
+#  become: yes
+#  become_user: root
+#  when: false

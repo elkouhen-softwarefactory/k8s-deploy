@@ -1,8 +1,12 @@
 #!/bin/bash
 
+snapshot=`find /mnt/backup -maxdepth 1 -type f | sort -n | tail -1 |  cut -f4- -d"/"`
+
+rm -rf /var/lib/etcd
+
 docker run --rm \
     -v '/mnt/backup:/backup' \
     -v '/var/lib/etcd:/var/lib/etcd' \
     --env ETCDCTL_API=3 \
     'k8s.gcr.io/etcd-amd64:3.1.12' \
-    /bin/sh -c "etcdctl snapshot restore '/backup/etcd-snapshot-2019-01-10_14:55:04_UTC.db' ; mv /default.etcd/member/ /var/lib/etcd/"
+    /bin/sh -c "etcdctl snapshot restore '/backup/${snapshot}' ; mv /default.etcd/member/ /var/lib/etcd/"
