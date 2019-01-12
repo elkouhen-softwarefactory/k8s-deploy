@@ -6,9 +6,18 @@
   become: yes
   become_user: root
 
+- name: Ensure rsync is installed
+  yum:
+    name: rsync
+    state: present
+    update_cache: True
+  become: yes
+  become_user: root
+
 - name: "Install pip"
   pip:
     name: pip
+    version: latest
     version: 9.0.3
   become: yes
   become_user: root
@@ -16,11 +25,13 @@
 - name: "Install setuptools"
   pip:
     name: setuptools
+    version: 40.6.3
   become: yes
   become_user: root
 
 - name: "Install openshift"
   pip:
     name: openshift
+    version: latest
   become: yes
   become_user: root

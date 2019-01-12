@@ -1,7 +1,37 @@
+- name: Create scripts folder
+  file:
+    path: ~/scripts
+    state: directory
+  become: yes
+  become_user: root
+
+- name: "Create Restore Script"
+  template:
+    src: restore.j2
+    dest: /root/scripts/restore.sh
+  become: yes
+  become_user: root
+
+
+- name: "Status file /mnt/backup/pki"
+  stat:
+    path:  "/mnt/backup/pki"
+  register: pki_status
+  become: yes
+  become_user: root
+
 - name: Remove folder /var/lib/etcd
   file:
-    path: /var/lib/etcd
+    path: /etc/kubernetes/pki
     state: absent
+
+- synchronize:
+    src: /mnt/backup/pki/
+    dest: /etc/kubernetes/
+  delegate_to: "{{ inventory_hostname }}"
+  become: yes
+  become_user: root
+  when: pki_status.stat.exists == True
 
 - name: Delete .kube folder
   file:
@@ -18,10 +48,16 @@
   become_user: root
 
 - name: Execute kubeadm init
-  command: kubeadm init {{kubeadm.init.options | default('')}}
-  register: kubeadm_init_message
+  command: kubeadm init {{kubeadm.init.options | default('')}} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
   become: yes
   become_user: root
+  when: pki_status.stat.exists == True
+
+- name: Execute kubeadm init
+  command: kubeadm init {{kubeadm.init.options | default('')}}
+  become: yes
+  become_user: root
+  when: pki_status.stat.exists == False
 
 - name: "Create join master fact"
   set_fact:

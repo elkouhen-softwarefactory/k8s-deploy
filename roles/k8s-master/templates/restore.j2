@@ -1,6 +1,17 @@
 #!/bin/bash
 
-snapshot=`find /mnt/backup -maxdepth 1 -type f | sort -n | tail -1 |  cut -f4- -d"/"`
+#!/bin/bash -x
+
+while getopts "f:" arg; do
+  case $arg in
+    e)
+      filename=$OPTARG
+      ;;
+  esac
+done
+
+#snapshot=`find /mnt/backup -maxdepth 1 -type f | sort -n | tail -1 |  cut -f4- -d"/"`
+snapshot=$(basename "$snapshot")
 
 rm -rf /var/lib/etcd
 
