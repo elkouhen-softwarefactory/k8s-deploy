@@ -13,16 +13,9 @@
   become: yes
   become_user: root
 
-- name: Copy backup config
-  template:
-    src: backup.j2
-    dest:  /tmp/k8s-backup.yaml
-  become: yes
-  become_user: root
-
 - name: Create Backup
-  k8s:
+  k8s_raw:
     state: present
-    src: /tmp/k8s-backup.yaml
+    definition:  "{{ lookup('template', 'backup.j2') }}"
   become: yes
   become_user: root

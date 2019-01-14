@@ -8,13 +8,12 @@
     src: "templates/{{ item }}"
     dest: "/tmp/{{ item }}"
   with_items:
-  - service.j2
   - patch.yml
 
 - name: Create Service
-  k8s:
+  k8s_raw:
     state: present
-    src: /tmp/service.j2
+    definition: "{{ lookup('template', 'service.j2') }}"
   become: yes
   become_user: root
 

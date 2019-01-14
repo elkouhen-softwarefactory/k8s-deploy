@@ -2,34 +2,34 @@
 
 - hosts: kubernetes
   roles:
-    - { role: tools-common,           tags: [kubernetes, tools-common] }
-    - { role: util-crond,             tags: [kubernetes, crond] }
-    - { role: config-authorized-keys, tags: [kubernetes, authorized-keys] }
-    - { role: tool-logrotate,         tags: [kubernetes, logrotate ] }
-    - { role: storage-client-nfs,     tags: [kubernetes, nfs], when: nfs_server is defined }
-    - { role: network,                tags: [kubernetes, network] }
-    - { role: docker,                 tags: [kubernetes, docker]}
-    - { role: k8s,                    tags: [kubernetes, k8s] }
+    - { role: tools-common,           tags: [kubernetes-core, tools-common] }
+    - { role: util-crond,             tags: [kubernetes-core, crond] }
+    - { role: config-authorized-keys, tags: [kubernetes-core, authorized-keys] }
+    - { role: tool-logrotate,         tags: [kubernetes-core, logrotate ] }
+    - { role: storage-client-nfs,     tags: [kubernetes-core, nfs], when: nfs_server is defined }
+    - { role: network,                tags: [kubernetes-core, network] }
+    - { role: docker,                 tags: [kubernetes-core, docker]}
+    - { role: k8s,                    tags: [kubernetes-core, k8s] }
 
 - hosts: kubernetes-master
   roles:
-    - { role: k8s-master,             tags: [kubernetes, k8s-master] }
-    - { role: k8s-backup,             tags: [kubernetes, k8s-backup], when: nfs_server is defined}
+    - { role: k8s-master,             tags: [kubernetes-master, k8s-master] }
+    - { role: k8s-backup,             tags: [kubernetes-master, k8s-backup], when: nfs_server is defined}
 
 - hosts: kubernetes-slave
   roles:
-    - { role: k8s-slave,              tags: [kubernetes, k8s-slave] }
+    - { role: k8s-slave,              tags: [kubernetes-slave, k8s-slave] }
 
 - hosts: kubernetes-master
   roles:
-    - { role: tool-helm,              tags: [kubernetes, tool-helm] }
-    - { role: k8s-namespace,          tags: [kubernetes, k8s-namespace] }
-    - { role: app-secrets,            tags: [kubernetes, app-secrets] }
+    - { role: tool-helm,              tags: [kubernetes-master, tool-helm] }
+    - { role: k8s-namespace,          tags: [kubernetes-master, k8s-namespace] }
+    - { role: app-secrets,            tags: [kubernetes-master, app-secrets] }
 
 - hosts: ingress
   roles:
-    - { role: k8s-cert-manager,       tags: [kubernetes, k8s-cert-manager] }
-    - { role: k8s-ingress-nginx,      tags: [kubernetes, k8s-ingress-nginx] }
+    - { role: k8s-cert-manager,       tags: [kubernetes-conf, k8s-cert-manager] }
+    - { role: k8s-ingress-nginx,      tags: [kubernetes-conf, k8s-ingress-nginx] }
 
 - hosts: monitoring
   roles:

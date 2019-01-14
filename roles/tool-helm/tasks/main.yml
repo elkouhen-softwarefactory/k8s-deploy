@@ -22,12 +22,12 @@
   become_user: root
 
 - name: Create cluster role binding for cluster-admin namespace default
-  k8s:
+  k8s_raw:
     state: present
     definition: "{{ lookup('file', 'cluster-role-binding-admin.yaml') }}"
 
 - name: Create cluster role binding for cluster-admin namespace helm
-  k8s:
+  k8s_raw:
     state: present
     definition: "{{ lookup('file', 'cluster-role-binding-helm.yaml') }}"
 

@@ -2,28 +2,16 @@
   command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
   become: yes
 
-- name: Copy template admin-user.yml
-  template:
-    src: admin-user.yml
-    dest: /tmp/dahboard-admin-user.yml
-  when: "'admin-user' not in admin_user_exists_check.stdout"
-
 - name: Create ServiceAccount admin-user
-  k8s:
+  k8s_raw:
     state: present
-    src: /tmp/dahboard-admin-user.yml
+    definition: "{{ lookup('template', 'admin-user.yml') }}"
   become: yes
   become_user: root
 
-- name: Copy template admin-user.yml
-  template:
-    src: role-binding.yml
-    dest: /tmp/dashboard-role-binding.yml
-  when: "'admin-user' not in role_binding_exists_check.stdout"
-
 - name: Create ClusterRoleBinding admin-user
-  k8s:
+  k8s_raw:
     state: present
-    src: /tmp/dashboard-role-binding.yml
+    definition: "{{ lookup('template', 'role-binding.yml') }}"
   become: yes
   become_user: root
