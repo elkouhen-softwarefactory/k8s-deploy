@@ -5,7 +5,8 @@
   become: yes
   become_user: root
 
-- synchronize:
+- name: Backup folder /etc/kubernetes/pki
+  synchronize:
     src: /etc/kubernetes/pki
     dest: /mnt/backup/
   delegate_to: "{{ inventory_hostname }}"

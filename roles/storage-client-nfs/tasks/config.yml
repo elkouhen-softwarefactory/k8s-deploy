@@ -1,9 +1,9 @@
-- name: "Update file /etc/fstab"
-  lineinfile:
-    path: /etc/fstab
-    regexp: "^{{ item.remote }}/"
-    line: "{{item.remote}}/ {{item.local}} nfs rw 0 0"
-  become: yes
+#- name: "Update file /etc/fstab"
+#  lineinfile:
+#    path: /etc/fstab
+#    regexp: "^{{ item.remote }}/"
+#    line: "{{ item.remote }}/ {{ item.local }} nfs rw 0 0"
+#  become: yes
 
 - name: "Create local Mount Folder"
   file:

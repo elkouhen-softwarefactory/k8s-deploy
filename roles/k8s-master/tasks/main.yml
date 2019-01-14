@@ -24,13 +24,14 @@
     path: /etc/kubernetes/pki
     state: absent
 
-- synchronize:
+- name: Copy /mnt/backup/pki to /etc/kubernetes
+  synchronize:
     src: /mnt/backup/pki/
     dest: /etc/kubernetes/
   delegate_to: "{{ inventory_hostname }}"
   become: yes
   become_user: root
-  when: pki_status.stat.exists == True
+  when: pki_status.stat.exists
 
 - name: Delete .kube folder
   file:
@@ -51,28 +52,28 @@
   register: kubeadm_init_message_exists
   become: yes
   become_user: root
-  when: pki_status.stat.exists == True
+  when: pki_status.stat.exists
 
 - name: "Create join master fact"
   set_fact:
     join_master: "{{ kubeadm_init_message_exists.stdout_lines[-1] }}"
   become: yes
   become_user: root
-  when: pki_status.stat.exists == True
+  when: pki_status.stat.exists
 
 - name: Execute kubeadm init
   command: kubeadm init {{ kubeadm.init.options | default('') }}
   register: kubeadm_init_message_not_exists
   become: yes
   become_user: root
-  when: pki_status.stat.exists == False
+  when: not pki_status.stat.exists
 
 - name: "Create join master fact"
   set_fact:
     join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-1] }}"
   become: yes
   become_user: root
-  when: pki_status.stat.exists == False
+  when: not pki_status.stat.exists
 
 - name: Copy admin.conf
   copy:

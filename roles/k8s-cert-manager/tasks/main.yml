@@ -3,6 +3,7 @@
   become: yes
   become_user: root
   register: helm_list
+  changed_when: False
 
 - name: Install cert-manager
   command: helm install --name cert-manager --namespace kube-system stable/cert-manager
@@ -10,7 +11,7 @@
   when: "'cert-manager' not in helm_list.stdout"
 
 - name: Create Certificates
-  include_tasks: create-certificate.yml
+  include_tasks: create-issuer.yml
   loop_control:
     loop_var: namespace_item
   with_items: "{{ namespaces }}"

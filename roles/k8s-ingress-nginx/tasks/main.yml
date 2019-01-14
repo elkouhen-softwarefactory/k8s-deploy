@@ -18,7 +18,8 @@
   become: yes
   become_user: root
 
-- set_fact:
+- name: Create Patch Fact
+  set_fact:
     patch:
       data:
         "proxy-body-size": "100m"

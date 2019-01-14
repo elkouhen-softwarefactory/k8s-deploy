@@ -14,7 +14,8 @@
   become: yes
   become_user: root
 
-- command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+- name: Add Docker Repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   become: yes
   become_user: root
 

@@ -1,9 +1,9 @@
-- name:
+- name: Create K8s dashboard
   command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
   become: yes
 
 - name: Copy template admin-user.yml
-  template: 
+  template:
     src: admin-user.yml
     dest: /tmp/dahboard-admin-user.yml
   when: "'admin-user' not in admin_user_exists_check.stdout"
