@@ -31,4 +31,4 @@
     dest: /etc/cron.daily/del_secure
     mode: 0744
   become: yes
-  become_user: root 
+  become_user: root
