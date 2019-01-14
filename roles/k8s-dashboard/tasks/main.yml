@@ -5,25 +5,25 @@
 - name: Copy template admin-user.yml
   template: 
     src: admin-user.yml
-    dest: /tmp/admin-user.yml
+    dest: /tmp/dahboard-admin-user.yml
   when: "'admin-user' not in admin_user_exists_check.stdout"
 
 - name: Create ServiceAccount admin-user
   k8s:
     state: present
-    src: /tmp/admin-user.yml
+    src: /tmp/dahboard-admin-user.yml
   become: yes
   become_user: root
 
 - name: Copy template admin-user.yml
   template:
     src: role-binding.yml
-    dest: /tmp/role-binding.yml
+    dest: /tmp/dashboard-role-binding.yml
   when: "'admin-user' not in role_binding_exists_check.stdout"
 
 - name: Create ClusterRoleBinding admin-user
   k8s:
     state: present
-    src: /tmp/role-binding.yml
+    src: /tmp/dashboard-role-binding.yml
   become: yes
   become_user: root

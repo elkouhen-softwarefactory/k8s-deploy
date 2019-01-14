@@ -14,13 +14,6 @@
   become: yes
   become_user: root
 
-- name: Ensure a list of packages installed
-  yum:
-    name: yum-utils
-    state: present
-    update_cache: True
-    validate_certs: false
-
 - command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   become: yes
   become_user: root

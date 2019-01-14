@@ -1,13 +1,7 @@
 - name: Create dev k8s namespace
   k8s:
-    name: dev
+    name: "{{item}}"
     api_version: v1
     kind: Namespace
     state: present
-
-- name: Create prod k8s namespace
-  k8s:
-    name: prod
-    api_version: v1
-    kind: Namespace
-    state: present
+  with_items: "{{namespaces}}"

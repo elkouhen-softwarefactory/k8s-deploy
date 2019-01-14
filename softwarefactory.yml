@@ -2,7 +2,7 @@
 
 - hosts: kubernetes
   roles:
-    - { role: pip,                    tags: [kubernetes, pip] }
+    - { role: tools-common,           tags: [kubernetes, tools-common] }
     - { role: util-crond,             tags: [kubernetes, crond] }
     - { role: config-authorized-keys, tags: [kubernetes, authorized-keys] }
     - { role: tool-logrotate,         tags: [kubernetes, logrotate ] }

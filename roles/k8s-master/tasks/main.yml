@@ -12,7 +12,6 @@
   become: yes
   become_user: root
 
-
 - name: "Status file /mnt/backup/pki"
   stat:
     path:  "/mnt/backup/pki"
@@ -47,23 +46,33 @@
   become: yes
   become_user: root
 
-- name: Execute kubeadm init
+- name: Execute kubeadm init (reuse old /etc/kubernetes/pki)
   command: kubeadm init {{kubeadm.init.options | default('')}} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
+  register: kubeadm_init_message_exists
+  become: yes
+  become_user: root
+  when: pki_status.stat.exists == True
+
+- name: "Create join master fact"
+  set_fact:
+    join_master: "{{kubeadm_init_message_exists.stdout_lines[-1]}}"
   become: yes
   become_user: root
   when: pki_status.stat.exists == True
 
 - name: Execute kubeadm init
   command: kubeadm init {{kubeadm.init.options | default('')}}
+  register: kubeadm_init_message_not_exists
   become: yes
   become_user: root
   when: pki_status.stat.exists == False
 
 - name: "Create join master fact"
   set_fact:
-    join_master: "{{kubeadm_init_message.stdout_lines[-1]}}"
+    join_master: "{{kubeadm_init_message_not_exists.stdout_lines[-1]}}"
   become: yes
   become_user: root
+  when: pki_status.stat.exists == False
 
 - name: Copy admin.conf
   copy:

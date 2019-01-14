@@ -15,13 +15,13 @@
 - name: Copy backup config
   template:
     src: backup.j2
-    dest:  /tmp/backup.yaml
+    dest:  /tmp/k8s-backup.yaml
   become: yes
   become_user: root
 
 - name: Create Backup
   k8s:
     state: present
-    src: /tmp/backup.yaml
+    src: /tmp/k8s-backup.yaml
   become: yes
   become_user: root

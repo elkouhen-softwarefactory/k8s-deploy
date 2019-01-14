@@ -28,8 +28,3 @@
   shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
   ignore_errors: True
   become: yes
-
-#- name: Install nginx-ingress
-#  command: helm install stable/nginx-ingress --name nginx-ingress --set rbac.create=true
-#  become: yes
-#  when: "'nginx-ingress' not in helm_list.stdout"
