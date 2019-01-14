@@ -27,7 +27,7 @@ spec:
               name: backup
           restartPolicy: OnFailure
           nodeSelector:
-            kubernetes.io/hostname: {{groups['kubernetes-master'][0]}}
+            kubernetes.io/hostname: {{ groups['kubernetes-master'][0] }}
           tolerations:
           - effect: NoSchedule
             operator: Exists
@@ -39,5 +39,5 @@ spec:
               type: DirectoryOrCreate
           - name: backup
             nfs:
-              server: {{nfs_server}}
+              server: {{ nfs_server }}
               path: "/zpool-126262/K8SBACKUP"

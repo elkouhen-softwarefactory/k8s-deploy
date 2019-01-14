@@ -5,4 +5,4 @@
   become: yes
 
 - include: config.yml
-  with_items: "{{nfs_mounts}}"
+  with_items: "{{ nfs_mounts }}"

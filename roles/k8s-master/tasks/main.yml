@@ -47,7 +47,7 @@
   become_user: root
 
 - name: Execute kubeadm init (reuse old /etc/kubernetes/pki)
-  command: kubeadm init {{kubeadm.init.options | default('')}} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
+  command: kubeadm init {{ kubeadm.init.options | default('') }} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
   register: kubeadm_init_message_exists
   become: yes
   become_user: root
@@ -55,13 +55,13 @@
 
 - name: "Create join master fact"
   set_fact:
-    join_master: "{{kubeadm_init_message_exists.stdout_lines[-1]}}"
+    join_master: "{{ kubeadm_init_message_exists.stdout_lines[-1] }}"
   become: yes
   become_user: root
   when: pki_status.stat.exists == True
 
 - name: Execute kubeadm init
-  command: kubeadm init {{kubeadm.init.options | default('')}}
+  command: kubeadm init {{ kubeadm.init.options | default('') }}
   register: kubeadm_init_message_not_exists
   become: yes
   become_user: root
@@ -69,7 +69,7 @@
 
 - name: "Create join master fact"
   set_fact:
-    join_master: "{{kubeadm_init_message_not_exists.stdout_lines[-1]}}"
+    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-1] }}"
   become: yes
   become_user: root
   when: pki_status.stat.exists == False
@@ -89,6 +89,6 @@
   become_user: root
 
 - name: Create K8s network
-  command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{k8_version.stdout_lines[0]}}
+  command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{ k8_version.stdout_lines[0] }}
   become: yes
   become_user: root

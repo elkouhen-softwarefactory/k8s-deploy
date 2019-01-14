@@ -5,8 +5,8 @@
 
 - name: Copy Resources
   template:
-    src: "templates/{{item}}"
-    dest: "/tmp/{{item}}"
+    src: "templates/{{ item }}"
+    dest: "/tmp/{{ item }}"
   with_items:
   - service.j2
   - patch.yml

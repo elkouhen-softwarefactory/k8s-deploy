@@ -7,7 +7,7 @@
   k8s:
     state: present
     src: /tmp/issuer.yaml
-    namespace: "{{namespace_item}}"
+    namespace: "{{ namespace_item }}"
   become: yes
   become_user: root
 
@@ -20,6 +20,6 @@
   k8s:
     state: present
     src: /tmp/certificate.yaml
-    namespace: "{{namespace_item}}"
+    namespace: "{{ namespace_item }}"
   become: yes
   become_user: root

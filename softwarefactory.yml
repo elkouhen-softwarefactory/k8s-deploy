@@ -34,15 +34,3 @@
 - hosts: monitoring
   roles:
     - { role: k8s-dashboard,          tags: [kubernetes, k8s-dashboard] }
-
-- hosts: upgrade
-  roles:
-    - { role: util-upgrade,      tags: upgrade }
-
-- hosts: ping
-  roles:
-    - { role: util-ping,         tags: ping }
-
-- hosts: reboot
-  roles:
-    - { role: util-reboot,       tags: reboot }
