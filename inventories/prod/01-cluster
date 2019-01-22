@@ -2,6 +2,9 @@
 kubernetes-master
 kubernetes-slave
 
+[kubernetes-controlplane-lb]
+vps242565.ovh.net
+
 [kubernetes-master]
 vps242131.ovh.net
 
@@ -9,7 +12,6 @@ vps242131.ovh.net
 vps242130.ovh.net
 vps257315.ovh.net
 vps267694.ovh.net
-vps242565.ovh.net
 vps267690.ovh.net
 vps242564.ovh.net
 
@@ -17,7 +19,7 @@ vps242564.ovh.net
 vps242131.ovh.net
 
 [all:vars]
-public_ip=149.202.62.97
+public_ip=51.254.143.43
 
 [targets]
 vps242564.ovh.net ansible_user=root

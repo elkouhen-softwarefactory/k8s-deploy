@@ -47,8 +47,15 @@
   become: yes
   become_user: root
 
+- name: Create kubadm-config
+  template:
+    src: kubeadm-config.j2
+    dest: /tmp/kubeadm-config.yaml
+  become: yes
+  become_user: root
+
 - name: Execute kubeadm init (reuse old /etc/kubernetes/pki)
-  command: kubeadm init {{ kubeadm.init.options | default('') }} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
+  command: kubeadm init {{ kubeadm.init.options | default('') }} --config=/tmp/kubeadm-config.yaml --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
   register: kubeadm_init_message_exists
   become: yes
   become_user: root
@@ -62,7 +69,7 @@
   when: pki_status.stat.exists
 
 - name: Execute kubeadm init
-  command: kubeadm init {{ kubeadm.init.options | default('') }}
+  command: kubeadm init {{ kubeadm.init.options | default('') }} --config=/tmp/kubeadm-config.yaml
   register: kubeadm_init_message_not_exists
   become: yes
   become_user: root

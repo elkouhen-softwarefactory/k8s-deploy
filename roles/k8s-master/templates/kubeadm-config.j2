@@ -1,0 +1,7 @@
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: stable
+apiServer:
+  certSANs:
+    - "{{groups['kubernetes-controlplane-lb'][0]}}"
+controlPlaneEndpoint: "{{groups['kubernetes-controlplane-lb'][0]}}:6443"

@@ -11,7 +11,14 @@
     - { role: docker,                 tags: [kubernetes-core, docker]}
     - { role: k8s,                    tags: [kubernetes-core, k8s] }
 
+- hosts: kubernetes-controlplane-lb
+  roles:
+    - { role: k8s-controlplane-lb,    tags: [kubernetes-controlplane-lb, haproxy] }
+
 - hosts: kubernetes-master
+  serial:
+    - 1
+    - 5
   roles:
     - { role: k8s-master,             tags: [kubernetes-master, k8s-master] }
     - { role: k8s-backup,             tags: [kubernetes-master, k8s-backup], when: nfs_server is defined}

@@ -1,41 +1,4 @@
-- name: Ensure pip is installed
-  yum:
-    name: python-pip
-    state: present
-    update_cache: True
-  become: yes
-  become_user: root
-
-- name: "Install pip"
-  pip:
-    name: pip
-    version: 9.0.3
-  become: yes
-  become_user: root
-
-- name: "Install setuptools"
-  pip:
-    name: setuptools
-    version: 40.6.3
-  become: yes
-  become_user: root
-
-- name: "Install openshift"
-  pip:
-    name: openshift
-    version: latest
-  become: yes
-  become_user: root
-
-- name: Ensure rsync is installed
-  yum:
-    name: rsync
-    state: present
-    update_cache: True
-  become: yes
-  become_user: root
-
-- name: Ensure a list of packages are installed
+- name: "Ensure Packages are installed"
   yum:
     name: "{{ packages }}"
     state: present
@@ -43,7 +6,19 @@
     validate_certs: false
   vars:
     packages:
+      - python-pip
+      - rsync
       - ipvsadm
       - yum-utils
+      - nc
+  become: yes
+  become_user: root
+
+- name: "Install pip packages"
+  pip:
+    name:
+      - pip==9.0.3
+      - setuptools==40.6.3
+      - openshift
   become: yes
   become_user: root
