@@ -16,12 +16,13 @@
     - { role: k8s-controlplane-lb,    tags: [kubernetes-controlplane-lb, haproxy] }
 
 - hosts: kubernetes-master
-  serial:
-    - 1
-    - 5
   roles:
     - { role: k8s-master,             tags: [kubernetes-master, k8s-master] }
     - { role: k8s-backup,             tags: [kubernetes-master, k8s-backup], when: nfs_server is defined}
+
+- hosts: kubernetes-master-sec
+  roles:
+    - { role: k8s-master-sec,  tags: [kubernetes-master, k8s-master-sec] }
 
 - hosts: kubernetes-slave
   roles:

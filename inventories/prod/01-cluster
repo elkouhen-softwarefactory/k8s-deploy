@@ -1,5 +1,6 @@
 [kubernetes:children]
 kubernetes-master
+kubernetes-master-sec
 kubernetes-slave
 
 [kubernetes-controlplane-lb]
@@ -8,12 +9,14 @@ vps242565.ovh.net
 [kubernetes-master]
 vps242131.ovh.net
 
+[kubernetes-master-sec]
+vps242564.ovh.net
+vps267694.ovh.net
+
 [kubernetes-slave]
 vps242130.ovh.net
 vps257315.ovh.net
-vps267694.ovh.net
 vps267690.ovh.net
-vps242564.ovh.net
 
 [ingress]
 vps242131.ovh.net

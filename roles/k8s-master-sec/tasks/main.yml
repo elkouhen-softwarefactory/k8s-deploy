@@ -1,0 +1,36 @@
+- name: Create folder /var/lib/etcd
+  file:
+    path: /etc/kubernetes/pki/etcd
+    state: directory
+  become: yes
+  become_user: root
+
+- name: Copy Resources
+  copy:
+    src: "{{ item.file }}"
+    dest: "{{ item.dest_folder }}"
+    remote_src: true
+  with_items:
+    - { file: /mnt/backup/pki/ca.crt, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/ca.key, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/sa.key, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/front-proxy-ca.crt, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/sa.pub, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/front-proxy-ca.key, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/etcd/ca.crt, dest_folder: /etc/kubernetes/pki/etcd/ }
+    - { file: /mnt/backup/pki/etcd/ca.key, dest_folder: /etc/kubernetes/pki/etcd }
+    - { file: /mnt/backup/admin.conf, dest_folder: /etc/kubernetes }
+  become: yes
+  become_user: root
+
+- name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }} --experimental-control-plane"
+  become: yes
+  become_user: root
+  when: kubeadm.init.options is defined
+
+- name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] }} --experimental-control-plane"
+  become: yes
+  become_user: root
+  when: kubeadm.init.options is not defined

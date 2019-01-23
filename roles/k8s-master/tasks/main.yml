@@ -24,14 +24,30 @@
     path: /etc/kubernetes/pki
     state: absent
 
-- name: Copy /mnt/backup/pki to /etc/kubernetes
-  synchronize:
-    src: /mnt/backup/pki/
-    dest: /etc/kubernetes/
-  delegate_to: "{{ inventory_hostname }}"
+- name: Create folder /var/lib/etcd
+  file:
+    path: /etc/kubernetes/pki/etcd
+    state: directory
   become: yes
   become_user: root
+
+- name: Copy Resources
+  copy:
+    src: "{{ item.file }}"
+    dest: "{{ item.dest_folder }}"
+    remote_src: true
+  with_items:
+    - { file: /mnt/backup/pki/ca.crt, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/ca.key, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/sa.key, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/front-proxy-ca.crt, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/sa.pub, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/front-proxy-ca.key, dest_folder: /etc/kubernetes/pki }
+    - { file: /mnt/backup/pki/etcd/ca.crt, dest_folder: /etc/kubernetes/pki/etcd }
+    - { file: /mnt/backup/pki/etcd/ca.key, dest_folder: /etc/kubernetes/pki/etcd }
   when: pki_status.stat.exists
+  become: yes
+  become_user: root
 
 - name: Delete .kube folder
   file:

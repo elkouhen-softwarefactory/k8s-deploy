@@ -1,7 +1,25 @@
 - name: Create /mnt/backup/pki/ folder
   file:
-    path: /mnt/backup/pki/
+    path: /mnt/backup/pki/etcd
     state: directory
+  become: yes
+  become_user: root
+
+- name: Copy Resources
+  copy:
+    src: "{{ item.file }}"
+    dest: "{{ item.dest_folder }}"
+    remote_src: true
+  with_items:
+    - { file: /etc/kubernetes/pki/ca.crt, dest_folder: /mnt/backup/pki }
+    - { file: /etc/kubernetes/pki/ca.key, dest_folder: /mnt/backup/pki }
+    - { file: /etc/kubernetes/pki/sa.key, dest_folder: /mnt/backup/pki }
+    - { file: /etc/kubernetes/pki/front-proxy-ca.crt, dest_folder: /mnt/backup/pki }
+    - { file: /etc/kubernetes/pki/sa.pub, dest_folder: /mnt/backup/pki }
+    - { file: /etc/kubernetes/pki/front-proxy-ca.key, dest_folder: /mnt/backup/pki }
+    - { file: /etc/kubernetes/pki/etcd/ca.crt, dest_folder: /mnt/backup/pki/etcd }
+    - { file: /etc/kubernetes/pki/etcd/ca.key, dest_folder: /mnt/backup/pki/etcd }
+    - { file: /etc/kubernetes/admin.conf, dest_folder: /mnt/backup }
   become: yes
   become_user: root
 
