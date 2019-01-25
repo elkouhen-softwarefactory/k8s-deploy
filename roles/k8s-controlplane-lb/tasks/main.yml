@@ -1,0 +1,23 @@
+- name: Ensure haproxy is installed
+  yum:
+    name: haproxy
+    state: present
+    update_cache: True
+  become: yes
+  become_user: root
+
+- name: Generate HaProxy Config
+  template:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+  become: yes
+  become_user: root
+
+- name: Start Docker Service
+  systemd:
+    name: haproxy
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  become: yes
+  become_user: root
