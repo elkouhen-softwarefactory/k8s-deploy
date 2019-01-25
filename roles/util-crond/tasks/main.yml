@@ -1,4 +1,4 @@
-- name: Ensure a list of packages are installed
+- name: "Ensure a list of packages are installed"
   yum:
     name: "{{ packages }}"
     state: present
@@ -9,7 +9,7 @@
   become: yes
   become_user: root
 
-- name: Copy Alert Resources
+- name: "Copy Alert Resources"
   template:
     src: alert_df.j2
     dest: /etc/cron.daily/alert_df
@@ -17,7 +17,7 @@
   become: yes
   become_user: root
 
-- name: Copy Message Resources
+- name: "Copy Message Resources"
   template:
     src: del_messages.j2
     dest: /etc/cron.daily/del_messages
@@ -25,7 +25,7 @@
   become: yes
   become_user: root
 
-- name: Copy Secure Resources
+- name: "Copy Secure Resources"
   template:
     src: del_secure.j2
     dest: /etc/cron.daily/del_secure

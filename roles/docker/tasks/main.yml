@@ -1,4 +1,4 @@
-- name: Create folder /etc/docker
+- name: "Create folder /etc/docker"
   file:
     path: /etc/docker
     state: directory
@@ -14,12 +14,13 @@
   become: yes
   become_user: root
 
-- name: Add Docker Repo
+# TODO
+- name: "Add Docker Repo"
   command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   become: yes
   become_user: root
 
-- name: Ensure a list of packages installed
+- name: "Ensure a list of packages installed"
   yum:
     name: "{{ packages }}"
     state: present
@@ -27,20 +28,20 @@
     validate_certs: false
   vars:
     packages:
-    - docker-ce
-    - device-mapper-persistent-data
-    - lvm2
+      - docker-ce
+      - device-mapper-persistent-data
+      - lvm2
   become: yes
   become_user: root
 
-- name: Create Groupe Docker
+- name: "Create Groupe Docker"
   group:
     name: docker
     state: present
   become: yes
   become_user: root
 
-- name: Configure Daemon.json
+- name: "Configure Daemon.json"
   template:
     src: templates/daemon.json
     dest: /etc/docker/daemon.json
@@ -48,7 +49,7 @@
   become_user: root
   when: registry is defined
 
-- name: Configure Docker Service
+- name: "Configure Docker Service"
   template:
     src: templates/etc_sysconfig_docker
     dest: /etc/sysconfig/docker
@@ -56,7 +57,18 @@
   become_user: root
   when: registry is defined
 
-- name: Start Docker Service
+- name: "Install logrotate"
+  yum:
+    name: logrotate
+    state: present
+
+- name: "Copy logrotate conf file"
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/docker
+  become: true
+
+- name: "Start Docker Service"
   systemd:
     name: docker
     state: restarted

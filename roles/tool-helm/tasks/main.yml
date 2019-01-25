@@ -5,7 +5,7 @@
   become: yes
   become_user: root
 
-- name: Download helm
+- name: "Download helm"
   get_url:
     url: https://storage.googleapis.com/kubernetes-helm/helm-v2.12.1-linux-amd64.tar.gz
     dest: /root
@@ -13,7 +13,7 @@
   become_user: root
   when: not helm_status.stat.exists
 
-- name: Extract helm-v2.12.1-linux-amd64.tar.gz into /root
+- name: "Extract helm-v2.12.1-linux-amd64.tar.gz into /root"
   unarchive:
     src: /root/helm-v2.12.1-linux-amd64.tar.gz
     dest: /root
@@ -21,28 +21,28 @@
   become: yes
   become_user: root
 
-- name: Create cluster role binding for cluster-admin namespace default
+- name: "Create cluster role binding for cluster-admin namespace default"
   k8s_raw:
     state: present
     definition: "{{ lookup('file', 'cluster-role-binding-admin.yaml') }}"
 
-- name: Create cluster role binding for cluster-admin namespace helm
+- name: "Create cluster role binding for cluster-admin namespace helm"
   k8s_raw:
     state: present
     definition: "{{ lookup('file', 'cluster-role-binding-helm.yaml') }}"
 
-- name: Execute helm reset
+- name: "Execute helm reset"
   command: helm reset
   become: yes
   become_user: root
   ignore_errors: True
 
-- name: Execute helm init
+- name: "Execute helm init"
   shell: /root/linux-amd64/helm init
   become: yes
   become_user: root
 
-- name: Execute helm init
+- name: "Execute helm init"
   shell: /root/linux-amd64/helm list
   become: yes
   become_user: root

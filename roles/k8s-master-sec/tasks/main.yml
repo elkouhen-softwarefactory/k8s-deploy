@@ -1,11 +1,11 @@
-- name: Create folder /var/lib/etcd
+- name: "Create folder /etc/kubernetes/pki/etcd"
   file:
     path: /etc/kubernetes/pki/etcd
     state: directory
   become: yes
   become_user: root
 
-- name: Copy Resources
+- name: "Copy Resources"
   copy:
     src: "{{ item.file }}"
     dest: "{{ item.dest_folder }}"

@@ -1,4 +1,4 @@
-- name: Create scripts folder
+- name: "Create scripts folder"
   file:
     path: ~/scripts
     state: directory
@@ -19,19 +19,19 @@
   become: yes
   become_user: root
 
-- name: Remove folder /var/lib/etcd
+- name: "Remove folder /etc/kubernetes/pki"
   file:
     path: /etc/kubernetes/pki
     state: absent
 
-- name: Create folder /var/lib/etcd
+- name: "Create folder /etc/kubernetes/pki"
   file:
     path: /etc/kubernetes/pki/etcd
     state: directory
   become: yes
   become_user: root
 
-- name: Copy Resources
+- name: "Copy Resources"
   copy:
     src: "{{ item.file }}"
     dest: "{{ item.dest_folder }}"
@@ -49,29 +49,33 @@
   become: yes
   become_user: root
 
-- name: Delete .kube folder
-  file:
-    path: ~/.kube
-    state: absent
-  become: yes
-  become_user: root
-
-- name: Create .kube folder
+- name: "Create .kube folder"
   file:
     path: ~/.kube
     state: directory
   become: yes
   become_user: root
 
-- name: Create kubadm-config
+- name: "Create kubadm-config"
   template:
     src: kubeadm-config.j2
     dest: /tmp/kubeadm-config.yaml
   become: yes
   become_user: root
+  when: groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0)
 
-- name: Execute kubeadm init (reuse old /etc/kubernetes/pki)
-  command: kubeadm init {{ kubeadm.init.options | default('') }} --config=/tmp/kubeadm-config.yaml --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
+- name: "Create Config kubeadm"
+  set_fact: 
+    options: --config=/tmp/kubeadm-config.yaml
+  when: groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0)
+
+- name: "Do not create Config kubeadm"
+  set_fact: 
+    options: 
+  when: not (groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0))
+
+- name: "Execute kubeadm init (reuse old /etc/kubernetes/pki)"
+  command: kubeadm init {{ kubeadm.init.options | default('') }} {{options}} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
   register: kubeadm_init_message_exists
   become: yes
   become_user: root
@@ -84,7 +88,7 @@
   become_user: root
   when: pki_status.stat.exists
 
-- name: Execute kubeadm init
+- name: "Execute kubeadm init"
   command: kubeadm init {{ kubeadm.init.options | default('') }} --config=/tmp/kubeadm-config.yaml
   register: kubeadm_init_message_not_exists
   become: yes
@@ -98,7 +102,7 @@
   become_user: root
   when: not pki_status.stat.exists
 
-- name: Copy admin.conf
+- name: "Copy admin.conf"
   copy:
     src: /etc/kubernetes/admin.conf
     dest: ~/.kube/config
@@ -106,13 +110,13 @@
   become: yes
   become_user: root
 
-- name: Get K8s version
+- name: "Get K8s version"
   shell: kubectl version | base64 | tr -d '\n'
   register: k8_version
   become: yes
   become_user: root
 
-- name: Create K8s network
+- name: "Create K8s network"
   command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{ k8_version.stdout_lines[0] }}
   become: yes
   become_user: root

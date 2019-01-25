@@ -31,7 +31,7 @@
   become: yes
   become_user: root
 
-- name: Create Backup
+- name: Create Backup Cron
   k8s_raw:
     state: present
     definition:  "{{ lookup('template', 'backup.j2') }}"

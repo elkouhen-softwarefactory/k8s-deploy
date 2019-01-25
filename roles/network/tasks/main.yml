@@ -1,4 +1,4 @@
-- name: Updatesysctl variable net.bridge.bridge-nf-call-ip6tables
+- name: "Updatesysctl variable net.bridge.bridge-nf-call-ip6tables"
   sysctl:
     name: net.bridge.bridge-nf-call-ip6tables
     value: 1
@@ -6,7 +6,7 @@
   become: yes
   become_user: root
 
-- name: Updatesysctl variable net.bridge.bridge-nf-call-iptables
+- name: "Updatesysctl variable net.bridge.bridge-nf-call-iptables"
   sysctl:
     name: net.bridge.bridge-nf-call-iptables
     value: 1
@@ -14,7 +14,7 @@
   become: yes
   become_user: root
 
-- name: Disable firewalld
+- name: "Disable firewalld"
   systemd:
     name: firewalld
     enabled: no
@@ -22,12 +22,12 @@
   become: yes
   become_user: root
 
-- name: clear iptables
+- name: "Clear iptables"
   shell: iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
   become: yes
   become_user: root
 
-- name: clear iptables
+- name: "Clear ipvsadm"
   command: ipvsadm --clear
   become: yes
   become_user: root

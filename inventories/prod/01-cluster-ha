@@ -22,7 +22,7 @@ vps267690.ovh.net
 vps242131.ovh.net
 
 [all:vars]
-public_ip=51.254.143.43
+public_ip=149.202.62.219
 
 [targets]
 vps242564.ovh.net ansible_user=root

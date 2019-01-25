@@ -1,14 +1,7 @@
-- name: Mandatory Command
+- name: "Mandatory Command"
   command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
   become: yes
   become_user: root
-
-- name: Copy Resources
-  template:
-    src: "templates/{{ item }}"
-    dest: "/tmp/{{ item }}"
-  with_items:
-  - patch.yml
 
 - name: Create Service
   k8s_raw:
@@ -17,12 +10,12 @@
   become: yes
   become_user: root
 
-- name: Create Patch Fact
-  set_fact:
-    patch:
-      data:
-        "proxy-body-size": "100m"
-        "proxy-buffering": "on"
+- name: "Copy Resources"
+  template:
+    src: "templates/patch.yml"
+    dest: "/tmp/patch.yml"
+  with_items:
+    -
 
 - name: Patch ConfigMap
   shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
