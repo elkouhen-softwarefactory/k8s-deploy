@@ -89,7 +89,7 @@
   when: pki_status.stat.exists
 
 - name: "Execute kubeadm init"
-  command: kubeadm init {{ kubeadm.init.options | default('') }} --config=/tmp/kubeadm-config.yaml
+  command: kubeadm init {{ kubeadm.init.options | default('') }} {{options}}
   register: kubeadm_init_message_not_exists
   become: yes
   become_user: root

@@ -4,6 +4,14 @@
     state: directory
   become: yes
 
+- name: "Unmount folder"
+  mount:
+    src: "{{ item.remote }}"
+    path: "{{ item.local }}"
+    state: unmounted
+    fstype: nfs
+  become: yes
+
 - name: "Mount folder"
   mount:
     src: "{{ item.remote }}"

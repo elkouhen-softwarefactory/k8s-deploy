@@ -1,4 +1,4 @@
 - name: Create Docker Secret
   include_tasks: create-docker-secret.yml
-  with_items: "{{ docker_secrets }}"
+  with_items: "{{ docker_registry_secrets }}"
 

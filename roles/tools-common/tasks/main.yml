@@ -14,11 +14,23 @@
   become: yes
   become_user: root
 
-- name: "Install pip packages"
+- name: "Install pip"
   pip:
-    name:
-      - pip==9.0.3
-      - setuptools==40.6.3
-      - openshift
+    name: pip
+    version: 9.0.3
+  become: yes
+  become_user: root
+
+- name: "Install setuptools"
+  pip:
+    name: setuptools
+    version: 40.6.3
+  become: yes
+  become_user: root
+
+- name: "Install openshift"
+  pip:
+    name: openshift
+    version: latest
   become: yes
   become_user: root

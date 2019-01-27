@@ -5,15 +5,14 @@
     - { role: tools-common,           tags: [kubernetes-core, tools-common] }
     - { role: util-crond,             tags: [kubernetes-core, crond] }
     - { role: config-authorized-keys, tags: [kubernetes-core, authorized-keys] }
-    - { role: tool-logrotate,         tags: [kubernetes-core, logrotate ] }
-    - { role: storage-client-nfs,     tags: [kubernetes-core, nfs], when: nfs_server is defined }
+    - { role: storage-mount-nfs,      tags: [kubernetes-core, nfs], when: nfs_server is defined }
     - { role: network,                tags: [kubernetes-core, network] }
     - { role: docker,                 tags: [kubernetes-core, docker]}
     - { role: k8s,                    tags: [kubernetes-core, k8s] }
 
 - hosts: kubernetes-controlplane-lb
   roles:
-    - { role: k8s-controlplane-lb,    tags: [kubernetes-controlplane-lb, haproxy] }
+    - { role: k8s-controlplane-lb,    tags: [kubernetes-master, k8s-controlplane-lb] }
 
 - hosts: kubernetes-master
   roles:
@@ -22,7 +21,7 @@
 
 - hosts: kubernetes-master-sec
   roles:
-    - { role: k8s-master-sec,  tags: [kubernetes-master, k8s-master-sec] }
+    - { role: k8s-master-sec,         tags: [kubernetes-master, k8s-master-sec] }
 
 - hosts: kubernetes-slave
   roles:
@@ -33,9 +32,6 @@
     - { role: tool-helm,              tags: [kubernetes-master, tool-helm] }
     - { role: k8s-namespace,          tags: [kubernetes-master, k8s-namespace] }
     - { role: app-secrets,            tags: [kubernetes-master, app-secrets] }
-
-- hosts: ingress
-  roles:
     - { role: k8s-cert-manager,       tags: [kubernetes-conf, k8s-cert-manager] }
     - { role: k8s-ingress-nginx,      tags: [kubernetes-conf, k8s-ingress-nginx] }
 

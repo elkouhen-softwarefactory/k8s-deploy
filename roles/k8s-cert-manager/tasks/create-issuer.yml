@@ -1,7 +1,14 @@
+- name: "Copy Issuer"
+  template:
+    src: issuer.yaml
+    dest: /tmp/issuer.yaml
+  become: yes
+  become_user: root
+
 - name: Create Issuer
   k8s_raw:
     state: present
-    definition: "{{ lookup('template', 'issuer.yaml') }}"
+    src: "/tmp/issuer.yaml"
     namespace: "{{ namespace_item }}"
   become: yes
   become_user: root
