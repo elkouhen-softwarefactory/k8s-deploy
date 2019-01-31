@@ -23,6 +23,8 @@
   file:
     path: /etc/kubernetes/pki
     state: absent
+  become: yes
+  become_user: root
 
 - name: "Create folder /etc/kubernetes/pki"
   file:

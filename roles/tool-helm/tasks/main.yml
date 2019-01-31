@@ -25,11 +25,15 @@
   k8s_raw:
     state: present
     definition: "{{ lookup('file', 'cluster-role-binding-admin.yaml') }}"
+  become: yes
+  become_user: root
 
 - name: "Create cluster role binding for cluster-admin namespace helm"
   k8s_raw:
     state: present
     definition: "{{ lookup('file', 'cluster-role-binding-helm.yaml') }}"
+  become: yes
+  become_user: root
 
 - name: "Execute helm reset"
   command: helm reset
@@ -42,7 +46,7 @@
   become: yes
   become_user: root
 
-- name: "Execute helm init"
+- name: "Check helm list"
   shell: /root/linux-amd64/helm list
   become: yes
   become_user: root

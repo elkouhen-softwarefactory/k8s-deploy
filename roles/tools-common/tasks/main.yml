@@ -1,3 +1,12 @@
+- name: Add repository
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    gpgcheck: no
+  become: yes
+  become_user: root
+
 - name: "Ensure Packages are installed"
   yum:
     name: "{{ packages }}"
@@ -11,6 +20,8 @@
       - ipvsadm
       - yum-utils
       - nc
+      - net-tools 
+      - iptables-services      
   become: yes
   become_user: root
 

@@ -14,6 +14,7 @@ nfs_mounts:
   - { remote: "{{nfs_server}}:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
   - { remote: "{{nfs_server}}:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
   - { remote: "{{nfs_server}}:/zpool-126262/WWWSONARQUBE", local: /mnt/sonarqube}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWPG",        local: /mnt/postgresql}
   - { remote: "{{nfs_server}}:/zpool-126262/K8SBACKUP",    local: /mnt/backup}
 
 #  --apiserver-advertise-address 0.0.0.0 --pod-network-cidr=10.32.0.0/12

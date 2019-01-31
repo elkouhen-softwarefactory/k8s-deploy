@@ -32,8 +32,8 @@
     - { role: tool-helm,              tags: [kubernetes-master, tool-helm] }
     - { role: k8s-namespace,          tags: [kubernetes-master, k8s-namespace] }
     - { role: app-secrets,            tags: [kubernetes-master, app-secrets] }
-    - { role: k8s-cert-manager,       tags: [kubernetes-conf, k8s-cert-manager] }
-    - { role: k8s-ingress-nginx,      tags: [kubernetes-conf, k8s-ingress-nginx] }
+    - { role: k8s-cert-manager,       tags: [kubernetes-conf, k8s-cert-manager], when: public_ip is defined }
+    - { role: k8s-ingress-nginx,      tags: [kubernetes-conf, k8s-ingress-nginx], when: public_ip is defined }
 
 - hosts: monitoring
   roles:

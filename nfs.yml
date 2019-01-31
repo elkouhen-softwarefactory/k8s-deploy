@@ -1,0 +1,8 @@
+---
+
+- hosts: nfs
+  roles:
+    - { role: tools-common,           tags: [kubernetes-core, tools-common] }
+    - { role: util-crond,             tags: [kubernetes-core, crond] }
+    - { role: config-authorized-keys, tags: [kubernetes-core, authorized-keys] }
+    - { role: storage-mount-nfs,      tags: [kubernetes-core, nfs], when: nfs_server is defined }

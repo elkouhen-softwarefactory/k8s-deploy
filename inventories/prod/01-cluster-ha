@@ -18,9 +18,6 @@ vps242130.ovh.net
 vps257315.ovh.net
 vps267690.ovh.net
 
-[ingress]
-vps242131.ovh.net
-
 [all:vars]
 public_ip=149.202.62.219
 

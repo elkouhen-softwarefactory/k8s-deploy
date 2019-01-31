@@ -6,4 +6,6 @@ acme: https://acme-staging-v02.api.letsencrypt.org/directory
 
 kubeadm:
   init:
-    options: --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
+    options: --ignore-preflight-errors=NumCPU
+
+# --apiserver-advertise-address 10.0.0.2 --pod-network-cidr=10.32.0.0/12
