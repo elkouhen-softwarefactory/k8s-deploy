@@ -3,11 +3,9 @@ kubernetes-master
 kubernetes-slave
 
 [kubernetes-master]
-vps242131.ovh.net
+
 
 [kubernetes-slave]
-vps242130.ovh.net
-vps257315.ovh.net
 vps568063.ovh.net
 
 [kubernetes-controlplane-lb]

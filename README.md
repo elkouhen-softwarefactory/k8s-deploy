@@ -98,12 +98,3 @@ tls.key:  1679 bytes
 ansible-playbook -vv softwarefactory.yml -i inventories/prod/06-softwarefactory
 ```
 
-## Liste des Machines
-
-* vps242131 20 Go (master kubernetes)
-* vps242565 10 Go
-* vps267690 10 Go
-* vps242130 40 Go
-* vps257315 40 Go
-* vps242564 10 Go
-* vps267694 10 Go
