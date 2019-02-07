@@ -9,16 +9,12 @@ nfs_server: 10.16.103.9
 
 nfs_mounts:
   - { remote: "{{nfs_server}}:/zpool-126262/WWWJENKINS",   local: /mnt/jenkins}
-  - { remote: "{{nfs_server}}:/zpool-126262/WWWLOGSTASH",  local: /mnt/logstash}
-  - { remote: "{{nfs_server}}:/zpool-126262/WWWGRAV",      local: /mnt/grav}
   - { remote: "{{nfs_server}}:/zpool-126262/WWWNEXUS",     local: /mnt/nexus}
-  - { remote: "{{nfs_server}}:/zpool-126262/WWWKEYCLOAK",  local: /mnt/keycloak}
   - { remote: "{{nfs_server}}:/zpool-126262/WWWSONARQUBE", local: /mnt/sonarqube}
-  - { remote: "{{nfs_server}}:/zpool-126262/WWWPG",        local: /mnt/postgresql}
+  - { remote: "{{nfs_server}}:/zpool-126262/WWWELASTICSEARCH",  local: /mnt/elasticsearch}
   - { remote: "{{nfs_server}}:/zpool-126262/K8SBACKUP",    local: /mnt/backup}
-
-#  --apiserver-advertise-address 0.0.0.0 --pod-network-cidr=10.32.0.0/12
+  - { remote: "{{nfs_server}}:/zpool-126262/K8SNFS",       local: /mnt/nfs_provisioner}
 
 kubeadm:
   init:
-    options: --ignore-preflight-errors=NumCPU
+    options:

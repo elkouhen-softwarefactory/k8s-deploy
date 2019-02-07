@@ -1,8 +1,16 @@
+- name: "Status folder {{ item.local }}"
+  stat:
+    path:  "{{ item.local }}"
+  register: folder_status
+  become: yes
+  become_user: root
+
 - name: "Create local Mount Folder"
   file:
     path: "{{ item.local }}"
     state: directory
   become: yes
+  when: not (folder_status.stat.exists)
 
 - name: "Unmount folder"
   mount:
