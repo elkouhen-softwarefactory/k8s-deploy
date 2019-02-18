@@ -1,0 +1,12 @@
+- name: "Helm List"
+  command: /root/linux-amd64/helm list
+  become: yes
+  become_user: root
+  register: helm_list
+  changed_when: False
+
+- name: "Install Cert Manager"
+  command: /root/linux-amd64/helm install --name nfs-provisioner --set nfs.server=10.16.103.9 --set nfs.path=/zpool-126262/K8SNFS stable/nfs-client-provisioner
+  become: yes
+  become_user: root
+  when: "'nfs-provisioner' not in helm_list.stdout"

@@ -3,7 +3,7 @@ kubernetes-master
 kubernetes-slave
 
 [kubernetes-master]
-
+vps568063.ovh.net
 
 [kubernetes-slave]
 vps568063.ovh.net
@@ -15,8 +15,8 @@ vps568065.ovh.net
 public_ip=149.202.62.219
 
 [targets]
-vps242130.ovh.net ansible_user=root
-vps242131.ovh.net ansible_user=root
-vps257315.ovh.net ansible_user=root
 vps568063.ovh.net ansible_user=root
 vps568065.ovh.net ansible_user=root
+vps643172.ovh.net ansible_user=root
+vps646316.ovh.net ansible_user=root
+vps646317.ovh.net ansible_user=root
