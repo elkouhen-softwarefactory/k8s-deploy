@@ -21,6 +21,15 @@
   become: yes
   become_user: root
 
+- name: Copy /root/linux-amd64/helm to /usr/local/bin
+  copy:
+    src: /root/linux-amd64/helm
+    dest: /usr/local/bin/helm
+    owner: root
+    mode: 0644
+  become: yes
+  become_user: root
+
 - name: "Create cluster role binding for cluster-admin namespace default"
   k8s_raw:
     state: present
@@ -42,12 +51,12 @@
   ignore_errors: True
 
 - name: "Execute helm init"
-  shell: /root/linux-amd64/helm init
+  shell: helm init
   become: yes
   become_user: root
 
 - name: "Check helm list"
-  shell: /root/linux-amd64/helm list
+  shell: helm list
   become: yes
   become_user: root
   register: result
