@@ -34,8 +34,4 @@
     - { role: app-secrets,            tags: [kubernetes-master, app-secrets] }
     - { role: k8s-cert-manager,       tags: [kubernetes-conf,   k8s-cert-manager], when: public_ip is defined }
     - { role: k8s-ingress-nginx,      tags: [kubernetes-conf,   k8s-ingress-nginx], when: public_ip is defined }
-    - { role: k8s-nfs-provisioner,    tags: [kubernetes-conf,   k8s-nfs-provisioner] }
-
-- hosts: monitoring
-  roles:
-    - { role: k8s-dashboard,          tags: [kubernetes, k8s-dashboard] }
+    - { role: k8s-nfs-provisioner,    tags: [kubernetes-conf,   k8s-nfs-provisioner], when: nfs_server is defined }
