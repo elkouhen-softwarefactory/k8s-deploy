@@ -36,65 +36,19 @@ vps267690.ovh.net   Ready     <none>    13h       v1.11.0
 vps267694.ovh.net   Ready     <none>    13h       v1.11.0
 ```
 
-###  Installation de Helm
+### Dashboard 
 
+Exécution d'un proxy vers l'API Kubernetes API
 ```bash
-ansible-playbook -vv softwarefactory.yml -i inventories/prod/02-helm
+kubectl proxy
 ```
 
-Attendre la fin de l'installation de Helm
-
-=> L'exécution de 'helm list' ne termine pas en erreur
-
+URL du dashboard
 ```bash
-[root@vps242131 ~]#helm list
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 ```
 
-###  Installation de Ingress
-
+Token de connexion
 ```bash
-ansible-playbook -vv softwarefactory.yml -i inventories/prod/03-ingress
-```
-
-### Installation du manager de certificats 
-
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 ```bash
-ansible-playbook -vv softwarefactory.yml -i inventories/prod/04-cert
-```
-
-Vérifier la création des certificats 
-
-```bash
-[root@vps242131 ~]# kubectl describe certificate certificate
-BLA BLA BLA
-    Message:               Certificate issued successfully
-BLA BLA BLA    
-
-```
-
-Vérifier la création du secret contenant le certificat créé
-
-```bash
-[root@vps242131 ~]# kubectl describe secret certificate
-Name:         certificate
-Namespace:    default
-Labels:       <none>
-Annotations:  certmanager.k8s.io/alt-names=jenkins.k8.wildwidewest.xyz,nexus.k8.wildwidewest.xyz
-              certmanager.k8s.io/common-name=jenkins.k8.wildwidewest.xyz
-              certmanager.k8s.io/issuer-kind=ClusterIssuer
-              certmanager.k8s.io/issuer-name=letsencrypt-issuer
-
-Type:  kubernetes.io/tls
-
-Data
-====
-tls.crt:  3862 bytes
-tls.key:  1679 bytes
-```
-
-### Installation des services de l'usine
-
-```bash
-ansible-playbook -vv softwarefactory.yml -i inventories/prod/06-softwarefactory
-```
-
