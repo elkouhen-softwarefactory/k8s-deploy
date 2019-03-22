@@ -3,7 +3,7 @@ kubernetes-master
 kubernetes-slave
 
 [kubernetes-master]
-@tag_Name_master
+tag_Name_master
 
 [kubernetes-slave]
-@tag_Name_node
+tag_Name_node
