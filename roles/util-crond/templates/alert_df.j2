@@ -2,7 +2,7 @@
 
 percentage=`df -t ext4 | sed 1d | awk '{print $5}' | tr '%' ' ' |  awk '{print $1}' `
 
-if [ $percentage \> 50 ];
+if [ $percentage \> 80 ];
 then
 	echo "disque plein" | mail -s "disque plein" mehdi.elkouhen@gmail.com
 fi;
