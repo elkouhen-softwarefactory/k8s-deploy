@@ -1,3 +1,7 @@
+[tag_Name_master]
+
+[tag_Name_node]
+
 [kubernetes:children]
 kubernetes-master
 kubernetes-slave
