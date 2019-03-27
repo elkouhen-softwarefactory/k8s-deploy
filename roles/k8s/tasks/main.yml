@@ -16,6 +16,7 @@
     name: "{{ packages }}"
     state: present
     update_cache: True
+    validate_certs: False
   vars:
     packages:
     - kubelet
