@@ -6,8 +6,8 @@
 kubernetes-master
 kubernetes-slave
 
-[kubernetes-master]
+[kubernetes-master:children]
 tag_Name_master
 
-[kubernetes-slave]
+[kubernetes-slave:children]
 tag_Name_node
