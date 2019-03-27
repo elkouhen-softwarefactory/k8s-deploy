@@ -21,6 +21,7 @@
     state: stopped
   become: yes
   become_user: root
+  ignore_errors: True
 
 - name: "Clear iptables"
   shell: iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
