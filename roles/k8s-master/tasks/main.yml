@@ -99,7 +99,7 @@
   when: not pki_status.stat.exists
 
 - debug:
-    msg: '{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join("") | replace("\", "") | replace("\\", "") }}'
+    msg: '{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join("") | replace("\", "") }}'
 
 - fail:
 
