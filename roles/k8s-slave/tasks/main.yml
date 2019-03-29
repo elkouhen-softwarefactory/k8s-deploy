@@ -30,7 +30,10 @@
   when:
     - kubeadm.init.options is not defined
     - "'tag_Name_master' not in groups"
-    -
+
+- debug:
+    msg: "{{hostvars[groups['tag_Name_master'][0]]}}"
+
 - name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
   command: "{{ hostvars[groups['tag_Name_master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
   become: yes
