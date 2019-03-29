@@ -15,23 +15,34 @@
     kubernetes_master_group: 'tag_Name_master'
   when: "'tag_Name_master' in groups"
 
-- debug:
-    msg: kubernetes_master_group
-
-- debug:
-    msg: "{{groups['tag_Name_master'][0]}}"
-
-- debug:
-    msg: "{{hostvars[groups['tag_Name_master'][0]]}}"
-
-- name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
-  command: "{{ hostvars[groups[kubernetes_master_group][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
+- name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
   become: yes
   become_user: root
-  when: kubeadm.init.options is defined
+  when:
+    - kubeadm.init.options is defined
+    - "'tag_Name_master' not in groups"
 
-- name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
-  command: "{{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
+- name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
   become: yes
   become_user: root
-  when: kubeadm.init.options is not defined
+  when:
+    - kubeadm.init.options is not defined
+    - "'tag_Name_master' not in groups"
+    -
+- name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['tag_Name_master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
+  become: yes
+  become_user: root
+  when:
+    - kubeadm.init.options is defined
+    - "'tag_Name_master' in groups"
+
+- name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['tag_Name_master'][0]]['join_master'] }}"
+  become: yes
+  become_user: root
+  when:
+    - kubeadm.init.options is not defined
+    - "'tag_Name_master' in groups"
