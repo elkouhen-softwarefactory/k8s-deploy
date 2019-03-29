@@ -85,7 +85,7 @@
 
 - name: "Create join master fact"
   set_fact:
-    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-2] | replace ('\\', '') }} {{ kubeadm_init_message_not_exists.stdout_lines[-1] }}"
+    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | replace ('\\', '') }}"
   become: yes
   become_user: root
   when: pki_status.stat.exists
@@ -99,7 +99,7 @@
 
 - name: "Create join master fact"
   set_fact:
-    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-2] | replace ('\\', '') }} {{ kubeadm_init_message_not_exists.stdout_lines[-1] }}"
+    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | replace ('\\', '') }}"
   become: yes
   become_user: root
   when: not pki_status.stat.exists
