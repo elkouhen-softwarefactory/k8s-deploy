@@ -105,11 +105,11 @@
     msg: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join('')  }}"
 
 - debug:
-    msg: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join('') | replace('\\', '') }}"
+    msg: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join('') | replace('\', '') }}"
 
 - name: "Create join master fact"
   set_fact:
-    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join('') | replace('\\', '') }}"
+    join_master: "{{ kubeadm_init_message_not_exists.stdout_lines[-2:] | join('') | replace('\', '') }}"
   become: yes
   become_user: root
   when: not pki_status.stat.exists
