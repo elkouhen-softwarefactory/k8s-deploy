@@ -104,8 +104,6 @@
   become_user: root
   when: not pki_status.stat.exists
 
-- fail:
-
 - name: "Copy admin.conf"
   copy:
     src: /etc/kubernetes/admin.conf
