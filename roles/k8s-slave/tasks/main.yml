@@ -19,7 +19,7 @@
     msg: kubernetes_master_group
 
 - debug:
-    msg: "{{hostvars[groups[kubernetes_master_group]]}}"
+    msg: "{{hostvars[groups['tag_Name_master']]}}"
 
 - name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
   command: "{{ hostvars[groups[kubernetes_master_group][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
