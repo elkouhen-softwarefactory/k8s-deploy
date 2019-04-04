@@ -27,7 +27,7 @@
     dest: /usr/local/bin/helm
     remote_src: True
     owner: root
-    mode: 0644
+    mode: 0744
   become: yes
   become_user: root
 
