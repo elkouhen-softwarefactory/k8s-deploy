@@ -52,12 +52,12 @@
   ignore_errors: True
 
 - name: "Execute helm init"
-  shell: helm init
+  command: helm init
   become: yes
   become_user: root
 
 - name: "Check helm list"
-  shell: helm list
+  command: helm list
   become: yes
   become_user: root
   register: result
