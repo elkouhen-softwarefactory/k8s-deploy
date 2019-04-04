@@ -46,18 +46,18 @@
   become_user: root
 
 - name: "Execute helm reset"
-  command: helm reset
+  command: /usr/local/bin/helm reset
   become: yes
   become_user: root
   ignore_errors: True
 
 - name: "Execute helm init"
-  command: helm init
+  command: /usr/local/bin/helm init
   become: yes
   become_user: root
 
 - name: "Check helm list"
-  command: helm list
+  command: /usr/local/bin/helm list
   become: yes
   become_user: root
   register: result
