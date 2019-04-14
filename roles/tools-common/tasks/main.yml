@@ -4,12 +4,13 @@
   command: yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   become: yes
   ignore_errors: True
+  when: False
 
 - name: Add EPEL Repository
   yum_repository:
     name: epel
     description: EPEL YUM repo
-    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    baseurl: https://mirrors.fedoraproject.org/metalink?repo=$releasever&arch=$basearch/
     gpgcheck: no
   become: yes
   become_user: root
