@@ -6,15 +6,14 @@
   ignore_errors: True
   when: False
 
-- name: Add EPEL Repository
+- name: Add EPEL repository
   yum_repository:
     name: epel
     description: EPEL YUM repo
-    baseurl: https://mirrors.fedoraproject.org/metalink?repo=$releasever&arch=$basearch/
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
     gpgcheck: no
   become: yes
   become_user: root
-  when: false
 
 - name: "Ensure Packages are installed"
   yum:

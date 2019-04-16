@@ -72,8 +72,8 @@
   when: groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0)
 
 - name: "Do not create Config kubeadm"
-  set_fact: 
-    options: 
+  set_fact:
+    options:
   when: not (groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0))
 
 - name: "Execute kubeadm init (reuse old /etc/kubernetes/pki)"
@@ -112,12 +112,14 @@
   become: yes
   become_user: root
 
+# LINT-ERROR
 - name: "Get K8s version"
   shell: kubectl version | base64 | tr -d '\n'
   register: k8_version
   become: yes
   become_user: root
 
+# LINT-ERROR
 - name: "Create K8s network"
   command: kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version={{ k8_version.stdout_lines[0] }}
   become: yes

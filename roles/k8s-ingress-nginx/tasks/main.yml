@@ -1,3 +1,4 @@
+# LINT-ERROR
 - name: "Mandatory Command"
   command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
   become: yes
@@ -14,9 +15,8 @@
   template:
     src: "templates/patch.yml"
     dest: "/tmp/patch.yml"
-  with_items:
-    -
 
+# LINT-ERROR
 - name: Patch ConfigMap
   shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
   ignore_errors: True

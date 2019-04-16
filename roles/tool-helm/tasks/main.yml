@@ -45,17 +45,20 @@
   become: yes
   become_user: root
 
+# LINT-ERROR
 - name: "Execute helm reset"
   command: /usr/local/bin/helm reset
   become: yes
   become_user: root
   ignore_errors: True
 
+# LINT-ERROR
 - name: "Execute helm init"
   command: /usr/local/bin/helm init
   become: yes
   become_user: root
 
+# LINT-ERROR
 - name: "Check helm list"
   command: /usr/local/bin/helm list
   become: yes

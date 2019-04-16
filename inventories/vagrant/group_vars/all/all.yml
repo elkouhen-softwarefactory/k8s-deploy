@@ -1,6 +1,6 @@
 domaine: k8-dev.wildwidewest.xyz
 
-registry: registry.{{domaine}}
+registry: svc-registry-docker.default.svc.cluster.local:5000
 
 acme: https://acme-staging-v02.api.letsencrypt.org/directory
 

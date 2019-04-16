@@ -10,4 +10,4 @@ slave1.softeam.fr
 
 [targets]
 master1.softeam.fr ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/master1.softeam.fr/libvirt/private_key 
-slave1.softeam.fr ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/slave1.softeam.fr/libvirt/private_key
+slave1.softeam.fr  ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/slave1.softeam.fr/libvirt/private_key

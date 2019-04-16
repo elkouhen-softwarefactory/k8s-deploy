@@ -1,3 +1,4 @@
+# REMOVE k8s_raw
 - name: Create dev k8s namespace
   k8s_raw:
     name: "{{ item }}"
