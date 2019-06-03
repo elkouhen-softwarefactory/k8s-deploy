@@ -1,5 +1,5 @@
 apiVersion: certmanager.k8s.io/v1alpha1
-kind: Issuer
+kind: ClusterIssuer
 metadata:
   name: letsencrypt-issuer
 spec:
@@ -12,4 +12,14 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-issuer
     # Enable the HTTP-01 challenge provider
-    http01: {}
+    #http01: {}
+
+    dns01:
+      providers:
+        - name: dns
+          route53:
+            region: us-east-1
+            accessKeyID: AKIAZFKTAHHP2YGYM5WR
+            secretAccessKeySecretRef:
+              name: acme-route53
+              key: secret-access-key

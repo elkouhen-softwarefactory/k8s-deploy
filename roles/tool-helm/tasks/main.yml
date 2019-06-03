@@ -31,6 +31,13 @@
   become: yes
   become_user: root
 
+- name: "Download helm"
+  get_url:
+    url: https://github.com/roboll/helmfile/releases/download/v0.69.0/helmfile_linux_amd64
+    dest: /usr/local/bin/helmfile
+  become: yes
+  become_user: root
+
 - name: "Create cluster role binding for cluster-admin namespace default"
   k8s_raw:
     state: present

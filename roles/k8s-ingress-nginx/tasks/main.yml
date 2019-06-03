@@ -1,5 +1,5 @@
 # LINT-ERROR
-- name: "Mandatory Command"
+- name: Mandatory Command
   command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
   become: yes
   become_user: root
@@ -11,7 +11,7 @@
   become: yes
   become_user: root
 
-- name: "Copy Resources"
+- name: Copy Resources
   template:
     src: "templates/patch.yml"
     dest: "/tmp/patch.yml"
