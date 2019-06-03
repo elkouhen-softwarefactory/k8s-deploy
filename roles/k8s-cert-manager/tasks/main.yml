@@ -22,7 +22,8 @@
   command: kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
   become: yes
   become_user: root
-
+  when: "'cert-manager' not in helm_list.stdout"
+  
 - name: "Add the Jetstack Helm repository"
   command: helm repo add jetstack https://charts.jetstack.io
   become: yes
