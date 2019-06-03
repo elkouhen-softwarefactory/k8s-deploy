@@ -1,6 +1,6 @@
-[tag_Name_node]
+[tag_Name_Node]
 
-[tag_Name_master]
+[tag_Name_Master]
 
 [kubernetes:children]
 kubernetes-master
