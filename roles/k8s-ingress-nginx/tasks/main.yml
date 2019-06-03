@@ -1,23 +1,30 @@
 # LINT-ERROR
-- name: Mandatory Command
-  command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
+- name: "Helm List"
+  command: /usr/local/bin/helm list
   become: yes
   become_user: root
+  register: helm_list
+  changed_when: False
 
-- name: Create Service
-  k8s_raw:
-    state: present
-    definition: "{{ lookup('template', 'service.j2') }}"
+- name: "Create the namespace for ingress-nginx"
+  command: kubectl create namespace ingress-nginx
   become: yes
   become_user: root
+  when: "'nginx-ingress' not in helm_list.stdout"
 
-- name: Copy Resources
-  template:
-    src: "templates/patch.yml"
-    dest: "/tmp/patch.yml"
+- name: "Install the cert-manager Helm chart"
+  command: /usr/local/bin/helm install --name nginx-ingress --namespace nginx-ingress --set webhook.enabled=false stable/nginx-ingress
+  become: yes
+  become_user: root
+  when: "'nginx-ingress' not in helm_list.stdout"
+
+#- name: Copy Resources
+#  template:
+#    src: "templates/patch.yml"
+#    dest: "/tmp/patch.yml"
 
 # LINT-ERROR
-- name: Patch ConfigMap
-  shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
-  ignore_errors: True
-  become: yes
+#- name: Patch ConfigMap
+#  shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
+#  ignore_errors: True
+#  become: yes
