@@ -26,6 +26,7 @@
     state: present
     update_cache: True
     validate_certs: false
+    lock_timeout: 180
   become: yes
   become_user: root
   ignore_errors: True
@@ -37,6 +38,7 @@
     state: present
     update_cache: True
     validate_certs: false
+    lock_timeout: 180
   vars:
     packages:
       - docker-ce
@@ -72,6 +74,7 @@
   yum:
     name: logrotate
     state: present
+    lock_timeout: 180
 
 - name: "Copy logrotate conf file"
   template:
