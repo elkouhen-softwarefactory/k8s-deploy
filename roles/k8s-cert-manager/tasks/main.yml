@@ -23,14 +23,14 @@
   become: yes
   become_user: root
   when: "'cert-manager' not in helm_list.stdout"
-  
+
 - name: "Add the Jetstack Helm repository"
-  command: helm repo add jetstack https://charts.jetstack.io
+  command: /usr/local/bin/helm repo add jetstack https://charts.jetstack.io
   become: yes
   become_user: root
 
 - name: "Update your local Helm chart repository cache"
-  command: helm repo update
+  command: /usr/local/bin/helm repo update
   become: yes
   become_user: root
 
