@@ -7,7 +7,7 @@
   changed_when: False
 
 - name: "Create the namespace for ingress-nginx"
-  command: kubectl create namespace ingress-nginx
+  command: kubectl create namespace nginx-ingress
   become: yes
   become_user: root
   when: "'nginx-ingress' not in helm_list.stdout"
