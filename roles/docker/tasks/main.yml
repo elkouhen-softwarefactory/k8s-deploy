@@ -29,7 +29,7 @@
   become: yes
   become_user: root
   ignore_errors: True
-  when: "'tag_Name_master' in groups"
+  when: "'tag_Name_Master' in groups"
 
 - name: "Ensure a list of packages installed"
   yum:
