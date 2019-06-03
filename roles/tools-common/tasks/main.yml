@@ -4,7 +4,7 @@
   command: yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   become: yes
   ignore_errors: True
-  when: False
+
 
 - name: Add EPEL repository
   yum_repository:
@@ -14,7 +14,8 @@
     gpgcheck: no
   become: yes
   become_user: root
-
+  when: False
+  
 - name: "Ensure Packages are installed"
   yum:
     name: "{{ packages }}"
