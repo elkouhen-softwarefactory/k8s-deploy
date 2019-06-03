@@ -1,0 +1,6 @@
+- name: "Add Docker Repo"
+  set_fact:
+    public_ip: "{{groups['tag_Name_Master'][0] | map('extract', hostvars, ['ansible_host'])}}"
+  when:
+    - public_ip is not defined
+    - "'tag_Name_Master' in groups"
