@@ -7,37 +7,37 @@
   changed_when: False
 
 - name: "Create the namespace for ingress-nginx"
-  command: kubectl create namespace nginx-ingress
+  command: kubectl create namespace ingress-nginx
   become: yes
   become_user: root
-  when: "'nginx-ingress' not in ns_list.stdout"
+  when: "'ingress-nginx' not in ns_list.stdout"
 
-- name: "Create folder /root/nginx-ingress"
+- name: "Create folder /root/ingress-nginx"
   file:
-    path: /root/nginx-ingress
+    path: /root/ingress-nginx
     state: directory
     mode: 0755
   become: yes
   become_user: root
 
-- name: "Configure nginx-ingress"
+- name: "Configure ingress-nginx"
   template:
     src: kustomization.yaml
-    dest: /root/nginx-ingress/kustomization.yaml
+    dest: /root/ingress-nginx/kustomization.yaml
   become: yes
   become_user: root
   when: registry is defined
 
-- name: "Kustomize nginx-ingress"
-  command: kubectl apply --kustomize /root/nginx-ingress
+- name: "Kustomize ingress-nginx"
+  command: kubectl apply --kustomize /root/ingress-nginx
   become: yes
   become_user: root
 
 #- name: "Install the cert-manager Helm chart"
-#  command: /usr/local/bin/helm install --name nginx-ingress --namespace nginx-ingress --set webhook.enabled=false stable/nginx-ingress
+#  command: /usr/local/bin/helm install --name ingress-nginx --namespace ingress-nginx --set webhook.enabled=false stable/ingress-nginx
 #  become: yes
 #  become_user: root
-#  when: "'nginx-ingress' not in helm_list.stdout"
+#  when: "'ingress-nginx' not in helm_list.stdout"
 
 #- name: Copy Resources
 #  template:
