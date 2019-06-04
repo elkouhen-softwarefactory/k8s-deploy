@@ -22,7 +22,7 @@
     state: present
     update_cache: True
     validate_certs: false
-    lock_timeout: 180
+#    lock_timeout: 180
   vars:
     packages:
       - python-pip

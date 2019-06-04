@@ -2,6 +2,6 @@
   yum:
     name: git
     state: present
-    lock_timeout: 180
+#    lock_timeout: 180
   become: yes
   become_user: root

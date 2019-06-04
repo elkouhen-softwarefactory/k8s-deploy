@@ -3,7 +3,7 @@
     name: haproxy
     state: present
     update_cache: True
-    lock_timeout: 180
+#    lock_timeout: 180
   become: yes
   become_user: root
 

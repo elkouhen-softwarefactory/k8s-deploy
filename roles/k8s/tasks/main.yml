@@ -18,7 +18,7 @@
     update_cache: True
     validate_certs: False
     disable_gpg_check: True
-    lock_timeout: 180
+#    lock_timeout: 180
   vars:
     packages:
     - kubelet
