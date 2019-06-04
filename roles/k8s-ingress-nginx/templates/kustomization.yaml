@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: ingress-nginx
 bases:
   - github.com/kubernetes/ingress-nginx/deploy/cluster-wide
-  - github.com/kubernetes/ingress-nginx/deploy/aws/l4
+  - github.com/kubernetes/ingress-nginx/deploy/aws/l7

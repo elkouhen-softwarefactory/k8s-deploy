@@ -28,7 +28,7 @@
   become_user: root
   when: registry is defined
 
-- name: "Create the namespace for ingress-nginx"
+- name: "Kustomize nginx-ingress"
   command: kubectl apply --kustomize /root/nginx-ingress
   become: yes
   become_user: root
