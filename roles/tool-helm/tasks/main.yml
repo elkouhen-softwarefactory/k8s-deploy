@@ -1,6 +1,6 @@
 - name: "Status file /root/helm-v2.14.0-linux-amd64.tar.gz"
   stat:
-    path:  "/root/helm-v2.14.0-linux-arm64.tar.gz"
+    path:  "/root/helm-v2.14.0-linux-amd64.tar.gz"
   register: helm_status
   become: yes
   become_user: root
@@ -13,7 +13,7 @@
   become_user: root
   when: not helm_status.stat.exists
 
-- name: "Extract helm-v2.14.0-linux-arm64.tar.gz into /root"
+- name: "Extract helm-v2.14.0-linux-amd64.tar.gz into /root"
   unarchive:
     src: /root/helm-v2.14.0-linux-amd64.tar.gz
     dest: /root
