@@ -45,13 +45,6 @@
   become: yes
   become_user: root
 
-- name: "Create cluster role binding for cluster-admin namespace helm"
-  k8s_raw:
-    state: present
-    definition: "{{ lookup('file', 'cluster-role-binding-helm.yaml') }}"
-  become: yes
-  become_user: root
-
 # LINT-ERROR
 - name: "Execute helm reset"
   command: /usr/local/bin/helm reset
@@ -61,7 +54,7 @@
 
 # LINT-ERROR
 - name: "Execute helm init"
-  command: /usr/local/bin/helm init --service-account tiller
+  command: /usr/local/bin/helm init --service-account tiller --history-max 200
   become: yes
   become_user: root
 
