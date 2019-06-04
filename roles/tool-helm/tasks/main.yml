@@ -61,7 +61,7 @@
 
 # LINT-ERROR
 - name: "Execute helm init"
-  command: /usr/local/bin/helm init
+  command: /usr/local/bin/helm init --service-account tiller
   become: yes
   become_user: root
 
