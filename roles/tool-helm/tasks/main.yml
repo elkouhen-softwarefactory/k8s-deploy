@@ -31,7 +31,7 @@
   become: yes
   become_user: root
 
-- name: "Download helm"
+- name: "Download helmfile"
   get_url:
     url: https://github.com/roboll/helmfile/releases/download/v0.69.0/helmfile_linux_amd64
     dest: /usr/local/bin/helmfile

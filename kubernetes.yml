@@ -30,10 +30,10 @@
 
 - hosts: kubernetes-master
   roles:
-    - { role: tool-helm,              tags: [kubernetes-install, kubernetes-master, tool-helm] }
+    - { role: tool-helm,              tags: [kubernetes-conf,    kubernetes-master, tool-helm] }
     - { role: k8s-namespace,          tags: [kubernetes-install, kubernetes-master, k8s-namespace] }
     - { role: app-secrets,            tags: [kubernetes-install, kubernetes-master, app-secrets] }
-    - { role: k8s-cert-manager,       tags: [kubernetes-conf,   k8s-cert-manager],    when: public_ip is defined }
-    - { role: k8s-ingress-nginx,      tags: [kubernetes-conf,   k8s-ingress-nginx],   when: public_ip is defined }
-    - { role: k8s-nfs-provisioner,    tags: [kubernetes-conf,   k8s-nfs-provisioner], when: nfs_server is defined }
-    - { role: k8s-dashboard,          tags: [kubernetes-conf,   dashboard] }
+    - { role: k8s-cert-manager,       tags: [kubernetes-conf,    k8s-cert-manager],    when: public_ip is defined }
+    - { role: k8s-ingress-nginx,      tags: [kubernetes-conf,    k8s-ingress-nginx],   when: public_ip is defined }
+    - { role: k8s-nfs-provisioner,    tags: [kubernetes-conf,    k8s-nfs-provisioner], when: nfs_server is defined }
+    - { role: k8s-dashboard,          tags: [kubernetes-conf,    dashboard] }
