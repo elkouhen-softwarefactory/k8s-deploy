@@ -1,22 +1,35 @@
 # LINT-ERROR
 - name: "Helm List"
-  command: /usr/local/bin/helm list
+  command: kubectl get ns
   become: yes
   become_user: root
-  register: helm_list
+  register: ns_list
   changed_when: False
 
 - name: "Create the namespace for ingress-nginx"
   command: kubectl create namespace nginx-ingress
   become: yes
   become_user: root
-  when: "'nginx-ingress' not in helm_list.stdout"
+  when: "'nginx-ingress' not in ns_list.stdout"
 
-- name: "Install the cert-manager Helm chart"
-  command: /usr/local/bin/helm install --name nginx-ingress --namespace nginx-ingress --set webhook.enabled=false stable/nginx-ingress
+- name: "Configure Daemon.json"
+  template:
+    src: kustomize.yaml
+    dest: /root/custom/kustomization.yaml
   become: yes
   become_user: root
-  when: "'nginx-ingress' not in helm_list.stdout"
+  when: registry is defined
+
+- name: "Create the namespace for ingress-nginx"
+  command: kubectl apply --kustomize /root/custom
+  become: yes
+  become_user: root
+
+#- name: "Install the cert-manager Helm chart"
+#  command: /usr/local/bin/helm install --name nginx-ingress --namespace nginx-ingress --set webhook.enabled=false stable/nginx-ingress
+#  become: yes
+#  become_user: root
+#  when: "'nginx-ingress' not in helm_list.stdout"
 
 #- name: Copy Resources
 #  template:
