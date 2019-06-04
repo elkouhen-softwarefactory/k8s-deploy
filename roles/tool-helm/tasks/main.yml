@@ -45,6 +45,13 @@
   become: yes
   become_user: root
 
+- name: "Create cluster role binding for cluster-admin namespace default"
+  k8s_raw:
+    state: present
+    definition: "{{ lookup('file', 'cluster-role-binding-tiller.yaml') }}"
+  become: yes
+  become_user: root
+
 # LINT-ERROR
 - name: "Execute helm reset"
   command: /usr/local/bin/helm reset
