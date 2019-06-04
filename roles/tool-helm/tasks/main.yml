@@ -54,7 +54,7 @@
 
 # LINT-ERROR
 - name: "Execute helm init"
-  command: /usr/local/bin/helm init --service-account tiller --history-max 200
+  command: /usr/local/bin/helm init --history-max 200
   become: yes
   become_user: root
 
