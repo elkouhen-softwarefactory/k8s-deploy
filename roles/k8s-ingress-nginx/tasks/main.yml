@@ -20,7 +20,7 @@
   become: yes
   become_user: root
 
-- name: "Configure ingress-nginx"
+- name: "Copy kustomization.yaml"
   template:
     src: kustomization.yaml
     dest: /root/ingress-nginx/kustomization.yaml
