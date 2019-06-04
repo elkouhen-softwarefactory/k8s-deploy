@@ -40,13 +40,12 @@
   become_user: root
   when: "'cert-manager' not in helm_list.stdout"
 
-- name: "Configure Daemon.json"
+- name: "Copy secret-access-key"
   template:
-    src: secret-accss-key
+    src: secret-access-key
     dest: /root/secret-access-key
   become: yes
   become_user: root
-  when: registry is defined
 
 - name: "Install the cert-manager Helm chart"
   command: kubectl create secret generic acme-route53 -n=kube-system --from-file=/root/secret-access-key
