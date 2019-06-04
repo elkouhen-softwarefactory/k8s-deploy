@@ -12,16 +12,24 @@
   become_user: root
   when: "'nginx-ingress' not in ns_list.stdout"
 
-- name: "Configure Daemon.json"
+- name: "Create folder /root/nginx-ingress"
+  file:
+    path: /root/nginx-ingress
+    state: directory
+    mode: 0755
+  become: yes
+  become_user: root
+
+- name: "Configure nginx-ingress"
   template:
-    src: kustomize.yaml
-    dest: /root/custom/kustomization.yaml
+    src: kustomization.yaml
+    dest: /root/nginx-ingress/kustomization.yaml
   become: yes
   become_user: root
   when: registry is defined
 
 - name: "Create the namespace for ingress-nginx"
-  command: kubectl apply --kustomize /root/custom
+  command: kubectl apply --kustomize /root/nginx-ingress
   become: yes
   become_user: root
 
