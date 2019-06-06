@@ -1,5 +1,6 @@
 {
   "insecure-registries": [ "{{ registry }}" ],
+  "exec-opts": ["native.cgroupdriver=systemd"],
   "log-opts": {
     "max-size": "10m",
     "max-file": "3"
