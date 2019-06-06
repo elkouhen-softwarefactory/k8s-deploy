@@ -33,19 +33,3 @@
   become: yes
   become_user: root
 
-#- name: "Install the cert-manager Helm chart"
-#  command: /usr/local/bin/helm install --name ingress-nginx --namespace ingress-nginx --set webhook.enabled=false stable/ingress-nginx
-#  become: yes
-#  become_user: root
-#  when: "'ingress-nginx' not in helm_list.stdout"
-
-#- name: Copy Resources
-#  template:
-#    src: "templates/patch.yml"
-#    dest: "/tmp/patch.yml"
-
-# LINT-ERROR
-#- name: Patch ConfigMap
-#  shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
-#  ignore_errors: True
-#  become: yes

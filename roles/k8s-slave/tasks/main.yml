@@ -8,7 +8,7 @@
 - name: "Create kubelet default config"
   template:
     src: kubelet
-    dest: /etc/default/kubelet
+    dest: /etc/sysconfig/kubelet
   become: yes
   become_user: root
 
