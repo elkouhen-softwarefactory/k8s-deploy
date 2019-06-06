@@ -5,9 +5,8 @@
   register: helm_list
   changed_when: False
 
-- name: "Install the cert-manager Helm chart"
+- name: "Install the nginx-ingress Helm chart"
   command: /usr/local/bin/helm install --name nginx-ingress stable/nginx-ingress --set controller.service.enableHttps=false
   become: yes
   become_user: root
-  when: "'cert-manager' not in helm_list.stdout"
-
+  when: "'nginx-ingress' not in helm_list.stdout"
