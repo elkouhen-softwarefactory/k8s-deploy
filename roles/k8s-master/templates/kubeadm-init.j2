@@ -1,9 +1,9 @@
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
-clusterName: k8.test.ippon.com
 apiServer:
   extraArgs:
     cloud-provider: aws
+clusterName: k8.test.ippon.com
 controllerManager:
   extraArgs:
     cloud-provider: aws
@@ -20,7 +20,7 @@ apiVersion: kubeadm.k8s.io/v1beta1
 kind: MasterConfiguration
 cloud-provider: aws
 
-----
+---
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: JoinConfiguration
 nodeRegistration:
