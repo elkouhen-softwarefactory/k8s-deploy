@@ -32,6 +32,7 @@
       - nc
       - net-tools
       - iptables-services
+      - tc
   become: yes
   become_user: root
 
