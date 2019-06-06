@@ -5,44 +5,21 @@
   become: yes
   become_user: root
 
-- name: "Set kubernetes master group"
-  set_fact:
-    kubernetes_master_group: 'kubernetes-master'
-  when: "'tag_Name_Master' not in groups"
-
-- name: "Set kubernetes master group"
-  set_fact:
-    kubernetes_master_group: 'tag_Name_Master'
-  when: "'tag_Name_Master' in groups"
+- name: "Create kubadm-init FIXME ONLY FOR AWS"
+  template:
+    src: kubeadm-init.j2
+    dest: /tmp/kubeadm-init.yaml
+  become: yes
+  become_user: root
 
 - name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
-  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] --config=/tmp/kubeadm-init.yaml | replace('10.0.2.15', '10.0.0.2') }}"
   become: yes
   become_user: root
-  when:
-    - kubeadm.init.options is defined
-    - "'tag_Name_Master' not in groups"
+  when: kubeadm.init.options is defined
 
 - name: "Join cluster {{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
-  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] }}"
+  command: "{{ hostvars[groups['kubernetes-master'][0]]['join_master'] }} --config=/tmp/kubeadm-init.yaml"
   become: yes
   become_user: root
-  when:
-    - kubeadm.init.options is not defined
-    - "'tag_Name_Master' not in groups"
-
-- name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
-  command: "{{ hostvars[groups['tag_Name_Master'][0]]['join_master'] | replace('10.0.2.15', '10.0.0.2') }}"
-  become: yes
-  become_user: root
-  when:
-    - kubeadm.init.options is defined
-    - "'tag_Name_Master' in groups"
-
-- name: "Join cluster {{ hostvars[groups[kubernetes_master_group][0]]['join_master'] }}"
-  command: "{{ hostvars[groups['tag_Name_Master'][0]]['join_master'] }}"
-  become: yes
-  become_user: root
-  when:
-    - kubeadm.init.options is not defined
-    - "'tag_Name_Master' in groups"
+  when: kubeadm.init.options is not defined
