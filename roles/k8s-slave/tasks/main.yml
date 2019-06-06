@@ -5,10 +5,10 @@
   become: yes
   become_user: root
 
-- name: "Create kubadm-init FIXME ONLY FOR AWS"
+- name: "Create kubelet default config"
   template:
-    src: kubeadm-init.j2
-    dest: /tmp/kubeadm-init.yaml
+    src: kubelet
+    dest: /etc/default/kubelet
   become: yes
   become_user: root
 
