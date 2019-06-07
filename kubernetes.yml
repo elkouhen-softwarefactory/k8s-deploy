@@ -33,7 +33,7 @@
     - { role: tool-helm,              tags: [conf,    kubernetes-master, tool-helm] }
     - { role: k8s-namespace,          tags: [install, kubernetes-master, k8s-namespace] }
     - { role: app-secrets,            tags: [install, kubernetes-master, app-secrets] }
-    - { role: k8s-cert-manager,       tags: [conf,    k8s-cert-manager],    when: public_ip is defined }
-#    - { role: k8s-ingress-nginx,      tags: [conf,    k8s-ingress-nginx],   when: public_ip is defined }
+#    - { role: k8s-cert-manager,       tags: [conf,    k8s-cert-manager],    when: public_ip is defined }
+    - { role: k8s-ingress-nginx,      tags: [conf,    k8s-ingress-nginx],   when: public_ip is defined }
     - { role: k8s-nfs-provisioner,    tags: [conf,    k8s-nfs-provisioner], when: nfs_server is defined }
     - { role: k8s-dashboard,          tags: [conf,    dashboard] }
