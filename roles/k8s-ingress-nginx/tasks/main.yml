@@ -1,7 +1,4 @@
-- name: "Copy Resources"
-  template:
-    src: "templates/patch.yml"
-    dest: "/tmp/patch.yml"
+
 
 - name: "Helm List"
   command: /usr/local/bin/helm list
@@ -15,17 +12,3 @@
   become: yes
   become_user: root
   when: "'nginx-ingress' not in helm_list.stdout"
-
-- name: Create Service
-  k8s_raw:
-    state: present
-    definition: "{{ lookup('template', 'service.j2') }}"
-  become: yes
-  become_user: root
-
-# LINT-ERROR
-- name: Patch ConfigMap
-  shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
-  ignore_errors: True
-  become: yes
-  when: False
