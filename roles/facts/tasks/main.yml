@@ -1,6 +1,6 @@
 - name: "Compute Public IP"
   set_fact:
-    public_ip: "{{groups['tag_Name_Node'][0] | list}}"
+    public_ip: "{{groups['tag_Name_Node'][0] | join('') | first }}"
   when:
     - public_ip is not defined
     - "'tag_Name_Node' in groups"
