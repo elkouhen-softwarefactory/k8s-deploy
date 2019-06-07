@@ -1,6 +1,6 @@
 - name: "Compute Public IP"
   set_fact:
-    public_ip: "{{groups['tag_Name_Node'][0] | map('extract', hostvars, ['ansible_host'])}}"
+    public_ip: "{{groups['tag_Name_Node'][0] | map('extract', hostvars, ['ansible_host']) | first}}"
   when:
     - public_ip is not defined
     - "'tag_Name_Node' in groups"
