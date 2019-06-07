@@ -4,8 +4,3 @@
   when:
     - public_ip is not defined
     - "'tag_Name_Node' in groups"
-
-- debug:
-    msg: "{{public_ip}}"
-
-- fail:
