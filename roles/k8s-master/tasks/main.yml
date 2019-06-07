@@ -66,21 +66,14 @@
   become_user: root
   when: groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0)
 
-- name: "Create kubadm-init FIXME ONLY FOR AWS"
-  template:
-    src: kubeadm-init.j2
-    dest: /tmp/kubeadm-init.yaml
-  become: yes
-  become_user: root
-
 - name: "Create Config kubeadm"
   set_fact: 
     options: --config=/tmp/kubeadm-config.yaml
   when: groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0)
 
-- name: "Create Config kubeadm FIXME"
+- name: "Do not create Config kubeadm"
   set_fact:
-    options: --config=/tmp/kubeadm-init.yaml
+    options:
   when: not (groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0))
 
 - name: "Execute kubeadm init (reuse old /etc/kubernetes/pki)"
