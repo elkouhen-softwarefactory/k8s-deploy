@@ -19,7 +19,7 @@ spec:
         - name: dns
           route53:
             region: us-east-1
-            accessKeyID: AKIAZFKTAHHP2YGYM5WR
+            accessKeyID: AKIAZFKTAHHP5QOLFPBO
             secretAccessKeySecretRef:
               name: acme-route53
               key: secret-access-key
