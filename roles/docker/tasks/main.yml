@@ -41,7 +41,6 @@
     lock_timeout: 180
   vars:
     packages:
-      - container-selinux
       - docker-ce
       - lvm2
   become: yes
