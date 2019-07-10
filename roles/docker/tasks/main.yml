@@ -30,7 +30,8 @@
   become: yes
   become_user: root
   ignore_errors: True
-  when: "'tag_Name_Master' in groups"
+  when: False
+#  when: "'tag_Name_Master' in groups"
 
 - name: "Ensure a list of packages installed"
   yum:
@@ -38,11 +39,10 @@
     state: present
     update_cache: True
     validate_certs: false
-#    lock_timeout: 180
+    lock_timeout: 180
   vars:
     packages:
       - docker-ce
-      - device-mapper-persistent-data
       - lvm2
   become: yes
   become_user: root
@@ -74,7 +74,7 @@
   yum:
     name: logrotate
     state: present
-#    lock_timeout: 180
+    lock_timeout: 180
 
 - name: "Copy logrotate conf file"
   template:
