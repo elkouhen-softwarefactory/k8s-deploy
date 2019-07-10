@@ -36,7 +36,7 @@
 - name: "Ensure a list of packages installed"
   yum:
     name: "{{ packages }}"
-    state: present
+    state: latest
     update_cache: True
     validate_certs: false
     lock_timeout: 180
