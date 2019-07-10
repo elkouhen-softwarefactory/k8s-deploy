@@ -30,7 +30,6 @@
   become: yes
   become_user: root
   ignore_errors: True
-  when: False
   when: "'tag_Name_Master' in groups"
 
 - name: "Ensure a list of packages installed"
