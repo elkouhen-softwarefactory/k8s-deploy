@@ -10,6 +10,7 @@
     state: disabled
   become: yes
   become_user: root
+  when: False
 
 - name: Ensure a list of packages are installed
   yum:
