@@ -67,7 +67,8 @@
     dest: /etc/docker/daemon.json
   become: yes
   become_user: root
-  when: registry is defined
+  #when: registry is defined
+  when: False
 
 - name: "Configure Docker Service"
   template:
@@ -75,7 +76,8 @@
     dest: /etc/sysconfig/docker
   become: yes
   become_user: root
-  when: registry is defined
+  #when: registry is defined
+  when: False
 
 - name: "Install logrotate"
   yum:
