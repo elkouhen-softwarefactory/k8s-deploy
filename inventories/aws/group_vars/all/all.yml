@@ -1,4 +1,4 @@
-domaine: melkouhen.net
+domaine: k8s.melkouhen.net
 
 registry: registry.{{domaine}}
 
