@@ -41,3 +41,8 @@
   command: kubeadm reset -f
   become: yes
   become_user: root
+
+- name: Execute kubeadm reset
+  command: swapoff -a
+  become: yes
+  become_user: root
