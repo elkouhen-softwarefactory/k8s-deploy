@@ -2,7 +2,8 @@ domaine: k8s.melkouhen.net
 
 registry: registry.{{domaine}}
 
-acme: https://acme-staging-v02.api.letsencrypt.org/directory
+#acme: https://acme-staging-v02.api.letsencrypt.org/directory
+acme: https://acme-v02.api.letsencrypt.org/directory
 
 kubeadm:
   init:
