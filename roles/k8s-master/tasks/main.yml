@@ -84,7 +84,7 @@
   when: not (groups["kubernetes-controlplane-lb"] is defined and (groups["kubernetes-controlplane-lb"]|length>0))
 
 - name: "Execute kubeadm init (reuse old /etc/kubernetes/pki)"
-  command: kubeadm init {{ kubeadm.init.options | default('') }} {{options}} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
+  command: kubeadm init {{ kubeadm.init.options | default('') }} {{ options }} --ignore-preflight-errors=DirAvailable--etc-kubernetes-pki
   register: kubeadm_init_message_exists
   become: yes
   become_user: root
@@ -98,7 +98,7 @@
   when: pki_status.stat.exists
 
 - name: "Execute kubeadm init"
-  command: kubeadm init {{ kubeadm.init.options | default('') }} {{options}}
+  command: kubeadm init {{ kubeadm.init.options | default('') }} {{ options }}
   register: kubeadm_init_message_not_exists
   become: yes
   become_user: root

@@ -20,17 +20,16 @@
   become: yes
   become_user: root
 
-
 - name: Install container-selinux
   command: amazon-linux-extras install docker
   when: "'tag_Name_Master' in groups"
   become: yes
   become_user: root
-  
+
 - name: Install container-selinux
   yum:
     name: http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.74-1.el7.noarch.rpm
-    state: latest
+    state: present
     update_cache: True
     validate_certs: false
     lock_timeout: 180
@@ -38,11 +37,11 @@
   become_user: root
   ignore_errors: True
   when: False
-
+  
 - name: "Ensure a list of packages installed"
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
     update_cache: True
     validate_certs: false
     lock_timeout: 180
