@@ -48,7 +48,7 @@
   become_user: root
 
 - name: "Install the cert-manager Helm chart"
-  command: kubectl create secret generic acme-route53 -n=kube-system --from-file=/root/secret-access-key
+  command: kubectl create secret generic acme-route53 --namespace cert-manager --from-file=/root/secret-access-key
   become: yes
   become_user: root
   when: "'cert-manager' not in helm_list.stdout"

@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/Users/melkouhen/Projects/charts"
+		},
+		{
+			"path": "/Users/melkouhen/Projects/chart-run"
+		},
+		{
+			"path": "/Users/melkouhen/Projects/app-chart-run"
+		},
+		{
+			"path": "/Users/melkouhen/Projects/app-charts"
+		},
+		{
+			"path": "/Users/melkouhen/Projects/k8s-infra-cfn"
+		},
+		{
+			"path": "/Users/melkouhen/Projects/books-api"
+		}
+	],
+	"settings": {}
+}
