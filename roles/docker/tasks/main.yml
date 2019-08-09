@@ -68,14 +68,6 @@
   become_user: root
   when: registry is defined
 
-- name: "Configure Docker Service"
-  template:
-    src: templates/etc_sysconfig_docker
-    dest: /etc/sysconfig/docker
-  become: yes
-  become_user: root
-  when: registry is defined
-
 - name: "Install logrotate"
   yum:
     name: logrotate
