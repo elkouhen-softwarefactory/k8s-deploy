@@ -1,3 +1,6 @@
+aws_secret:
+
+
 docker_registry_secrets:
 - { name: 'regsecret', server: 'registry-nexus.melkouhen.net' , username: 'admin', password: 'ipponnantes', email: 'melkouhen@ippon.fr', namespace: 'default'}
 - { name: 'regsecret', server: 'registry-nexus.melkouhen.net' , username: 'admin', password: 'ipponnantes', email: 'melkouhen@ippon.fr', namespace: 'dev'}
