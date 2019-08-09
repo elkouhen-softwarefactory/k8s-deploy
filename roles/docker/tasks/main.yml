@@ -36,7 +36,7 @@
   become: yes
   become_user: root
   ignore_errors: True
-  when: deploy_target is defined and deploy_target = 'bare'
+  when: deploy_target is not defined
   
 - name: "Ensure a list of packages installed"
   yum:
@@ -51,7 +51,7 @@
       - lvm2
   become: yes
   become_user: root
-  when: deploy_target is defined and deploy_target = 'bare'
+  when: deploy_target is not defined
 
 - name: "Create Groupe Docker"
   group:

@@ -12,7 +12,7 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-issuer
     # Enable the HTTP-01 challenge provider
-    #http01: {}
+    http01: {}
 
     dns01:
       providers:

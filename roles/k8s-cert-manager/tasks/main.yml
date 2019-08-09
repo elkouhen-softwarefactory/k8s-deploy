@@ -28,11 +28,13 @@
   command: /usr/local/bin/helm repo add jetstack https://charts.jetstack.io
   become: yes
   become_user: root
+  when: "'cert-manager' not in helm_list.stdout"
 
 - name: "Update your local Helm chart repository cache"
   command: /usr/local/bin/helm repo update
   become: yes
   become_user: root
+  when: "'cert-manager' not in helm_list.stdout"
 
 - name: "Install the cert-manager Helm chart"
   command: /usr/local/bin/helm install --name cert-manager --namespace cert-manager --set webhook.enabled=false jetstack/cert-manager
@@ -46,6 +48,7 @@
     dest: /root/secret-access-key
   become: yes
   become_user: root
+  when: "'cert-manager' not in helm_list.stdout"
 
 - name: "Install the cert-manager Helm chart"
   command: kubectl create secret generic acme-route53 --namespace cert-manager --from-file=/root/secret-access-key
