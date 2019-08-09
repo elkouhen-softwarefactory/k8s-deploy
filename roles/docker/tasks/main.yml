@@ -25,6 +25,7 @@
   when: "'tag_Name_Master' in groups"
   become: yes
   become_user: root
+  when: deploy_target is defined and deploy_target = 'aws'
 
 - name: Install container-selinux
   yum:
@@ -36,7 +37,7 @@
   become: yes
   become_user: root
   ignore_errors: True
-  when: False
+  when: deploy_target is defined and deploy_target = 'bare'
   
 - name: "Ensure a list of packages installed"
   yum:
@@ -51,7 +52,7 @@
       - lvm2
   become: yes
   become_user: root
-  when: False
+  when: deploy_target is defined and deploy_target = 'bare'
 
 - name: "Create Groupe Docker"
   group:
@@ -66,8 +67,7 @@
     dest: /etc/docker/daemon.json
   become: yes
   become_user: root
-  #when: registry is defined
-  when: False
+  when: registry is defined
 
 - name: "Configure Docker Service"
   template:
@@ -75,8 +75,7 @@
     dest: /etc/sysconfig/docker
   become: yes
   become_user: root
-  #when: registry is defined
-  when: False
+  when: registry is defined
 
 - name: "Install logrotate"
   yum:
