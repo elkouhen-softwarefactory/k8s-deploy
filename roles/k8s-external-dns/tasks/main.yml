@@ -1,2 +1,14 @@
-helm install stable/external-dns --set aws.credentials.accessKey=acces_key
-  --set aws.credentials.secretKey=secret_key --set provider=aws --set aws.zoneType=public --set txtOwnerId=Z26RPPVUP5NQWM --set domainFilters[0]=melkouhen.net
+
+
+- name: "Helm List"
+  command: /usr/local/bin/helm list
+  become: yes
+  become_user: root
+  register: helm_list
+  changed_when: False
+
+- name: "Deploy external-dns"
+  command: "helm install --name external-dns stable/external-dns --set aws.credentials.accessKey={{aws_key}} --set aws.credentials.secretKey={{aws_secret}} --set provider=aws --set aws.zoneType=public --set txtOwnerId=Z26RPPVUP5NQWM --set domainFilters[0]={{domaine}}"
+  become: yes
+  become_user: root
+  when: "'external-dns' not in helm_list.stdout"
