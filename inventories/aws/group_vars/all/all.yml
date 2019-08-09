@@ -2,6 +2,8 @@ domaine: melkouhen.net
 
 registry: registry.{{domaine}}
 
+deploy_target: aws
+
 #acme: https://acme-staging-v02.api.letsencrypt.org/directory
 acme: https://acme-v02.api.letsencrypt.org/directory
 

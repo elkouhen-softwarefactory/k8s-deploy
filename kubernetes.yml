@@ -2,7 +2,6 @@
 
 - hosts: kubernetes
   roles:
-    - { role: facts,                  tags: [kubernetes-core, tools-common] }
     - { role: tools-common,           tags: [install, kubernetes-core, tools-common] }
     - { role: util-crond,             tags: [install, kubernetes-core, crond] }
     - { role: config-authorized-keys, tags: [install, kubernetes-core, authorized-keys] }
