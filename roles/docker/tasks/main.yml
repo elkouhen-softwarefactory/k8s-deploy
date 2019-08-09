@@ -22,7 +22,6 @@
 
 - name: Install container-selinux
   command: amazon-linux-extras install docker
-  when: "'tag_Name_Master' in groups"
   become: yes
   become_user: root
   when: deploy_target is defined and deploy_target = 'aws'
