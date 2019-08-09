@@ -24,7 +24,7 @@
   command: amazon-linux-extras install docker
   become: yes
   become_user: root
-  when: deploy_target is defined and deploy_target = 'aws'
+  when: deploy_target is defined
 
 - name: Install container-selinux
   yum:
