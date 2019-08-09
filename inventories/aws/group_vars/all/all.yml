@@ -1,6 +1,8 @@
 domaine: melkouhen.net
 
-registry: registry.{{domaine}}
+registry: registry-nexus.{{domaine}}
+
+cluster_name: k8s.{{domaine}}
 
 deploy_target: aws
 
