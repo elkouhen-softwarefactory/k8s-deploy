@@ -37,7 +37,7 @@
   become_user: root
   ignore_errors: True
   when: deploy_target is not defined
-  
+
 - name: "Ensure a list of packages installed"
   yum:
     name: "{{ packages }}"
@@ -48,6 +48,7 @@
   vars:
     packages:
       - docker-ce
+      - device-mapper-persistent-data
       - lvm2
   become: yes
   become_user: root
