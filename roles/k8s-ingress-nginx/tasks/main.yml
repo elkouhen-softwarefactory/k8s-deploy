@@ -6,7 +6,7 @@
   changed_when: False
 
 - name: "Install the nginx-ingress Helm chart"
-  command: /usr/local/bin/helm install --name nginx-ingress --set controller.publishService.enabled=true stable/nginx-ingress
+  command: /usr/local/bin/helm install --name nginx-ingress --version 0.24.0 --set controller.publishService.enabled=true stable/nginx-ingress
   become: yes
   become_user: root
   when: "'nginx-ingress' not in helm_list.stdout"
@@ -15,7 +15,7 @@
   template:
     src: "templates/patch.yml"
     dest: "/tmp/patch.yml"
-    
+
 # LINT-ERROR
 - name: Patch ConfigMap
   shell: kubectl patch configmap nginx-ingress-controller --patch "$(cat /tmp/patch.yml)"
