@@ -8,7 +8,7 @@
   changed_when: False
 
 - name: "Deploy external-dns"
-  command: "helm install --name external-dns stable/external-dns --set aws.credentials.accessKey={{aws_key}} --set aws.credentials.secretKey={{aws_secret}} --set provider=aws --set aws.zoneType=public --set txtOwnerId=Z26RPPVUP5NQWM --set domainFilters[0]={{domaine}}"
+  command: "helm install --name external-dns stable/external-dns --set aws.credentials.accessKey={{aws_key}} --set aws.credentials.secretKey={{aws_secret}} --set provider=aws --set aws.zoneType=public --set txtOwnerId=Z26RPPVUP5NQWM --set domainFilters[0]={{domaine}} --set rbac.create=true"
   become: yes
   become_user: root
   when: "'external-dns' not in helm_list.stdout"
