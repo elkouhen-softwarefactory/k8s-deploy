@@ -1,10 +1,7 @@
-# sudo
-
 - name: Add EPEL Repository
   command: yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   become: yes
   ignore_errors: True
-
 
 - name: Add EPEL repository
   yum_repository:
@@ -22,7 +19,7 @@
     state: present
     update_cache: True
     validate_certs: false
-#    lock_timeout: 180
+    lock_timeout: 180
   vars:
     packages:
       - python-pip

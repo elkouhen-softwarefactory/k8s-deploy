@@ -11,21 +11,13 @@
   changed_when: False
 
 - name: "Install the nginx-ingress Helm chart"
-  command: /usr/local/bin/helm install --name nginx-ingress stable/nginx-ingress --set controller.service.externalIPs[0]="{{public_ip}}"
+  command: /usr/local/bin/helm install --name nginx-ingress --version 0.24.0 stable/nginx-ingress
   become: yes
   become_user: root
   when: "'nginx-ingress' not in helm_list.stdout"
 
-- name: Create Service
-  k8s_raw:
-    state: present
-    definition: "{{ lookup('template', 'service.j2') }}"
-  become: yes
-  become_user: root
-
 # LINT-ERROR
 - name: Patch ConfigMap
-  shell: kubectl patch configmap nginx-configuration -n ingress-nginx --patch "$(cat /tmp/patch.yml)"
+  shell: kubectl patch configmap nginx-ingress-controller --patch "$(cat /tmp/patch.yml)"
   ignore_errors: True
   become: yes
-  when: False

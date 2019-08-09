@@ -3,7 +3,7 @@
     name: "{{ packages }}"
     state: present
     update_cache: True
-#    lock_timeout: 180
+    lock_timeout: 180
   vars:
     packages:
     - mailx

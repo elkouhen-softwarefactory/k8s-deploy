@@ -2,38 +2,38 @@
 
 - hosts: kubernetes
   roles:
-    - { role: facts,                  tags: [kubernetes, kubernetes-core, tools-common] }
-    - { role: tools-common,           tags: [kubernetes-install, kubernetes-core, tools-common] }
-    - { role: util-crond,             tags: [kubernetes-install, kubernetes-core, crond] }
-    - { role: config-authorized-keys, tags: [kubernetes-install, kubernetes-core, authorized-keys] }
-    - { role: storage-mount-nfs,      tags: [kubernetes-install, kubernetes-core, nfs], when: nfs_server is defined }
-    - { role: network,                tags: [kubernetes-install, kubernetes-core, network] }
-    - { role: docker,                 tags: [kubernetes-install, kubernetes-core, docker]}
-    - { role: k8s,                    tags: [kubernetes-install, kubernetes-core, k8s] }
+    - { role: facts,                  tags: [kubernetes-core, tools-common] }
+    - { role: tools-common,           tags: [install, kubernetes-core, tools-common] }
+    - { role: util-crond,             tags: [install, kubernetes-core, crond] }
+    - { role: config-authorized-keys, tags: [install, kubernetes-core, authorized-keys] }
+    - { role: storage-mount-nfs,      tags: [install, kubernetes-core, nfs], when: nfs_server is defined }
+    - { role: network,                tags: [install, kubernetes-core, network] }
+    - { role: docker,                 tags: [install, kubernetes-core, docker]}
+    - { role: k8s,                    tags: [install, kubernetes-core, k8s] }
 
 - hosts: kubernetes-controlplane-lb
   roles:
-    - { role: k8s-controlplane-lb,    tags: [kubernetes-install, kubernetes-master, k8s-controlplane-lb] }
+    - { role: k8s-controlplane-lb,    tags: [install, kubernetes-master, k8s-controlplane-lb] }
 
 - hosts: kubernetes-master
   roles:
-    - { role: k8s-master,             tags: [kubernetes-install, kubernetes-master, k8s-master] }
-    - { role: k8s-backup,             tags: [kubernetes-install, kubernetes-master, k8s-backup], when: nfs_server is defined}
+    - { role: k8s-master,             tags: [install, kubernetes-master, k8s-master] }
+    - { role: k8s-backup,             tags: [install, kubernetes-master, k8s-backup], when: nfs_server is defined}
 
 - hosts: kubernetes-master-sec
   roles:
-    - { role: k8s-master-sec,         tags: [kubernetes-install, kubernetes-master, k8s-master-sec] }
+    - { role: k8s-master-sec,         tags: [install, kubernetes-master, k8s-master-sec] }
 
 - hosts: kubernetes-slave
   roles:
-    - { role: k8s-slave,              tags: [kubernetes-install, kubernetes-slave, k8s-slave] }
+    - { role: k8s-slave,              tags: [install, kubernetes-slave, k8s-slave] }
 
 - hosts: kubernetes-master
   roles:
-    - { role: tool-helm,              tags: [kubernetes-conf,    kubernetes-master, tool-helm] }
-    - { role: k8s-namespace,          tags: [kubernetes-install, kubernetes-master, k8s-namespace] }
-    - { role: app-secrets,            tags: [kubernetes-install, kubernetes-master, app-secrets] }
-    - { role: k8s-cert-manager,       tags: [kubernetes-conf,    k8s-cert-manager],    when: public_ip is defined }
-    - { role: k8s-ingress-nginx,      tags: [kubernetes-conf,    k8s-ingress-nginx],   when: public_ip is defined }
-    - { role: k8s-nfs-provisioner,    tags: [kubernetes-conf,    k8s-nfs-provisioner], when: nfs_server is defined }
-    - { role: k8s-dashboard,          tags: [kubernetes-conf,    dashboard] }
+    - { role: tool-helm,              tags: [conf,    kubernetes-master, tool-helm] }
+    - { role: k8s-namespace,          tags: [install, kubernetes-master, k8s-namespace] }
+    - { role: app-secrets,            tags: [install, kubernetes-master, app-secrets] }
+    - { role: k8s-cert-manager,       tags: [conf,    k8s-cert-manager] }
+    - { role: k8s-ingress-nginx,      tags: [conf,    k8s-ingress-nginx] }
+    - { role: k8s-nfs-provisioner,    tags: [conf,    k8s-nfs-provisioner], when: nfs_server is defined }
+    - { role: k8s-dashboard,          tags: [conf,    dashboard] }
