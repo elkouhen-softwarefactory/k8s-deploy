@@ -1,0 +1,1 @@
+helm install stable/external-dns --set aws.credentials.accessKey=AKIAZFKTAHHPRSZQAUFB --set aws.credentials.secretKey=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 --set provider=aws --set aws.zoneType=public --set txtOwnerId=Z26RPPVUP5NQWM --set domainFilters[0]=melkouhen.net
