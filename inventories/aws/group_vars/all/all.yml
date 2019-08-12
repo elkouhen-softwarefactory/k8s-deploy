@@ -2,6 +2,8 @@ domaine: melkouhen.net
 
 registry: registry-nexus.{{domaine}}
 
+hosted_zone: Z26RPPVUP5NQWM
+
 cluster_name: k8s.{{domaine}}
 
 deploy_target: aws
