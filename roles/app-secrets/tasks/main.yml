@@ -1,9 +1,3 @@
 - name: Create Docker Secret
   include_tasks: create-docker-secret.yml
   with_items: "{{ docker_registry_secrets }}"
-
-
-- name: Copy GPG
-  copy:
-    content: '{{gpg}}'
-    dest: tmp/gpg.asc
